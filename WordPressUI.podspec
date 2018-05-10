@@ -13,9 +13,7 @@ Pod::Spec.new do |s|
   s.platform      = :ios, "10.0"
   s.source        = { :git => "https://github.com/wordpress-mobile/WordPressUI-iOS.git", :tag => s.version.to_s }
   s.source_files  = 'WordPressUI/**/*.{h,m,swift}'
-  s.private_header_files = "WordPressUI/Private/*.h"
-  s.resources     = [ 'WordPressUI/Resources/*.{ttf,otf,json}' ]
-  s.exclude_files = 'WordPressUI/Exclude'
+  s.resources     = [ 'WordPressUI/Resources/*.{xcassets}' ]
   s.requires_arc  = true
   s.header_dir    = 'WordPressUI'
 end
