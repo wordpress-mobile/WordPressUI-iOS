@@ -11,6 +11,7 @@ Pod::Spec.new do |s|
   s.license       = "GPLv2"
   s.author        = { "Jorge Leandro Perez" => "jorge.perez@automattic.com" }
   s.platform      = :ios, "10.0"
+  s.swift_version = '4.0'
   s.source        = { :git => "https://github.com/wordpress-mobile/WordPressUI-iOS.git", :tag => s.version.to_s }
   s.source_files  = 'WordPressUI/**/*.{h,m,swift}'
   s.resources     = [ 'WordPressUI/Resources/*.{xcassets}' ]
