@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17576E6320AC7A28008612EF /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17576E6220AC7A28008612EF /* GradientView.swift */; };
 		43067E2B203C8CC4001DD610 /* UIControl+BlockEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43067E2A203C8CC4001DD610 /* UIControl+BlockEvents.swift */; };
 		43067E2E203C8D03001DD610 /* UIBarButtonItem+BlockEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43067E2D203C8D03001DD610 /* UIBarButtonItem+BlockEvents.swift */; };
 		43067E30203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43067E2F203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift */; };
@@ -67,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		17576E6220AC7A28008612EF /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		43067E2A203C8CC4001DD610 /* UIControl+BlockEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+BlockEvents.swift"; sourceTree = "<group>"; };
 		43067E2D203C8D03001DD610 /* UIBarButtonItem+BlockEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+BlockEvents.swift"; sourceTree = "<group>"; };
 		43067E2F203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+BlockEvents.swift"; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				B5393FE9206D7047007BF9D4 /* RotationAwareNavigationViewController.swift */,
+				17576E6220AC7A28008612EF /* GradientView.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				B5A787E1202B2B59007874FB /* UIControl+Helpers.swift in Sources */,
 				B518D76720740F0800F05DB4 /* UIImageView+Blavatar.swift in Sources */,
 				43067E2E203C8D03001DD610 /* UIBarButtonItem+BlockEvents.swift in Sources */,
+				17576E6320AC7A28008612EF /* GradientView.swift in Sources */,
 				B592B4522064296600FF568E /* FancyAlertViewController.swift in Sources */,
 				B58C4EBC207C55D300E32E4D /* UIImage+Assets.swift in Sources */,
 				B5A787F5202B3587007874FB /* UIKitConstants.swift in Sources */,
