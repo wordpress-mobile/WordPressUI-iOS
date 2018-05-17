@@ -5,7 +5,7 @@ import UIKit
 /// or in Interface Builder.
 ///
 @IBDesignable
-class GradientView: UIView {
+public class GradientView: UIView {
     private let gradientLayer = CAGradientLayer()
 
     override init(frame: CGRect) {
@@ -13,7 +13,7 @@ class GradientView: UIView {
         commonInit()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
@@ -26,7 +26,7 @@ class GradientView: UIView {
         updateGradientPoints()
     }
 
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
 
         updateGradientFrame()
@@ -35,14 +35,14 @@ class GradientView: UIView {
     // MARK: - Inspectable appearance properties
 
     @IBInspectable
-    var fromColor: UIColor = Defaults.whiteColor {
+    public var fromColor: UIColor = Defaults.whiteColor {
         didSet {
             updateGradientColors()
         }
     }
 
     @IBInspectable
-    var toColor: UIColor =  Defaults.clearColor {
+    public var toColor: UIColor =  Defaults.clearColor {
         didSet {
             updateGradientColors()
         }
@@ -50,7 +50,7 @@ class GradientView: UIView {
 
     /// Matches CAGradientLayer's startPoint
     @IBInspectable
-    var startPoint: CGPoint = Defaults.startPoint {
+    public var startPoint: CGPoint = Defaults.startPoint {
         didSet {
             updateGradientPoints()
         }
@@ -58,7 +58,7 @@ class GradientView: UIView {
 
     /// Matches CAGradientLayer's endPoint
     @IBInspectable
-    var endPoint: CGPoint = Defaults.endPoint {
+    public var endPoint: CGPoint = Defaults.endPoint {
         didSet {
             updateGradientPoints()
         }
