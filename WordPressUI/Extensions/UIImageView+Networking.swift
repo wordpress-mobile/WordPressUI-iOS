@@ -30,6 +30,26 @@ public extension UIImageView {
     ///     -   failure: Closure to be executed upon failure.
     ///
     public func downloadImage(from url: URL?, placeholderImage: UIImage? = nil, success: ((UIImage) -> ())? = nil, failure: ((Error?) -> ())? = nil) {
+        // Ideally speaking, this method should *not* receive an Optional URL. But we're doing so, for convenience.
+        // If the actual URL was nil, at least we set the Placeholder Image. Capicci?
+        guard let url = url else {
+            if let placeholderImage = placeholderImage {
+                image = placeholderImage
+            }
+            downloadURL = nil
+            downloadTask?.cancel()
+            return
+        }
+
+        // If we are asking for the same URL let's just stay like we are
+        guard url != downloadURL else {
+            return
+        }
+
+        // Do this first, if there was any ongoing task for this imageview we need to cancel imediately or else we can apply the cache image and not cancel a previous download
+        downloadURL = url
+        downloadTask?.cancel()
+
         let internalOnSuccess = { [weak self] (image: UIImage) in
             self?.image = image
             success?(image)
@@ -39,15 +59,6 @@ public extension UIImageView {
             internalOnSuccess(cachedImage)
             return
         }
-
-        // Ideally speaking, this method should *not* receive an Optional URL. But we're doing so, for convenience.
-        // If the actual URL was nil, at least we set the Placeholder Image. Capicci?
-        //
-        guard let url = url, url != downloadURL else {
-            return
-        }
-
-        downloadURL = url
 
         if let placeholderImage = placeholderImage {
             image = placeholderImage
