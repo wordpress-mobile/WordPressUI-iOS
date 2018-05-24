@@ -36,6 +36,8 @@ public extension UIImageView {
             if let placeholderImage = placeholderImage {
                 image = placeholderImage
             }
+            downloadURL = nil
+            downloadTask?.cancel()
             return
         }
 
