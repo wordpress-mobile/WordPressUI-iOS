@@ -55,6 +55,7 @@
 		B5C82AE32077C01B00DB2E78 /* UILabel+SuggestSize.h in Headers */ = {isa = PBXBuildFile; fileRef = B5C82AE22077C01B00DB2E78 /* UILabel+SuggestSize.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5C82AE52077C02200DB2E78 /* UILabel+SuggestSize.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C82AE42077C02100DB2E78 /* UILabel+SuggestSize.m */; };
 		B5D91458206AD8BA00EF333D /* FancyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D91457206AD8BA00EF333D /* FancyButton.swift */; };
+		FF20AD1720B76A2300082398 /* WordPressUI.podspec in Resources */ = {isa = PBXBuildFile; fileRef = FF20AD1620B76A2300082398 /* WordPressUI.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		B5C82AE22077C01B00DB2E78 /* UILabel+SuggestSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+SuggestSize.h"; sourceTree = "<group>"; };
 		B5C82AE42077C02100DB2E78 /* UILabel+SuggestSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+SuggestSize.m"; sourceTree = "<group>"; };
 		B5D91457206AD8BA00EF333D /* FancyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FancyButton.swift; sourceTree = "<group>"; };
+		FF20AD1620B76A2300082398 /* WordPressUI.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WordPressUI.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 		B59DCB52202B146D00BEBD8A = {
 			isa = PBXGroup;
 			children = (
+				FF20AD1620B76A2300082398 /* WordPressUI.podspec */,
 				B59DCB5E202B146D00BEBD8A /* WordPressUI */,
 				B59DCB69202B146D00BEBD8A /* WordPressUITests */,
 				B59DCB5D202B146D00BEBD8A /* Products */,
@@ -409,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B592B4502064296600FF568E /* FancyAlerts.storyboard in Resources */,
+				FF20AD1720B76A2300082398 /* WordPressUI.podspec in Resources */,
 				B58C4EC6207C592B00E32E4D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
