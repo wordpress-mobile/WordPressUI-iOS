@@ -43,6 +43,9 @@ public extension UIImageView {
 
         // If we are asking for the same URL let's just stay like we are
         guard url != downloadURL else {
+            if let error = downloadTask?.error {
+                failure?(error)
+            }
             return
         }
 
