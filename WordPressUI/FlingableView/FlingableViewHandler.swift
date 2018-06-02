@@ -27,7 +27,7 @@ open class FlingableViewHandler: NSObject {
         }
     }
 
-    @objc public var delegate: FlingableViewHandlerDelegate?
+    @objc public weak var delegate: FlingableViewHandlerDelegate?
 
     fileprivate let animator: UIDynamicAnimator
     fileprivate var attachmentBehavior: UIAttachmentBehavior!
