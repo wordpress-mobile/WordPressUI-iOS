@@ -41,10 +41,17 @@ public extension UIImageView {
             return
         }
 
+        let internalOnSuccess = { [weak self] (image: UIImage) in
+            self?.image = image
+            success?(image)
+        }
+
+        let cachedImage = Downloader.cache.object(forKey: url as AnyObject) as? UIImage
+
         // If we are asking for the same URL let's just stay like we are
-        guard url != downloadURL else {
-            if let error = downloadTask?.error {
-                failure?(error)
+        guard url != downloadURL || taskFinishedWitherror() else {
+            if let image = cachedImage {
+                internalOnSuccess(image)
             }
             return
         }
@@ -53,13 +60,8 @@ public extension UIImageView {
         downloadURL = url
         downloadTask?.cancel()
 
-        let internalOnSuccess = { [weak self] (image: UIImage) in
-            self?.image = image
-            success?(image)
-        }
-
-        if let cachedImage = Downloader.cache.object(forKey: url as AnyObject) as? UIImage {
-            internalOnSuccess(cachedImage)
+        if let image = cachedImage {
+            internalOnSuccess(image)
             return
         }
 
@@ -106,6 +108,12 @@ public extension UIImageView {
         URLSession.shared.configuration.urlCache?.removeAllCachedResponses()
     }
 
+
+    /// Returns true if the task finished with an error.
+    ///
+    private func taskFinishedWitherror() -> Bool {
+        return downloadTask?.error != nil
+    }
 
     /// Returns a URLRequest for an image, hosted at the specified URL.
     ///
