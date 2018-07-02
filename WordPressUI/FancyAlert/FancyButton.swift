@@ -93,7 +93,7 @@ open class FancyButton: UIButton {
 
     /// Insets to be applied over the Contents.
     ///
-    @objc public dynamic var contentInsets = Metrics.contentInsets {
+    @objc public dynamic var contentInsets = UIImage.Metrics.contentInsets {
         didSet {
             configureInsets()
         }
@@ -142,14 +142,14 @@ open class FancyButton: UIButton {
     private func configureBackgrounds() {
         let normalImage: UIImage
         let highlightedImage: UIImage
-        let disabledImage = renderBackgroundImage(fill: disabledBackgroundColor, border: disabledBorderColor)
+        let disabledImage = UIImage.renderBackgroundImage(fill: disabledBackgroundColor, border: disabledBorderColor)
 
         if isPrimary {
-            normalImage = renderBackgroundImage(fill: primaryNormalBackgroundColor, border: primaryNormalBorderColor)
-            highlightedImage = renderBackgroundImage(fill: primaryHighlightBackgroundColor, border: primaryHighlightBorderColor)
+            normalImage = UIImage.renderBackgroundImage(fill: primaryNormalBackgroundColor, border: primaryNormalBorderColor)
+            highlightedImage = UIImage.renderBackgroundImage(fill: primaryHighlightBackgroundColor, border: primaryHighlightBorderColor)
         } else {
-            normalImage = renderBackgroundImage(fill: secondaryNormalBackgroundColor, border: secondaryNormalBorderColor)
-            highlightedImage = renderBackgroundImage(fill: secondaryHighlightBackgroundColor, border: secondaryHighlightBorderColor)
+            normalImage = UIImage.renderBackgroundImage(fill: secondaryNormalBackgroundColor, border: secondaryNormalBorderColor)
+            highlightedImage = UIImage.renderBackgroundImage(fill: secondaryHighlightBackgroundColor, border: secondaryHighlightBorderColor)
         }
 
         setBackgroundImage(normalImage, for: .normal)
@@ -173,55 +173,6 @@ open class FancyButton: UIButton {
         titleLabel?.font = titleFont
         titleLabel?.adjustsFontForContentSizeCategory = true
         titleLabel?.textAlignment = .center
-    }
-}
-
-
-// MARK: - Rendering Methods
-//
-private extension FancyButton {
-
-    /// Renders the Background Image with the specified Background + Size + Radius + Insets parameters.
-    ///
-    func renderBackgroundImage(fill: UIColor,
-                     border: UIColor,
-                     size: CGSize = Metrics.backgroundImageSize,
-                     cornerRadius: CGFloat = Metrics.backgroundCornerRadius,
-                     capInsets: UIEdgeInsets = Metrics.backgroundCapInsets,
-                     shadowOffset: CGSize = Metrics.backgroundShadowOffset,
-                     shadowBlurRadius: CGFloat = Metrics.backgroundShadowBlurRadius) -> UIImage {
-
-        let renderer = UIGraphicsImageRenderer(size: size)
-        let image = renderer.image { context in
-
-            let lineWidthInPixels = 1 / UIScreen.main.scale
-            let cgContext = context.cgContext
-
-            /// Apply a 1px inset to the bounds, for our bezier (so that the border doesn't fall outside, capicci?)
-            ///
-            var bounds = renderer.format.bounds
-            bounds.origin.x += lineWidthInPixels
-            bounds.origin.y += lineWidthInPixels
-            bounds.size.height -= lineWidthInPixels * 2 + shadowOffset.height
-            bounds.size.width -= lineWidthInPixels * 2 + shadowOffset.width
-
-            let path = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius)
-
-            /// Draw: Background + Shadow
-            cgContext.saveGState()
-            cgContext.setShadow(offset: shadowOffset, blur: shadowBlurRadius, color: border.cgColor)
-            fill.setFill()
-
-            path.fill()
-
-            cgContext.restoreGState()
-
-            /// Draw: Border!
-            border.setStroke()
-            path.stroke()
-        }
-
-        return image.resizableImage(withCapInsets: capInsets)
     }
 }
 
@@ -262,16 +213,5 @@ private extension FancyButton {
         static let secondaryColor = UIColor(red: 46/255.0, green: 68/255.0, blue: 83/255.0, alpha: 255.0/255.0)
         static let disabledColor = UIColor(red: 233/255.0, green: 239/255.0, blue: 243/255.0, alpha: 255.0/255.0)
         static let defaultFont = UIFont.systemFont(ofSize: 22)
-    }
-
-    /// Default Metrics
-    ///
-    struct Metrics {
-        static let backgroundImageSize = CGSize(width: 44, height: 44)
-        static let backgroundCornerRadius = CGFloat(7)
-        static let backgroundCapInsets = UIEdgeInsets(top: 18, left: 18, bottom: 18, right: 18)
-        static let backgroundShadowOffset = CGSize(width: 0, height: 1)
-        static let backgroundShadowBlurRadius = CGFloat(0)
-        static let contentInsets = UIEdgeInsets(top: 12, left: 20, bottom: 12, right: 20)
     }
 }
