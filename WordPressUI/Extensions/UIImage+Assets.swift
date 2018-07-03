@@ -37,11 +37,11 @@ extension UIImage {
     ///
     public class func renderBackgroundImage(fill: UIColor,
                                border: UIColor,
-                               size: CGSize = Metrics.backgroundImageSize,
-                               cornerRadius: CGFloat = Metrics.backgroundCornerRadius,
-                               capInsets: UIEdgeInsets = Metrics.backgroundCapInsets,
-                               shadowOffset: CGSize = Metrics.backgroundShadowOffset,
-                               shadowBlurRadius: CGFloat = Metrics.backgroundShadowBlurRadius) -> UIImage {
+                               size: CGSize = DefaultRenderMetrics.backgroundImageSize,
+                               cornerRadius: CGFloat = DefaultRenderMetrics.backgroundCornerRadius,
+                               capInsets: UIEdgeInsets = DefaultRenderMetrics.backgroundCapInsets,
+                               shadowOffset: CGSize = DefaultRenderMetrics.backgroundShadowOffset,
+                               shadowBlurRadius: CGFloat = DefaultRenderMetrics.backgroundShadowBlurRadius) -> UIImage {
 
         let renderer = UIGraphicsImageRenderer(size: size)
         let image = renderer.image { context in
@@ -78,7 +78,7 @@ extension UIImage {
 
     /// Default Metrics
     ///
-    public struct Metrics {
+    public struct DefaultRenderMetrics {
         public static let backgroundImageSize = CGSize(width: 44, height: 44)
         public static let backgroundCornerRadius = CGFloat(7)
         public static let backgroundCapInsets = UIEdgeInsets(top: 18, left: 18, bottom: 18, right: 18)
