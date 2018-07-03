@@ -93,7 +93,7 @@ open class FancyButton: UIButton {
 
     /// Insets to be applied over the Contents.
     ///
-    @objc public dynamic var contentInsets = UIImage.Metrics.contentInsets {
+    @objc public dynamic var contentInsets = UIImage.DefaultRenderMetrics.contentInsets {
         didSet {
             configureInsets()
         }
