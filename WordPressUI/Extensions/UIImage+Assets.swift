@@ -80,7 +80,7 @@ extension UIImage {
     ///
     public struct DefaultRenderMetrics {
         public static let backgroundImageSize = CGSize(width: 44, height: 44)
-        public static let backgroundCornerRadius = CGFloat(7)
+        public static let backgroundCornerRadius = CGFloat(8)
         public static let backgroundCapInsets = UIEdgeInsets(top: 18, left: 18, bottom: 18, right: 18)
         public static let backgroundShadowOffset = CGSize(width: 0, height: 1)
         public static let backgroundShadowBlurRadius = CGFloat(0)
