@@ -147,6 +147,7 @@
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qlO-59-AKI" customClass="FancyButton" customModule="WordPressUI" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="137" height="46"/>
+                                                                        <accessibility key="accessibilityConfiguration" identifier="cancelAlertButton"/>
                                                                         <state key="normal" title="Not Now"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimary" value="NO"/>
@@ -157,6 +158,7 @@
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bju-kg-VqX" customClass="FancyButton" customModule="WordPressUI" customModuleProvider="target">
                                                                         <rect key="frame" x="157" y="0.0" width="137" height="46"/>
+                                                                        <accessibility key="accessibilityConfiguration" identifier="defaultAlertButton"/>
                                                                         <state key="normal" title="Try It"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimary" value="YES"/>
