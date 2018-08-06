@@ -55,6 +55,7 @@
 		B5C82AE32077C01B00DB2E78 /* UILabel+SuggestSize.h in Headers */ = {isa = PBXBuildFile; fileRef = B5C82AE22077C01B00DB2E78 /* UILabel+SuggestSize.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5C82AE52077C02200DB2E78 /* UILabel+SuggestSize.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C82AE42077C02100DB2E78 /* UILabel+SuggestSize.m */; };
 		B5D91458206AD8BA00EF333D /* FancyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D91457206AD8BA00EF333D /* FancyButton.swift */; };
+		D82804932117EC5C00044ED3 /* UIViewController+Children.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82804922117EC5C00044ED3 /* UIViewController+Children.swift */; };
 		FF20AD1720B76A2300082398 /* WordPressUI.podspec in Resources */ = {isa = PBXBuildFile; fileRef = FF20AD1620B76A2300082398 /* WordPressUI.podspec */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +121,7 @@
 		B5C82AE22077C01B00DB2E78 /* UILabel+SuggestSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+SuggestSize.h"; sourceTree = "<group>"; };
 		B5C82AE42077C02100DB2E78 /* UILabel+SuggestSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+SuggestSize.m"; sourceTree = "<group>"; };
 		B5D91457206AD8BA00EF333D /* FancyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FancyButton.swift; sourceTree = "<group>"; };
+		D82804922117EC5C00044ED3 /* UIViewController+Children.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Children.swift"; sourceTree = "<group>"; };
 		FF20AD1620B76A2300082398 /* WordPressUI.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WordPressUI.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -285,6 +287,7 @@
 				B5A787AA202B2323007874FB /* UIView+Animations.swift */,
 				B5A787A6202B2322007874FB /* UIView+Helpers.swift */,
 				B5A787AB202B2323007874FB /* UIViewController+Helpers.swift */,
+				D82804922117EC5C00044ED3 /* UIViewController+Children.swift */,
 				B5A787A8202B2323007874FB /* UIWindow+Helpers.swift */,
 			);
 			path = Extensions;
@@ -440,6 +443,7 @@
 				B5A787B7202B2324007874FB /* UIViewController+Helpers.swift in Sources */,
 				B5393FEA206D7047007BF9D4 /* RotationAwareNavigationViewController.swift in Sources */,
 				B5A787B6202B2324007874FB /* UIView+Animations.swift in Sources */,
+				D82804932117EC5C00044ED3 /* UIViewController+Children.swift in Sources */,
 				B5A787B8202B2324007874FB /* UIImage+Rotation.swift in Sources */,
 				B518D76520740E6900F05DB4 /* UIImageView+Networking.swift in Sources */,
 				43067E2B203C8CC4001DD610 /* UIControl+BlockEvents.swift in Sources */,
