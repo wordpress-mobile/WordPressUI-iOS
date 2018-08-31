@@ -17,8 +17,8 @@ class GhostAnimation: CABasicAnimation {
     convenience init(startColor: UIColor, endColor: UIColor, loopDuration: TimeInterval) {
         self.init()
 
-        fromValue = startColor
-        toValue = endColor
+        fromValue = startColor.cgColor
+        toValue = endColor.cgColor
         duration = loopDuration
     }
 
