@@ -6,20 +6,15 @@ import UIKit
 ///
 class GhostTableViewHandler: NSObject {
 
-    /// ReuseIdentifier to be used on each one of the Ghost Cells.
+    /// Ghost Settings!
     ///
-    let reuseIdentifier: String
-
-    /// Structure to be displayed.
-    ///
-    let rowsPerSection: [Int]
+    let settings: GhostSettings
 
 
     /// Designated Initializer
     ///
-    init(reuseIdentifier: String, rowsPerSection: [Int]) {
-        self.reuseIdentifier = reuseIdentifier
-        self.rowsPerSection = rowsPerSection
+    init(using settings: GhostSettings) {
+        self.settings = settings
     }
 }
 
@@ -28,17 +23,29 @@ class GhostTableViewHandler: NSObject {
 ///
 extension GhostTableViewHandler: UITableViewDataSource {
 
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return settings.displaysSectionHeader ? " " : nil
+    }
+
     func numberOfSections(in tableView: UITableView) -> Int {
-        return rowsPerSection.count
+        return settings.rowsPerSection.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rowsPerSection[section]
+        return settings.rowsPerSection[section]
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        cell.insertAnimatedGhostLayers()
+        let cell = tableView.dequeueReusableCell(withIdentifier: settings.reuseIdentifier, for: indexPath)
+        cell.insertGhostLayers()
+        cell.enumerateGhostLayers { layer in
+            guard layer.isAnimating == false else {
+                return
+            }
+
+            layer.startAnimating(fromColor: settings.beatStartColor, toColor: settings.beatEndColor, duration: settings.beatDuration)
+        }
+
         return cell
     }
 }

@@ -26,9 +26,8 @@ class GhostLayer: CALayer {
 
     /// Designated Initializer
     ///
-    init(bgColor: UIColor = GhostSettings.beatStartColor) {
+    override init() {
         super.init()
-        backgroundColor = bgColor.cgColor
         anchorPoint = .zero
     }
 
@@ -69,8 +68,9 @@ extension GhostLayer {
 
     /// Applies a GhostAnimation.
     ///
-    func startAnimating() {
-        add(GhostAnimation(), forKey: GhostAnimation.defaultKey)
+    func startAnimating(fromColor: UIColor, toColor: UIColor, duration: TimeInterval) {
+        let animation = GhostAnimation(startColor: fromColor, endColor: toColor, loopDuration: duration)
+        add(animation, forKey: GhostAnimation.defaultKey)
     }
 
     /// Removes the GhostAnimation (if any).

@@ -6,28 +6,17 @@ import UIKit
 ///
 extension UIView {
 
-    /// Applies a GhostLayer on each one of the receiver's Leaf Views and starts animating them immediately.
-    /// Note: No more than one GhostLayer is allowed, per leafView.
+    /// Applies a GhostLayer on each one of the receiver's Leaf Views (if needed).
     ///
-    func insertAnimatedGhostLayers() {
+    func insertGhostLayers() {
         layoutIfNeeded()
 
         enumerateLeafViews { leafView in
-            guard leafView.containsGhostLayer() == false else {
+            guard leafView.containsGhostLayer == false else {
                 return
             }
 
-            let layer = GhostLayer()
-            layer.insert(into: leafView)
-            layer.startAnimating()
-        }
-    }
-
-    /// Starts animating all of the GhostLayer(s).
-    ///
-    func animateGhostLayers() {
-        enumerateGhostLayers { layer in
-            layer.startAnimating()
+            GhostLayer().insert(into: leafView)
         }
     }
 
@@ -37,19 +26,6 @@ extension UIView {
         enumerateGhostLayers { skeletonLayer in
             skeletonLayer.removeFromSuperlayer()
         }
-    }
-}
-
-
-/// Private Methods
-///
-private extension UIView {
-
-    /// Indicates if the receiver contains a GhostLayer.
-    ///
-    func containsGhostLayer() -> Bool {
-        let output = layer.sublayers?.contains { $0 is GhostLayer }
-        return output ?? false
     }
 
     /// Enumerates all of the receiver's GhostLayer(s).
@@ -63,6 +39,19 @@ private extension UIView {
 
             callback(skeletonLayer)
         }
+    }
+}
+
+
+/// Private Methods
+///
+private extension UIView {
+
+    /// Indicates if the receiver contains a GhostLayer.
+    ///
+    var containsGhostLayer: Bool {
+        let output = layer.sublayers?.contains { $0 is GhostLayer }
+        return output ?? false
     }
 
     /// Enumerates all of the receiver's Leaf Views.

@@ -27,7 +27,6 @@ class GhostCollectionViewHandler: NSObject {
 /// SkeletonCollectionViewHandler: DataSource Methods
 ///
 extension GhostCollectionViewHandler: UICollectionViewDataSource {
-
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return itemsPerSection.count
     }
@@ -38,7 +37,7 @@ extension GhostCollectionViewHandler: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        cell.insertAnimatedGhostLayers()
+        cell.insertGhostLayers()
         return cell
     }
 }

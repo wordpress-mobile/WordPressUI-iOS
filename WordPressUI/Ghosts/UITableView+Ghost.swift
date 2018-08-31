@@ -2,19 +2,20 @@ import Foundation
 import UIKit
 
 
+
 // MARK: - Skeleton UITableView Methods
 //
 extension UITableView {
 
-    /// Displays Ghost Content, based on cells with the given reuseIdentifier, and row hieararchy.
+    /// Displays Ghost Content with the specified Settings.
     ///
-    open func displayGhostContent(reuseIdentifier: String, rowsPerSection: [Int]) {
+    open func displayGhostContent(using settings: GhostSettings) {
         guard ghostHandler == nil else {
             return
         }
 
         preserveInitialDelegates()
-        setupGhostHandler(reuseIdentifier: reuseIdentifier, rowsPerSection: rowsPerSection)
+        setupGhostHandler(using: settings)
 
         reloadData()
     }
@@ -41,8 +42,8 @@ private extension UITableView {
 
     /// Sets up an internal (private) instance of GhostTableViewHandler.
     ///
-    func setupGhostHandler(reuseIdentifier: String, rowsPerSection: [Int]) {
-        let handler = GhostTableViewHandler(reuseIdentifier: reuseIdentifier, rowsPerSection: rowsPerSection)
+    func setupGhostHandler(using settings: GhostSettings) {
+        let handler = GhostTableViewHandler(using: settings)
         dataSource = handler
         delegate = handler
         ghostHandler = handler

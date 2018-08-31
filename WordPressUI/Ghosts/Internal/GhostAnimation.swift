@@ -14,13 +14,13 @@ class GhostAnimation: CABasicAnimation {
 
     /// Designated Initializer
     ///
-    override init() {
+    init(startColor: UIColor, endColor: UIColor, loopDuration: TimeInterval) {
         super.init()
 
         keyPath = #keyPath(CALayer.backgroundColor)
-        fromValue = GhostSettings.beatStartColor.cgColor
-        toValue = GhostSettings.beatEndColor.cgColor
-        duration = GhostSettings.beatDuration
+        fromValue = startColor
+        toValue = endColor
+        duration = loopDuration
         timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         repeatCount = .infinity
         autoreverses = true
