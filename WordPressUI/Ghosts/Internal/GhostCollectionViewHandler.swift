@@ -6,20 +6,15 @@ import UIKit
 ///
 class GhostCollectionViewHandler: NSObject {
 
-    /// ReuseIdentifier to be used on each one of the Ghost Cells.
+    /// Ghost Settings!
     ///
-    let reuseIdentifier: String
-
-    /// Structure to be displayed.
-    ///
-    let itemsPerSection: [Int]
+    let settings: GhostSettings
 
 
     /// Designated Initializer
     ///
-    init(reuseIdentifier: String, itemsPerSection: [Int]) {
-        self.reuseIdentifier = reuseIdentifier
-        self.itemsPerSection = itemsPerSection
+    init(using settings: GhostSettings) {
+        self.settings = settings
     }
 }
 
@@ -27,17 +22,22 @@ class GhostCollectionViewHandler: NSObject {
 /// SkeletonCollectionViewHandler: DataSource Methods
 ///
 extension GhostCollectionViewHandler: UICollectionViewDataSource {
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return itemsPerSection.count
+        return settings.rowsPerSection.count
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return itemsPerSection[section]
+        return settings.rowsPerSection[section]
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        cell.insertGhostLayers()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: settings.reuseIdentifier, for: indexPath)
+        cell.insertGhostLayers { layer in
+            layer.backgroundColor = settings.beatStartColor.cgColor
+            layer.startAnimating(fromColor: settings.beatStartColor, toColor: settings.beatEndColor, duration: settings.beatDuration)
+        }
+
         return cell
     }
 }

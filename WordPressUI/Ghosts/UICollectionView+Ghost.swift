@@ -8,13 +8,13 @@ extension UICollectionView {
 
     /// Displays Ghost Content, based on cells with the given reuseIdentifier, and items hieararchy.
     ///
-    open func displayGhostContent(reuseIdentifier: String, itemsPerSection: [Int]) {
+    open func displayGhostContent(using settings: GhostSettings) {
         guard ghostHandler == nil else {
             return
         }
 
         preserveInitialDelegates()
-        setupGhostHandler(reuseIdentifier: reuseIdentifier, itemsPerSection: itemsPerSection)
+        setupGhostHandler(using: settings)
 
         reloadData()
     }
@@ -41,8 +41,8 @@ private extension UICollectionView {
 
     /// Sets up an internal (private) instance of GhostCollectionViewHandler.
     ///
-    func setupGhostHandler(reuseIdentifier: String, itemsPerSection: [Int]) {
-        let handler = GhostCollectionViewHandler(reuseIdentifier: reuseIdentifier, itemsPerSection: itemsPerSection)
+    func setupGhostHandler(using settings: GhostSettings) {
+        let handler = GhostCollectionViewHandler(using: settings)
         dataSource = handler
         delegate = handler
         ghostHandler = handler

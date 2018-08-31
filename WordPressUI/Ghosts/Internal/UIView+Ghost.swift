@@ -8,7 +8,7 @@ extension UIView {
 
     /// Applies a GhostLayer on each one of the receiver's Leaf Views (if needed).
     ///
-    func insertGhostLayers() {
+    func insertGhostLayers(callback: (GhostLayer) -> Void) {
         layoutIfNeeded()
 
         enumerateLeafViews { leafView in
@@ -16,7 +16,9 @@ extension UIView {
                 return
             }
 
-            GhostLayer().insert(into: leafView)
+            let layer = GhostLayer()
+            layer.insert(into: leafView)
+            callback(layer)
         }
     }
 

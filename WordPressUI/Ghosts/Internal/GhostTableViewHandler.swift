@@ -37,12 +37,8 @@ extension GhostTableViewHandler: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: settings.reuseIdentifier, for: indexPath)
-        cell.insertGhostLayers()
-        cell.enumerateGhostLayers { layer in
-            guard layer.isAnimating == false else {
-                return
-            }
-
+        cell.insertGhostLayers { layer in
+            layer.backgroundColor = settings.beatStartColor.cgColor
             layer.startAnimating(fromColor: settings.beatStartColor, toColor: settings.beatEndColor, duration: settings.beatDuration)
         }
 

@@ -14,16 +14,12 @@ class GhostAnimation: CABasicAnimation {
 
     /// Designated Initializer
     ///
-    init(startColor: UIColor, endColor: UIColor, loopDuration: TimeInterval) {
-        super.init()
+    convenience init(startColor: UIColor, endColor: UIColor, loopDuration: TimeInterval) {
+        self.init()
 
-        keyPath = #keyPath(CALayer.backgroundColor)
         fromValue = startColor
         toValue = endColor
         duration = loopDuration
-        timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        repeatCount = .infinity
-        autoreverses = true
     }
 
     /// Required Initializer
@@ -36,5 +32,20 @@ class GhostAnimation: CABasicAnimation {
     ///
     override init() {
         super.init()
+
+        keyPath = #keyPath(CALayer.backgroundColor)
+        timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        repeatCount = .infinity
+        autoreverses = true
+    }
+
+    /// NSCopying Conformance
+    ///
+    override func copy(with zone: NSZone? = nil) -> Any {
+        let theCopy = GhostAnimation()
+        theCopy.fromValue = fromValue
+        theCopy.toValue = toValue
+        theCopy.duration = duration
+        return theCopy
     }
 }
