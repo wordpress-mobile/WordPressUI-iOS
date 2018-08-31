@@ -12,7 +12,7 @@ extension UIView {
         layoutIfNeeded()
 
         enumerateLeafViews { leafView in
-            guard leafView.containsGhostLayer == false else {
+            guard leafView.containsGhostLayer == false && leafView.isPrivateUIKitInstance == false else {
                 return
             }
 
@@ -54,6 +54,13 @@ private extension UIView {
     var containsGhostLayer: Bool {
         let output = layer.sublayers?.contains { $0 is GhostLayer }
         return output ?? false
+    }
+
+    /// Indicates if the receiver's classname starts with an underscore (UIKit's internals).
+    ///
+    var isPrivateUIKitInstance: Bool {
+        let classnameWithoutNamespaces = NSStringFromClass(type(of: self)).components(separatedBy: ".").last
+        return classnameWithoutNamespaces?.starts(with: "_") ?? false
     }
 
     /// Enumerates all of the receiver's Leaf Views.
