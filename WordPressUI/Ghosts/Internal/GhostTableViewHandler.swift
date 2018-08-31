@@ -46,4 +46,9 @@ extension GhostTableViewHandler: UITableViewDataSource {
 
 /// GhostTableViewHandler: Delegate Methods
 ///
-extension GhostTableViewHandler: UITableViewDelegate { }
+extension GhostTableViewHandler: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+}
