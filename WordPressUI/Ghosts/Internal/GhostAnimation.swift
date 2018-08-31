@@ -31,4 +31,10 @@ class GhostAnimation: CABasicAnimation {
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
+
+    /// Required Initializer
+    ///
+    override init() {
+        super.init()
+    }
 }
