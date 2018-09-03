@@ -35,7 +35,7 @@ extension UICollectionView {
 
     /// Indicates if the receiver is wired up to display Ghost Content.
     ///
-    open var displaysGhostContent: Bool {
+    open var isDisplayingGhostContent: Bool {
         return ghostHandler != nil
     }
 }
