@@ -51,10 +51,30 @@ extension UIImageView {
     ///     - placeholderImage: Image to be used as Placeholder
     ///
     @objc
-    public func downloadGravatarWithEmail(_ email: String, rating: GravatarRatings = .`default`, placeholderImage: UIImage = .gravatarPlaceholderImage) {
-        let gravatarURL = gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating.stringValue())
+    public func downloadGravatarWithEmail(_ email: String, rating: GravatarRatings = .default, placeholderImage: UIImage = .gravatarPlaceholderImage) {
+        let gravatarURL = gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating)
 
+        listenForGravatarChanges()
         downloadImage(from: gravatarURL, placeholderImage: placeholderImage)
+    }
+
+    private func listenForGravatarChanges() {
+        guard downloadURL == nil else {
+            return
+        }
+
+        NotificationCenter.default.addObserver(forName: .GravatarImageUpdateNotification, object: nil, queue: nil) { [weak self] (notification) in
+            guard let userInfo = notification.userInfo,
+                let email = userInfo["email"] as? String,
+                let image = userInfo["image"] as? UIImage,
+                let downloadURL = self?.downloadURL else {
+                return
+            }
+            let testHash = self?.gravatarHash(of: email) ?? ""
+            if downloadURL.absoluteString.contains(testHash) {
+                self?.image = image
+            }
+        }
     }
 
     /// Downloads the provided Gravatar.
@@ -110,13 +130,35 @@ extension UIImageView {
     /// P.s.:
     /// Hope buddah, and the code reviewer, can forgive me for this hack.
     ///
-    @objc
-    public func overrideGravatarImageCache(_ image: UIImage, rating: GravatarRatings, email: String) {
-        guard let gravatarURL = gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating.stringValue()) else {
+
+    /// Sets an Image Override in both, AFNetworking's Private Cache + NSURLCache
+    ///
+    /// - Parameters:
+    ///   - image: new UIImage
+    ///   - rating: rating for the new image.
+    ///   - email: associated email of the new gravatar
+    /// - Note: You may want to use `updateGravatar(image:, email:)` instead
+    @available(*, deprecated)
+    @objc public func overrideGravatarImageCache(_ image: UIImage, rating: GravatarRatings, email: String) {
+        guard let gravatarURL = gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating) else {
             return
         }
 
+        listenForGravatarChanges()
         overrideImageCache(for: gravatarURL, with: image)
+    }
+
+    /// Updates the gravatar image for the given email, and notifies all gravatar image views
+    ///
+    /// - Parameters:
+    ///   - image: the new UIImage
+    ///   - email: associated email of the new gravatar
+    @objc public func updateGravatar(image: UIImage, email: String?) {
+        self.image = image
+        guard let email = email, let gravatarURL = gravatarUrl(for: email, size: Defaults.imageSize, rating: .x) else {
+            return
+        }
+        NotificationCenter.default.post(name: .GravatarImageUpdateNotification, object: self, userInfo: ["email": email, "image": image])
     }
 
 
@@ -131,23 +173,31 @@ extension UIImageView {
     ///
     /// - Returns: Gravatar's URL
     ///
-    private func gravatarUrl(for email: String, size: Int, rating: String) -> URL? {
-        let sanitizedEmail = email
+    private func gravatarUrl(for email: String, size: Int, rating: GravatarRatings) -> URL? {
+        let hash = gravatarHash(of: email)
+        let targetURL = String(format: "%@/%@?d=404&s=%d&r=%@", Defaults.baseURL, hash, size, rating.stringValue())
+        return URL(string: targetURL)
+    }
+
+    /// Returns the gravatar has of an email
+    ///
+    /// - Parameter email: the email associated with the gravatar
+    /// - Returns: hashed email
+    ///
+    /// This really ought to be in a different place, like Gravatar.swift, but there's
+    /// lots of duplication around gravatars -nh
+    private func gravatarHash(of email: String) -> String {
+        return email
             .lowercased()
             .trimmingCharacters(in: .whitespaces)
-        let targetURL = String(format: "%@/%@?d=404&s=%d&r=%@", Defaults.baseURL, sanitizedEmail.md5(), size, rating)
-        return URL(string: targetURL)
+            .md5()
     }
 
     /// Returns the required gravatar size. If the current view's size is zero, falls back to the default size.
     ///
     private func gravatarDefaultSize() -> Int {
-        guard bounds.size.equalTo(.zero) == false else {
-            return Defaults.imageSize
-        }
-
-        let targetSize = max(bounds.width, bounds.height) * UIScreen.main.scale
-        return Int(targetSize)
+        let targetSize = Defaults.imageSize * Int(UIScreen.main.scale)
+        return targetSize
     }
 
     /// Private helper structure: contains the default Gravatar parameters
@@ -156,4 +206,8 @@ extension UIImageView {
         static let imageSize = 80
         static let baseURL = "https://gravatar.com/avatar"
     }
+}
+
+extension NSNotification.Name {
+    static let GravatarImageUpdateNotification = NSNotification.Name(rawValue: "GravatarImageUpdateNotification")
 }
