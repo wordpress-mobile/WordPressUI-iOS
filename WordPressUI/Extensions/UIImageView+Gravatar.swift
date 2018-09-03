@@ -116,9 +116,15 @@ extension UIImageView {
         })
     }
 
+
     /// Sets an Image Override in both, AFNetworking's Private Cache + NSURLCache
     ///
-    /// Note I:
+    /// - Parameters:
+    ///   - image: new UIImage
+    ///   - rating: rating for the new image.
+    ///   - email: associated email of the new gravatar
+    /// - Note: You may want to use `updateGravatar(image:, email:)` instead
+    ///
     /// *WHY* is this required?. *WHY* life has to be so complicated?, is the universe against us?
     /// This has been implemented as a workaround. During Upload, we want any async calls made to the
     /// `downloadGravatar` API to return the "Fresh" image.
@@ -130,14 +136,6 @@ extension UIImageView {
     /// P.s.:
     /// Hope buddah, and the code reviewer, can forgive me for this hack.
     ///
-
-    /// Sets an Image Override in both, AFNetworking's Private Cache + NSURLCache
-    ///
-    /// - Parameters:
-    ///   - image: new UIImage
-    ///   - rating: rating for the new image.
-    ///   - email: associated email of the new gravatar
-    /// - Note: You may want to use `updateGravatar(image:, email:)` instead
     @available(*, deprecated)
     @objc public func overrideGravatarImageCache(_ image: UIImage, rating: GravatarRatings, email: String) {
         guard let gravatarURL = gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating) else {
@@ -179,7 +177,7 @@ extension UIImageView {
         return URL(string: targetURL)
     }
 
-    /// Returns the gravatar has of an email
+    /// Returns the gravatar hash of an email
     ///
     /// - Parameter email: the email associated with the gravatar
     /// - Returns: hashed email
