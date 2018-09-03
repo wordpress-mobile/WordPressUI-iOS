@@ -9,7 +9,7 @@ extension UICollectionView {
     /// Displays Ghost Content, based on cells with the given reuseIdentifier, and items hieararchy.
     ///
     open func displayGhostContent(using settings: GhostSettings) {
-        guard displaysGhostContent == false else {
+        guard isDisplayingGhostContent == false else {
             return
         }
 
@@ -22,7 +22,7 @@ extension UICollectionView {
     /// Nukes the Ghost Style.
     ///
     open func removeGhostContent() {
-        guard displaysGhostContent else {
+        guard isDisplayingGhostContent else {
             return
         }
 
