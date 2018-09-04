@@ -17,6 +17,14 @@
 		B518D76D20742ADB00F05DB4 /* FlingableViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B518D76C20742ADB00F05DB4 /* FlingableViewHandler.swift */; };
 		B5226C68207CCDB2003C606E /* GravatarTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5226C67207CCDB2003C606E /* GravatarTest.swift */; };
 		B529F289202C855B00895D88 /* UIColorHelpersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B529F288202C855B00895D88 /* UIColorHelpersTests.swift */; };
+		B534CB3E21398638000D5F8D /* UICollectionView+Ghost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B534CB3621398637000D5F8D /* UICollectionView+Ghost.swift */; };
+		B534CB3F21398638000D5F8D /* UIView+Ghost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B534CB3721398637000D5F8D /* UIView+Ghost.swift */; };
+		B534CB4021398638000D5F8D /* GhostTableViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B534CB3821398637000D5F8D /* GhostTableViewHandler.swift */; };
+		B534CB4121398638000D5F8D /* UITableView+Ghost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B534CB3921398637000D5F8D /* UITableView+Ghost.swift */; };
+		B534CB4221398638000D5F8D /* GhostLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B534CB3A21398637000D5F8D /* GhostLayer.swift */; };
+		B534CB4321398638000D5F8D /* GhostSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B534CB3B21398637000D5F8D /* GhostSettings.swift */; };
+		B534CB4421398638000D5F8D /* GhostAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B534CB3C21398637000D5F8D /* GhostAnimation.swift */; };
+		B534CB4521398638000D5F8D /* GhostCollectionViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B534CB3D21398637000D5F8D /* GhostCollectionViewHandler.swift */; };
 		B5393FEA206D7047007BF9D4 /* RotationAwareNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5393FE9206D7047007BF9D4 /* RotationAwareNavigationViewController.swift */; };
 		B589BE2E207BE662007D72D4 /* NSMutableAttributedString+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B589BE2D207BE662007D72D4 /* NSMutableAttributedString+Helpers.swift */; };
 		B58C4EAF207C503000E32E4D /* UIImageView+Gravatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58C4EAE207C503000E32E4D /* UIImageView+Gravatar.swift */; };
@@ -79,6 +87,14 @@
 		B518D76C20742ADB00F05DB4 /* FlingableViewHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlingableViewHandler.swift; sourceTree = "<group>"; };
 		B5226C67207CCDB2003C606E /* GravatarTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravatarTest.swift; sourceTree = "<group>"; };
 		B529F288202C855B00895D88 /* UIColorHelpersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorHelpersTests.swift; sourceTree = "<group>"; };
+		B534CB3621398637000D5F8D /* UICollectionView+Ghost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Ghost.swift"; sourceTree = "<group>"; };
+		B534CB3721398637000D5F8D /* UIView+Ghost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Ghost.swift"; sourceTree = "<group>"; };
+		B534CB3821398637000D5F8D /* GhostTableViewHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GhostTableViewHandler.swift; sourceTree = "<group>"; };
+		B534CB3921398637000D5F8D /* UITableView+Ghost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Ghost.swift"; sourceTree = "<group>"; };
+		B534CB3A21398637000D5F8D /* GhostLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GhostLayer.swift; sourceTree = "<group>"; };
+		B534CB3B21398637000D5F8D /* GhostSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GhostSettings.swift; sourceTree = "<group>"; };
+		B534CB3C21398637000D5F8D /* GhostAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GhostAnimation.swift; sourceTree = "<group>"; };
+		B534CB3D21398637000D5F8D /* GhostCollectionViewHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GhostCollectionViewHandler.swift; sourceTree = "<group>"; };
 		B5393FE9206D7047007BF9D4 /* RotationAwareNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotationAwareNavigationViewController.swift; sourceTree = "<group>"; };
 		B589BE2D207BE662007D72D4 /* NSMutableAttributedString+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Helpers.swift"; sourceTree = "<group>"; };
 		B58C4EAE207C503000E32E4D /* UIImageView+Gravatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Gravatar.swift"; sourceTree = "<group>"; };
@@ -170,6 +186,29 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		B534CB3521398609000D5F8D /* Ghosts */ = {
+			isa = PBXGroup;
+			children = (
+				B534CB4721398721000D5F8D /* Internal */,
+				B534CB3B21398637000D5F8D /* GhostSettings.swift */,
+				B534CB3621398637000D5F8D /* UICollectionView+Ghost.swift */,
+				B534CB3921398637000D5F8D /* UITableView+Ghost.swift */,
+			);
+			path = Ghosts;
+			sourceTree = "<group>";
+		};
+		B534CB4721398721000D5F8D /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				B534CB3C21398637000D5F8D /* GhostAnimation.swift */,
+				B534CB3A21398637000D5F8D /* GhostLayer.swift */,
+				B534CB3D21398637000D5F8D /* GhostCollectionViewHandler.swift */,
+				B534CB3821398637000D5F8D /* GhostTableViewHandler.swift */,
+				B534CB3721398637000D5F8D /* UIView+Ghost.swift */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
 		B5393FE8206D7047007BF9D4 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +271,7 @@
 		B59DCB5E202B146D00BEBD8A /* WordPressUI */ = {
 			isa = PBXGroup;
 			children = (
+				B534CB3521398609000D5F8D /* Ghosts */,
 				B592B4482064296500FF568E /* FancyAlert */,
 				B518D76B20742ADB00F05DB4 /* FlingableView */,
 				B5A787CB202B2AA6007874FB /* Categories */,
@@ -435,6 +475,7 @@
 				B5A787B0202B2324007874FB /* UIImage+Tint.swift in Sources */,
 				B58C4EC4207C570000E32E4D /* NSString+Gravatar.m in Sources */,
 				B592B45520643E3400FF568E /* FancyAlertView.swift in Sources */,
+				B534CB4321398638000D5F8D /* GhostSettings.swift in Sources */,
 				B5A787B1202B2324007874FB /* UITextField+TextHelper.swift in Sources */,
 				B5A787DB202B2AA7007874FB /* UIColor+Helpers.m in Sources */,
 				B5A787B7202B2324007874FB /* UIViewController+Helpers.swift in Sources */,
@@ -442,9 +483,12 @@
 				B5A787B6202B2324007874FB /* UIView+Animations.swift in Sources */,
 				B5A787B8202B2324007874FB /* UIImage+Rotation.swift in Sources */,
 				B518D76520740E6900F05DB4 /* UIImageView+Networking.swift in Sources */,
+				B534CB4121398638000D5F8D /* UITableView+Ghost.swift in Sources */,
+				B534CB3E21398638000D5F8D /* UICollectionView+Ghost.swift in Sources */,
 				43067E2B203C8CC4001DD610 /* UIControl+BlockEvents.swift in Sources */,
 				B5A78826202B4178007874FB /* UIAlertController+Helpers.swift in Sources */,
 				B5A787B9202B2324007874FB /* UITableView+Helpers.swift in Sources */,
+				B534CB4021398638000D5F8D /* GhostTableViewHandler.swift in Sources */,
 				B589BE2E207BE662007D72D4 /* NSMutableAttributedString+Helpers.swift in Sources */,
 				B5D91458206AD8BA00EF333D /* FancyButton.swift in Sources */,
 				B58C4EC2207C570000E32E4D /* Gravatar.swift in Sources */,
@@ -452,6 +496,7 @@
 				B5A787DF202B2AA7007874FB /* UIImage+Resize.m in Sources */,
 				B5A787B4202B2324007874FB /* UIWindow+Helpers.swift in Sources */,
 				B5A787B2202B2324007874FB /* UIView+Helpers.swift in Sources */,
+				B534CB3F21398638000D5F8D /* UIView+Ghost.swift in Sources */,
 				B5C82AE52077C02200DB2E78 /* UILabel+SuggestSize.m in Sources */,
 				B58C4EAF207C503000E32E4D /* UIImageView+Gravatar.swift in Sources */,
 				B5A787E1202B2B59007874FB /* UIControl+Helpers.swift in Sources */,
@@ -461,11 +506,14 @@
 				B592B4522064296600FF568E /* FancyAlertViewController.swift in Sources */,
 				B58C4EBC207C55D300E32E4D /* UIImage+Assets.swift in Sources */,
 				B5A787F5202B3587007874FB /* UIKitConstants.swift in Sources */,
+				B534CB4221398638000D5F8D /* GhostLayer.swift in Sources */,
 				B518D76D20742ADB00F05DB4 /* FlingableViewHandler.swift in Sources */,
 				B5A787DC202B2AA7007874FB /* UIImage+Util.m in Sources */,
+				B534CB4521398638000D5F8D /* GhostCollectionViewHandler.swift in Sources */,
 				B5A787B5202B2324007874FB /* UIDevice+Helpers.swift in Sources */,
 				B5A787B3202B2324007874FB /* UITableViewController+Helpers.swift in Sources */,
 				B592B44F2064296600FF568E /* FancyAlertPresentationController.swift in Sources */,
+				B534CB4421398638000D5F8D /* GhostAnimation.swift in Sources */,
 				828BEAC6203B59CD003F7078 /* UIImage+Crop.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
