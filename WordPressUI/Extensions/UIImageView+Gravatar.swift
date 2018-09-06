@@ -58,12 +58,13 @@ extension UIImageView {
         downloadImage(from: gravatarURL, placeholderImage: placeholderImage)
     }
 
+    /// Configures the UIImageView to listen for changes to the gravatar it is displaying
     private func listenForGravatarChanges() {
-        guard downloadURL == nil else {
+        guard gravatarObserver == nil else {
             return
         }
 
-        NotificationCenter.default.addObserver(forName: .GravatarImageUpdateNotification, object: nil, queue: nil) { [weak self] (notification) in
+        gravatarObserver = NotificationCenter.default.addObserver(forName: .GravatarImageUpdateNotification, object: nil, queue: nil) { [weak self] (notification) in
             guard let userInfo = notification.userInfo,
                 let email = userInfo["email"] as? String,
                 let image = userInfo["image"] as? UIImage,
@@ -74,6 +75,22 @@ extension UIImageView {
             if downloadURL.absoluteString.contains(testHash) {
                 self?.image = image
             }
+        }
+    }
+
+    /// Cleanup any NSNotification observers added in listenForGravatarChanges
+    override open func removeFromSuperview() {
+        gravatarObserver.map { NotificationCenter.default.removeObserver($0) }
+    }
+
+    /// Stores the gravatar observer
+    ///
+    var gravatarObserver: NSObjectProtocol? {
+        get {
+            return objc_getAssociatedObject(self, &Defaults.gravatarObserverKey) as? NSObjectProtocol
+        }
+        set {
+            objc_setAssociatedObject(self, &Defaults.gravatarObserverKey, newValue as AnyObject, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 
@@ -207,6 +224,7 @@ extension UIImageView {
     private struct Defaults {
         static let imageSize = 80
         static let baseURL = "https://gravatar.com/avatar"
+        static var gravatarObserverKey = "gravatarObserverKey"
     }
 }
 
