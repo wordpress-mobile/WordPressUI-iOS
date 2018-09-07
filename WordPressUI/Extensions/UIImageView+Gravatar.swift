@@ -66,8 +66,8 @@ extension UIImageView {
 
         gravatarObserver = NotificationCenter.default.addObserver(forName: .GravatarImageUpdateNotification, object: nil, queue: nil) { [weak self] (notification) in
             guard let userInfo = notification.userInfo,
-                let email = userInfo["email"] as? String,
-                let image = userInfo["image"] as? UIImage,
+                let email = userInfo[Defaults.emailKey] as? String,
+                let image = userInfo[Defaults.imageKey] as? UIImage,
                 let downloadURL = self?.downloadURL else {
                 return
             }
@@ -173,7 +173,7 @@ extension UIImageView {
         guard let email = email, let gravatarURL = gravatarUrl(for: email, size: Defaults.imageSize, rating: .x) else {
             return
         }
-        NotificationCenter.default.post(name: .GravatarImageUpdateNotification, object: self, userInfo: ["email": email, "image": image])
+        NotificationCenter.default.post(name: .GravatarImageUpdateNotification, object: self, userInfo: [Defaults.emailKey: email, Defaults.imageKey: image])
     }
 
 
@@ -225,6 +225,8 @@ extension UIImageView {
         static let imageSize = 80
         static let baseURL = "https://gravatar.com/avatar"
         static var gravatarObserverKey = "gravatarObserverKey"
+        static let emailKey = "email"
+        static let imageKey = "image"
     }
 }
 
