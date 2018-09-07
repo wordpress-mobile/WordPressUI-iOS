@@ -128,7 +128,7 @@ public extension UIImageView {
 
     /// Stores the Image's remote URL, if any.
     ///
-    private var downloadURL: URL? {
+    internal var downloadURL: URL? {
         get {
             return objc_getAssociatedObject(self, &Downloader.urlKey) as? URL
         }
