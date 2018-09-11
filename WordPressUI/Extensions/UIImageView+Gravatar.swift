@@ -51,10 +51,47 @@ extension UIImageView {
     ///     - placeholderImage: Image to be used as Placeholder
     ///
     @objc
-    public func downloadGravatarWithEmail(_ email: String, rating: GravatarRatings = .`default`, placeholderImage: UIImage = .gravatarPlaceholderImage) {
-        let gravatarURL = gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating.stringValue())
+    public func downloadGravatarWithEmail(_ email: String, rating: GravatarRatings = .default, placeholderImage: UIImage = .gravatarPlaceholderImage) {
+        let gravatarURL = gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating)
 
+        listenForGravatarChanges()
         downloadImage(from: gravatarURL, placeholderImage: placeholderImage)
+    }
+
+    /// Configures the UIImageView to listen for changes to the gravatar it is displaying
+    private func listenForGravatarChanges() {
+        guard gravatarObserver == nil else {
+            return
+        }
+
+        gravatarObserver = NotificationCenter.default.addObserver(forName: .GravatarImageUpdateNotification, object: nil, queue: nil) { [weak self] (notification) in
+            guard let userInfo = notification.userInfo,
+                let email = userInfo[Defaults.emailKey] as? String,
+                let image = userInfo[Defaults.imageKey] as? UIImage,
+                let downloadURL = self?.downloadURL else {
+                return
+            }
+            let testHash = self?.gravatarHash(of: email) ?? ""
+            if downloadURL.absoluteString.contains(testHash) {
+                self?.image = image
+            }
+        }
+    }
+
+    /// Cleanup any NSNotification observers added in listenForGravatarChanges
+    override open func removeFromSuperview() {
+        gravatarObserver.map { NotificationCenter.default.removeObserver($0) }
+    }
+
+    /// Stores the gravatar observer
+    ///
+    var gravatarObserver: NSObjectProtocol? {
+        get {
+            return objc_getAssociatedObject(self, &Defaults.gravatarObserverKey) as? NSObjectProtocol
+        }
+        set {
+            objc_setAssociatedObject(self, &Defaults.gravatarObserverKey, newValue as AnyObject, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
     }
 
     /// Downloads the provided Gravatar.
@@ -96,9 +133,15 @@ extension UIImageView {
         })
     }
 
+
     /// Sets an Image Override in both, AFNetworking's Private Cache + NSURLCache
     ///
-    /// Note I:
+    /// - Parameters:
+    ///   - image: new UIImage
+    ///   - rating: rating for the new image.
+    ///   - email: associated email of the new gravatar
+    /// - Note: You may want to use `updateGravatar(image:, email:)` instead
+    ///
     /// *WHY* is this required?. *WHY* life has to be so complicated?, is the universe against us?
     /// This has been implemented as a workaround. During Upload, we want any async calls made to the
     /// `downloadGravatar` API to return the "Fresh" image.
@@ -110,13 +153,27 @@ extension UIImageView {
     /// P.s.:
     /// Hope buddah, and the code reviewer, can forgive me for this hack.
     ///
-    @objc
-    public func overrideGravatarImageCache(_ image: UIImage, rating: GravatarRatings, email: String) {
-        guard let gravatarURL = gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating.stringValue()) else {
+    @available(*, deprecated)
+    @objc public func overrideGravatarImageCache(_ image: UIImage, rating: GravatarRatings, email: String) {
+        guard let gravatarURL = gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating) else {
             return
         }
 
+        listenForGravatarChanges()
         overrideImageCache(for: gravatarURL, with: image)
+    }
+
+    /// Updates the gravatar image for the given email, and notifies all gravatar image views
+    ///
+    /// - Parameters:
+    ///   - image: the new UIImage
+    ///   - email: associated email of the new gravatar
+    @objc public func updateGravatar(image: UIImage, email: String?) {
+        self.image = image
+        guard let email = email, let gravatarURL = gravatarUrl(for: email, size: Defaults.imageSize, rating: .x) else {
+            return
+        }
+        NotificationCenter.default.post(name: .GravatarImageUpdateNotification, object: self, userInfo: [Defaults.emailKey: email, Defaults.imageKey: image])
     }
 
 
@@ -131,12 +188,24 @@ extension UIImageView {
     ///
     /// - Returns: Gravatar's URL
     ///
-    private func gravatarUrl(for email: String, size: Int, rating: String) -> URL? {
-        let sanitizedEmail = email
+    private func gravatarUrl(for email: String, size: Int, rating: GravatarRatings) -> URL? {
+        let hash = gravatarHash(of: email)
+        let targetURL = String(format: "%@/%@?d=404&s=%d&r=%@", Defaults.baseURL, hash, size, rating.stringValue())
+        return URL(string: targetURL)
+    }
+
+    /// Returns the gravatar hash of an email
+    ///
+    /// - Parameter email: the email associated with the gravatar
+    /// - Returns: hashed email
+    ///
+    /// This really ought to be in a different place, like Gravatar.swift, but there's
+    /// lots of duplication around gravatars -nh
+    private func gravatarHash(of email: String) -> String {
+        return email
             .lowercased()
             .trimmingCharacters(in: .whitespaces)
-        let targetURL = String(format: "%@/%@?d=404&s=%d&r=%@", Defaults.baseURL, sanitizedEmail.md5(), size, rating)
-        return URL(string: targetURL)
+            .md5()
     }
 
     /// Returns the required gravatar size. If the current view's size is zero, falls back to the default size.
@@ -155,5 +224,12 @@ extension UIImageView {
     private struct Defaults {
         static let imageSize = 80
         static let baseURL = "https://gravatar.com/avatar"
+        static var gravatarObserverKey = "gravatarObserverKey"
+        static let emailKey = "email"
+        static let imageKey = "image"
     }
+}
+
+extension NSNotification.Name {
+    static let GravatarImageUpdateNotification = NSNotification.Name(rawValue: "GravatarImageUpdateNotification")
 }
