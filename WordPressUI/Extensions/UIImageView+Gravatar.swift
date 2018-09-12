@@ -162,7 +162,6 @@ extension UIImageView {
     /// P.s.:
     /// Hope buddah, and the code reviewer, can forgive me for this hack.
     ///
-    @available(*, deprecated)
     @objc public func overrideGravatarImageCache(_ image: UIImage, rating: GravatarRatings, email: String) {
         guard let gravatarURL = gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating) else {
             return
@@ -179,7 +178,7 @@ extension UIImageView {
     ///   - email: associated email of the new gravatar
     @objc public func updateGravatar(image: UIImage, email: String?) {
         self.image = image
-        guard let email = email, let gravatarURL = gravatarUrl(for: email, size: Defaults.imageSize, rating: .x) else {
+        guard let email = email else {
             return
         }
         NotificationCenter.default.post(name: .GravatarImageUpdateNotification, object: self, userInfo: [Defaults.emailKey: email, Defaults.imageKey: image])
