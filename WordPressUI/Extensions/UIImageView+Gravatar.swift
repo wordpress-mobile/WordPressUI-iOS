@@ -1,5 +1,18 @@
 import Foundation
 
+/// Wrapper class used to ensure removeObserver is called
+private class GravatarNotificationWrapper {
+    let observer: NSObjectProtocol
+
+    init(observer: NSObjectProtocol) {
+        self.observer = observer
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(observer)
+    }
+}
+
 /// UIImageView Helper Methods that allow us to download a Gravatar, given the User's Email
 ///
 extension UIImageView {
@@ -60,37 +73,33 @@ extension UIImageView {
 
     /// Configures the UIImageView to listen for changes to the gravatar it is displaying
     private func listenForGravatarChanges() {
-        guard gravatarObserver == nil else {
+        guard gravatarWrapper == nil else {
             return
         }
 
-        gravatarObserver = NotificationCenter.default.addObserver(forName: .GravatarImageUpdateNotification, object: nil, queue: nil) { [weak self] (notification) in
+        let observer = NotificationCenter.default.addObserver(forName: .GravatarImageUpdateNotification, object: nil, queue: nil) { [weak self] (notification) in
             guard let userInfo = notification.userInfo,
                 let email = userInfo[Defaults.emailKey] as? String,
                 let image = userInfo[Defaults.imageKey] as? UIImage,
                 let downloadURL = self?.downloadURL else {
-                return
+                    return
             }
             let testHash = self?.gravatarHash(of: email) ?? ""
             if downloadURL.absoluteString.contains(testHash) {
                 self?.image = image
             }
         }
-    }
-
-    /// Cleanup any NSNotification observers added in listenForGravatarChanges
-    override open func removeFromSuperview() {
-        gravatarObserver.map { NotificationCenter.default.removeObserver($0) }
+        gravatarWrapper = GravatarNotificationWrapper(observer: observer)
     }
 
     /// Stores the gravatar observer
     ///
-    var gravatarObserver: NSObjectProtocol? {
+    fileprivate var gravatarWrapper: GravatarNotificationWrapper? {
         get {
-            return objc_getAssociatedObject(self, &Defaults.gravatarObserverKey) as? NSObjectProtocol
+            return objc_getAssociatedObject(self, &Defaults.gravatarWrapperKey) as? GravatarNotificationWrapper
         }
         set {
-            objc_setAssociatedObject(self, &Defaults.gravatarObserverKey, newValue as AnyObject, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &Defaults.gravatarWrapperKey, newValue as AnyObject, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 
@@ -224,7 +233,7 @@ extension UIImageView {
     private struct Defaults {
         static let imageSize = 80
         static let baseURL = "https://gravatar.com/avatar"
-        static var gravatarObserverKey = "gravatarObserverKey"
+        static var gravatarWrapperKey = "gravatarWrapperKey"
         static let emailKey = "email"
         static let imageKey = "image"
     }
