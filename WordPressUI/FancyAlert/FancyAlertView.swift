@@ -32,6 +32,7 @@ open class FancyAlertView: UIView {
     ///
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var defaultButton: UIButton!
+    @IBOutlet weak var neverButton: UIButton!
     @IBOutlet weak var moreInfoButton: UIButton!
     @IBOutlet weak var titleAccessoryButton: UIButton!
 

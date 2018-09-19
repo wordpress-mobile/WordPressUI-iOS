@@ -47,6 +47,9 @@ open class FancyAlertViewController: UIViewController {
         /// Title / handler for the de-emphasised cancel button on the dialog
         let cancelButton: ButtonConfig?
 
+        /// Title / handler for a second de-emphasised button on the dialog
+        let neverButton: ButtonConfig?
+
         /// Title / handler for a link-style button displayed beneath the body text
         let moreInfoButton: ButtonConfig?
 
@@ -67,6 +70,7 @@ open class FancyAlertViewController: UIViewController {
                     dividerPosition: DividerPosition?,
                     defaultButton: ButtonConfig?,
                     cancelButton: ButtonConfig?,
+                    neverButton: ButtonConfig? = nil,
                     moreInfoButton: ButtonConfig? = nil,
                     titleAccessoryButton: ButtonConfig? = nil,
                     appearAction: (() -> Void)? = nil,
@@ -78,6 +82,7 @@ open class FancyAlertViewController: UIViewController {
             self.dividerPosition = dividerPosition
             self.defaultButton = defaultButton
             self.cancelButton = cancelButton
+            self.neverButton = neverButton
             self.moreInfoButton = moreInfoButton
             self.titleAccessoryButton = titleAccessoryButton
             self.appearAction = appearAction
@@ -218,6 +223,7 @@ open class FancyAlertViewController: UIViewController {
 
         update(alertView.defaultButton, with: configuration.defaultButton)
         update(alertView.cancelButton, with: configuration.cancelButton)
+        update(alertView.neverButton, with: configuration.neverButton)
         update(alertView.moreInfoButton, with: configuration.moreInfoButton)
         update(alertView.titleAccessoryButton, with: configuration.titleAccessoryButton)
 
