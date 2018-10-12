@@ -8,13 +8,18 @@ class GhostCollectionViewHandler: NSObject {
 
     /// Ghost Settings!
     ///
-    let settings: GhostSettings
+    let options: GhostOptions
+
+    /// Animation Style
+    ///
+    let style: GhostStyle
 
 
     /// Designated Initializer
     ///
-    init(using settings: GhostSettings) {
-        self.settings = settings
+    init(options: GhostOptions, style: GhostStyle) {
+        self.options = options
+        self.style = style
     }
 }
 
@@ -24,19 +29,16 @@ class GhostCollectionViewHandler: NSObject {
 extension GhostCollectionViewHandler: UICollectionViewDataSource {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return settings.rowsPerSection.count
+        return options.rowsPerSection.count
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return settings.rowsPerSection[section]
+        return options.rowsPerSection[section]
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: settings.reuseIdentifier, for: indexPath)
-        cell.insertGhostLayers { layer in
-            layer.backgroundColor = settings.beatStartColor.cgColor
-            layer.startAnimating(fromColor: settings.beatStartColor, toColor: settings.beatEndColor, duration: settings.beatDuration)
-        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: options.reuseIdentifier, for: indexPath)
+        cell.startGhostAnimation(style: style)
 
         return cell
     }
