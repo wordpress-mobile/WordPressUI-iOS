@@ -2,20 +2,19 @@ import Foundation
 import UIKit
 
 
-
 // MARK: - Skeleton UITableView Methods
 //
 extension UITableView {
 
     /// Displays Ghost Content with the specified Settings.
     ///
-    open func displayGhostContent(using settings: GhostSettings) {
+    open func displayGhostContent(options: GhostOptions, style: GhostStyle = .default) {
         guard isDisplayingGhostContent == false else {
             return
         }
 
         preserveInitialDelegates()
-        setupGhostHandler(using: settings)
+        setupGhostHandler(options: options, style: style)
 
         reloadData()
     }
@@ -48,8 +47,8 @@ private extension UITableView {
 
     /// Sets up an internal (private) instance of GhostTableViewHandler.
     ///
-    func setupGhostHandler(using settings: GhostSettings) {
-        let handler = GhostTableViewHandler(using: settings)
+    func setupGhostHandler(options: GhostOptions, style: GhostStyle) {
+        let handler = GhostTableViewHandler(options: options, style: style)
         dataSource = handler
         delegate = handler
         ghostHandler = handler
