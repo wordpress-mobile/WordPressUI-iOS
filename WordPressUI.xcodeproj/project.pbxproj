@@ -18,14 +18,16 @@
 		B5226C68207CCDB2003C606E /* GravatarTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5226C67207CCDB2003C606E /* GravatarTest.swift */; };
 		B529F289202C855B00895D88 /* UIColorHelpersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B529F288202C855B00895D88 /* UIColorHelpersTests.swift */; };
 		B534CB3E21398638000D5F8D /* UICollectionView+Ghost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B534CB3621398637000D5F8D /* UICollectionView+Ghost.swift */; };
-		B534CB3F21398638000D5F8D /* UIView+Ghost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B534CB3721398637000D5F8D /* UIView+Ghost.swift */; };
+		B534CB3F21398638000D5F8D /* UIView+InnerGhost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B534CB3721398637000D5F8D /* UIView+InnerGhost.swift */; };
 		B534CB4021398638000D5F8D /* GhostTableViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B534CB3821398637000D5F8D /* GhostTableViewHandler.swift */; };
 		B534CB4121398638000D5F8D /* UITableView+Ghost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B534CB3921398637000D5F8D /* UITableView+Ghost.swift */; };
 		B534CB4221398638000D5F8D /* GhostLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B534CB3A21398637000D5F8D /* GhostLayer.swift */; };
-		B534CB4321398638000D5F8D /* GhostSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B534CB3B21398637000D5F8D /* GhostSettings.swift */; };
+		B534CB4321398638000D5F8D /* GhostOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B534CB3B21398637000D5F8D /* GhostOptions.swift */; };
 		B534CB4421398638000D5F8D /* GhostAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B534CB3C21398637000D5F8D /* GhostAnimation.swift */; };
 		B534CB4521398638000D5F8D /* GhostCollectionViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B534CB3D21398637000D5F8D /* GhostCollectionViewHandler.swift */; };
 		B5393FEA206D7047007BF9D4 /* RotationAwareNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5393FE9206D7047007BF9D4 /* RotationAwareNavigationViewController.swift */; };
+		B554016D2170E8580067DC90 /* UIView+Ghost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B554016C2170E8580067DC90 /* UIView+Ghost.swift */; };
+		B554016F2170E90B0067DC90 /* GhostStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B554016E2170E90B0067DC90 /* GhostStyle.swift */; };
 		B589BE2E207BE662007D72D4 /* NSMutableAttributedString+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B589BE2D207BE662007D72D4 /* NSMutableAttributedString+Helpers.swift */; };
 		B58C4EAF207C503000E32E4D /* UIImageView+Gravatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58C4EAE207C503000E32E4D /* UIImageView+Gravatar.swift */; };
 		B58C4EB5207C532B00E32E4D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B58C4EB4207C532B00E32E4D /* Security.framework */; };
@@ -88,14 +90,16 @@
 		B5226C67207CCDB2003C606E /* GravatarTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravatarTest.swift; sourceTree = "<group>"; };
 		B529F288202C855B00895D88 /* UIColorHelpersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorHelpersTests.swift; sourceTree = "<group>"; };
 		B534CB3621398637000D5F8D /* UICollectionView+Ghost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Ghost.swift"; sourceTree = "<group>"; };
-		B534CB3721398637000D5F8D /* UIView+Ghost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Ghost.swift"; sourceTree = "<group>"; };
+		B534CB3721398637000D5F8D /* UIView+InnerGhost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+InnerGhost.swift"; sourceTree = "<group>"; };
 		B534CB3821398637000D5F8D /* GhostTableViewHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GhostTableViewHandler.swift; sourceTree = "<group>"; };
 		B534CB3921398637000D5F8D /* UITableView+Ghost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Ghost.swift"; sourceTree = "<group>"; };
 		B534CB3A21398637000D5F8D /* GhostLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GhostLayer.swift; sourceTree = "<group>"; };
-		B534CB3B21398637000D5F8D /* GhostSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GhostSettings.swift; sourceTree = "<group>"; };
+		B534CB3B21398637000D5F8D /* GhostOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GhostOptions.swift; sourceTree = "<group>"; };
 		B534CB3C21398637000D5F8D /* GhostAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GhostAnimation.swift; sourceTree = "<group>"; };
 		B534CB3D21398637000D5F8D /* GhostCollectionViewHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GhostCollectionViewHandler.swift; sourceTree = "<group>"; };
 		B5393FE9206D7047007BF9D4 /* RotationAwareNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotationAwareNavigationViewController.swift; sourceTree = "<group>"; };
+		B554016C2170E8580067DC90 /* UIView+Ghost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ghost.swift"; sourceTree = "<group>"; };
+		B554016E2170E90B0067DC90 /* GhostStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostStyle.swift; sourceTree = "<group>"; };
 		B589BE2D207BE662007D72D4 /* NSMutableAttributedString+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Helpers.swift"; sourceTree = "<group>"; };
 		B58C4EAE207C503000E32E4D /* UIImageView+Gravatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Gravatar.swift"; sourceTree = "<group>"; };
 		B58C4EB4207C532B00E32E4D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -190,9 +194,11 @@
 			isa = PBXGroup;
 			children = (
 				B534CB4721398721000D5F8D /* Internal */,
-				B534CB3B21398637000D5F8D /* GhostSettings.swift */,
+				B534CB3B21398637000D5F8D /* GhostOptions.swift */,
+				B554016E2170E90B0067DC90 /* GhostStyle.swift */,
 				B534CB3621398637000D5F8D /* UICollectionView+Ghost.swift */,
 				B534CB3921398637000D5F8D /* UITableView+Ghost.swift */,
+				B554016C2170E8580067DC90 /* UIView+Ghost.swift */,
 			);
 			path = Ghosts;
 			sourceTree = "<group>";
@@ -204,7 +210,7 @@
 				B534CB3A21398637000D5F8D /* GhostLayer.swift */,
 				B534CB3D21398637000D5F8D /* GhostCollectionViewHandler.swift */,
 				B534CB3821398637000D5F8D /* GhostTableViewHandler.swift */,
-				B534CB3721398637000D5F8D /* UIView+Ghost.swift */,
+				B534CB3721398637000D5F8D /* UIView+InnerGhost.swift */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -472,15 +478,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				43067E30203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift in Sources */,
+				B554016F2170E90B0067DC90 /* GhostStyle.swift in Sources */,
 				B5A787B0202B2324007874FB /* UIImage+Tint.swift in Sources */,
 				B58C4EC4207C570000E32E4D /* NSString+Gravatar.m in Sources */,
 				B592B45520643E3400FF568E /* FancyAlertView.swift in Sources */,
-				B534CB4321398638000D5F8D /* GhostSettings.swift in Sources */,
+				B534CB4321398638000D5F8D /* GhostOptions.swift in Sources */,
 				B5A787B1202B2324007874FB /* UITextField+TextHelper.swift in Sources */,
 				B5A787DB202B2AA7007874FB /* UIColor+Helpers.m in Sources */,
 				B5A787B7202B2324007874FB /* UIViewController+Helpers.swift in Sources */,
 				B5393FEA206D7047007BF9D4 /* RotationAwareNavigationViewController.swift in Sources */,
 				B5A787B6202B2324007874FB /* UIView+Animations.swift in Sources */,
+				B554016D2170E8580067DC90 /* UIView+Ghost.swift in Sources */,
 				B5A787B8202B2324007874FB /* UIImage+Rotation.swift in Sources */,
 				B518D76520740E6900F05DB4 /* UIImageView+Networking.swift in Sources */,
 				B534CB4121398638000D5F8D /* UITableView+Ghost.swift in Sources */,
@@ -496,7 +504,7 @@
 				B5A787DF202B2AA7007874FB /* UIImage+Resize.m in Sources */,
 				B5A787B4202B2324007874FB /* UIWindow+Helpers.swift in Sources */,
 				B5A787B2202B2324007874FB /* UIView+Helpers.swift in Sources */,
-				B534CB3F21398638000D5F8D /* UIView+Ghost.swift in Sources */,
+				B534CB3F21398638000D5F8D /* UIView+InnerGhost.swift in Sources */,
 				B5C82AE52077C02200DB2E78 /* UILabel+SuggestSize.m in Sources */,
 				B58C4EAF207C503000E32E4D /* UIImageView+Gravatar.swift in Sources */,
 				B5A787E1202B2B59007874FB /* UIControl+Helpers.swift in Sources */,

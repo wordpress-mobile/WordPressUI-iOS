@@ -8,13 +8,18 @@ class GhostTableViewHandler: NSObject {
 
     /// Ghost Settings!
     ///
-    let settings: GhostSettings
+    let options: GhostOptions
+
+    /// Animation Style
+    ///
+    let style: GhostStyle
 
 
     /// Designated Initializer
     ///
-    init(using settings: GhostSettings) {
-        self.settings = settings
+    init(options: GhostOptions, style: GhostStyle) {
+        self.options = options
+        self.style = style
     }
 }
 
@@ -24,24 +29,20 @@ class GhostTableViewHandler: NSObject {
 extension GhostTableViewHandler: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return settings.displaysSectionHeader ? " " : nil
+        return options.displaysSectionHeader ? " " : nil
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return settings.rowsPerSection.count
+        return options.rowsPerSection.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return settings.rowsPerSection[section]
+        return options.rowsPerSection[section]
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: settings.reuseIdentifier, for: indexPath)
-        cell.insertGhostLayers { layer in
-            layer.backgroundColor = settings.beatStartColor.cgColor
-            layer.startAnimating(fromColor: settings.beatStartColor, toColor: settings.beatEndColor, duration: settings.beatDuration)
-        }
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: options.reuseIdentifier, for: indexPath)
+        cell.startGhostAnimation(style: style)
         return cell
     }
 }
