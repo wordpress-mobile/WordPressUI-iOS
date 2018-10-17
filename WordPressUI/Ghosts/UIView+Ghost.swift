@@ -10,7 +10,15 @@ extension UIView {
     ///
     open func startGhostAnimation(style: GhostStyle = .default) {
         insertGhostLayers { layer in
-            layer.backgroundColor = style.beatStartColor.cgColor
+            layer.startAnimating(fromColor: style.beatStartColor, toColor: style.beatEndColor, duration: style.beatDuration)
+        }
+    }
+
+    /// Loops thru all of the Ghost Layers (that are already there) and restarts the Beating Animation.
+    /// If there were no previous Ghost Layers inserted, this method won't do anything.
+    ///
+    open func restartGhostAnimation(style: GhostStyle = .default) {
+        enumerateGhostLayers { layer in
             layer.startAnimating(fromColor: style.beatStartColor, toColor: style.beatEndColor, duration: style.beatDuration)
         }
     }
