@@ -1,11 +1,3 @@
-//
-//  ExampleUITests.swift
-//  ExampleUITests
-//
-//  Created by Diego E. Rey Mendez on 10/31/18.
-//  Copyright © 2018 Diego E. Rey Mendez. All rights reserved.
-//
-
 import XCTest
 
 class ExampleUITests: XCTestCase {
