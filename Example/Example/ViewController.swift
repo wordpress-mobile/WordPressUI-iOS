@@ -20,7 +20,7 @@ class ViewController: UITableViewController
             DemoSection(title: "Fancy Alert", rows: [
                 DemoRow(title: "Fancy Alert", action: {
                     self.showFancyAlert() }),
-                DemoRow(title: "Fancy Alert (More Info)", action: {
+                DemoRow(title: "Fancy Alert (Full)", action: {
                     self.showFancyAlertWithMoreInfo() }),
                 ]
             ),
