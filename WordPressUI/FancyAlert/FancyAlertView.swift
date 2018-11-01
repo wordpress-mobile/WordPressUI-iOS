@@ -41,6 +41,12 @@ open class FancyAlertView: UIView {
     @IBOutlet weak var buttonStackView: UIStackView!
     @IBOutlet weak var buttonWrapperView: UIView!
     @IBOutlet weak var buttonWrapperViewTopConstraint: NSLayoutConstraint?
+    
+    /// Switch
+    ///
+    @IBOutlet weak var bottomSwitch: UISwitch!
+    @IBOutlet weak var bottomSwitchLabel: UILabel!
+    @IBOutlet weak var bottomSwitchWrapper: UIView!
 
     /// Wraps the entire view to give it a background and rounded corners
     ///

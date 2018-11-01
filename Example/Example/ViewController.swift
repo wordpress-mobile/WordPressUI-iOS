@@ -19,10 +19,14 @@ class ViewController: UITableViewController
         sections = [
             DemoSection(title: "Fancy Alert", rows: [
                 DemoRow(title: "Fancy Alert", action: {
-                    self.showFancyAlert() }),
+                    self.showFancyAlert()
+                }),
                 DemoRow(title: "Fancy Alert (Full)", action: {
-                    self.showFancyAlertWithMoreInfo() }),
-                ]
+                    self.showFancyAlertWithMoreInfo()
+                }),
+                DemoRow(title: "Fancy Alert (Switch)", action: {
+                    self.showFancyAlertWithSwitch()
+                })]
             ),
             DemoSection(title: "Misc UI Elements", rows: []),
         ]
@@ -37,11 +41,16 @@ class ViewController: UITableViewController
         static let defaultButtonTitle =  "Go Ahead"
         static let cancelButtonTitle = "Cancel"
         static let moreInfoButtonTitle = "More Information"
+        
+        static let switchText = "Do not show this again"
     }
     
     // MARK: Fancy Alert
     
-    func showFancyAlert(moreInfoButton: FancyAlertViewController.Config.ButtonConfig? = nil) {
+    func showFancyAlert(
+        moreInfoButton: FancyAlertViewController.Config.ButtonConfig? = nil,
+        switchConfig: FancyAlertViewController.Config.SwitchConfig? = nil) {
+        
         let defaultButton = FancyAlertViewController.Config.ButtonConfig(FancyAlertConstants.defaultButtonTitle) { (controller: FancyAlertViewController, button: UIButton) in
             
             self.show(message: FancyAlertConstants.defaultButtonTitle, from: controller) {
@@ -60,7 +69,8 @@ class ViewController: UITableViewController
             dividerPosition: nil,
             defaultButton: defaultButton,
             cancelButton: cancelButton,
-            moreInfoButton: moreInfoButton)
+            moreInfoButton: moreInfoButton,
+            switchConfig: switchConfig)
         
         let alert = FancyAlertViewController.controllerWithConfiguration(configuration: configuration)
         alert.modalPresentationStyle = .custom
@@ -76,6 +86,22 @@ class ViewController: UITableViewController
         }
         
         showFancyAlert(moreInfoButton: moreInfoButton)
+    }
+    
+    func showFancyAlertWithSwitch() {
+        
+        let switchConfig = FancyAlertViewController.Config.SwitchConfig(
+            initialValue: true,
+            text: FancyAlertConstants.switchText,
+            action: { (controller, theSwitch) in
+                if theSwitch.isOn {
+                    self.show(message: "ON", from: controller)
+                } else {
+                    self.show(message: "OFF", from: controller)
+                }
+        })
+        
+        showFancyAlert(switchConfig: switchConfig)
     }
     
     // MARK: - Test Messages for the User
