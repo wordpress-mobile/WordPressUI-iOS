@@ -6,6 +6,8 @@ import WordPressUI
 class ViewController: UITableViewController
 {
     
+    private typealias CompletionClosure = () -> ()
+    
     let cellIdentifier = "CellIdentifier"
     var sections: [DemoSection]!
     
@@ -18,6 +20,8 @@ class ViewController: UITableViewController
             DemoSection(title: "Fancy Alert", rows: [
                 DemoRow(title: "Fancy Alert", action: {
                     self.showFancyAlert() }),
+                DemoRow(title: "Fancy Alert (More Info)", action: {
+                    self.showFancyAlertWithMoreInfo() }),
                 ]
             ),
             DemoSection(title: "Misc UI Elements", rows: []),
@@ -37,9 +41,12 @@ class ViewController: UITableViewController
     
     // MARK: Fancy Alert
     
-    func showFancyAlert() {
+    func showFancyAlert(moreInfoButton: FancyAlertViewController.Config.ButtonConfig? = nil) {
         let defaultButton = FancyAlertViewController.Config.ButtonConfig(FancyAlertConstants.defaultButtonTitle) { (controller: FancyAlertViewController, button: UIButton) in
-            controller.dismiss(animated: true)
+            
+            self.show(message: FancyAlertConstants.defaultButtonTitle, from: controller) {
+                controller.dismiss(animated: true)
+            }
         }
         
         let cancelButton = FancyAlertViewController.Config.ButtonConfig(FancyAlertConstants.cancelButtonTitle) { (controller: FancyAlertViewController, button: UIButton) in
@@ -52,7 +59,8 @@ class ViewController: UITableViewController
             headerImage: nil,
             dividerPosition: nil,
             defaultButton: defaultButton,
-            cancelButton: cancelButton)
+            cancelButton: cancelButton,
+            moreInfoButton: moreInfoButton)
         
         let alert = FancyAlertViewController.controllerWithConfiguration(configuration: configuration)
         alert.modalPresentationStyle = .custom
@@ -61,7 +69,28 @@ class ViewController: UITableViewController
         present(alert, animated: true, completion: nil)
     }
     
-    // MARK: TableView Methods
+    func showFancyAlertWithMoreInfo() {
+        let moreInfoButton = FancyAlertViewController.Config.ButtonConfig(FancyAlertConstants.moreInfoButtonTitle) { [unowned self] (controller: FancyAlertViewController, button: UIButton) in
+            
+            self.show(message: FancyAlertConstants.moreInfoButtonTitle, from: controller)
+        }
+        
+        showFancyAlert(moreInfoButton: moreInfoButton)
+    }
+    
+    // MARK: - Test Messages for the User
+    
+    private func show(message: String, from controller: UIViewController, completion onCompletion: CompletionClosure? = nil) {
+        let alertViewController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        
+        alertViewController.addActionWithTitle("Ok", style: .default) { alertAction in
+            onCompletion?()
+        }
+        
+        controller.present(alertViewController, animated: true, completion: nil)
+    }
+    
+    // MARK: - TableView Methods
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
