@@ -29,6 +29,37 @@ open class FancyAlertViewController: UIViewController {
         /// Convenience alias for a title and a handler for a UIButton
         public typealias ButtonConfig = (title: String, handler: FancyAlertButtonHandler?)
 
+        public struct SwitchConfig {
+            
+            /// Closure representing the action of pressing the switch.
+            ///
+            /// - Parameters:
+            ///     - controller: the fancy alert VC.
+            ///     - theSwitch: the switch that received the tap.
+            ///
+            public typealias Action = (_ controller: FancyAlertViewController, _ theSwitch: UISwitch) -> ()
+            public typealias OptionalAction = Action?
+            
+            /// The initial value for the switch
+            let initialValue: Bool
+            
+            /// The text shown next to the switch.
+            let text: String
+            
+            /// Action closure executed each time the switch is activated
+            let action: Action?
+            
+            /// Default initializer
+            public init(initialValue: Bool,
+                        text: String,
+                        action: Action? = nil) {
+                
+                self.initialValue = initialValue
+                self.text = text
+                self.action = action
+            }
+        }
+
         /// The title of the dialog
         let titleText: String?
 
@@ -55,6 +86,9 @@ open class FancyAlertViewController: UIViewController {
 
         /// Title handler for a small 'tag' style button displayed next to the title
         let titleAccessoryButton: ButtonConfig?
+        
+        /// Configuration for the switch at the bottom of the alert.
+        let switchConfig: SwitchConfig?
 
         /// A block to execute when the view has appeared
         let appearAction: (() -> Void)?
@@ -73,6 +107,7 @@ open class FancyAlertViewController: UIViewController {
                     neverButton: ButtonConfig? = nil,
                     moreInfoButton: ButtonConfig? = nil,
                     titleAccessoryButton: ButtonConfig? = nil,
+                    switchConfig: SwitchConfig? = nil,
                     appearAction: (() -> Void)? = nil,
                     dismissAction: (() -> Void)? = nil) {
 
@@ -85,6 +120,7 @@ open class FancyAlertViewController: UIViewController {
             self.neverButton = neverButton
             self.moreInfoButton = moreInfoButton
             self.titleAccessoryButton = titleAccessoryButton
+            self.switchConfig = switchConfig
             self.appearAction = appearAction
             self.dismissAction = dismissAction
         }
@@ -226,6 +262,7 @@ open class FancyAlertViewController: UIViewController {
         update(alertView.neverButton, with: configuration.neverButton)
         update(alertView.moreInfoButton, with: configuration.moreInfoButton)
         update(alertView.titleAccessoryButton, with: configuration.titleAccessoryButton)
+        updateBottomSwitch(with: configuration.switchConfig)
 
         // If we have no title accessory button, we need to
         // disable the trailing constraint to allow the title to flow correctly
@@ -291,6 +328,21 @@ open class FancyAlertViewController: UIViewController {
         button.setTitle(buttonConfig.title, for: .normal)
         buttonHandlers[button] = buttonConfig.handler
     }
+    
+    private func updateBottomSwitch(with config: Config.SwitchConfig?) {
+        guard let config = config else {
+            alertView.bottomSwitchWrapper.isHiddenInStackView = true
+            return
+        }
+        
+        alertView.bottomSwitchWrapper.isHiddenInStackView = false
+        
+        alertView.bottomSwitch.setOn(config.initialValue, animated: false)
+        alertView.bottomSwitch.on(.touchUpInside) { [unowned self] theSwitch in
+            config.action?(self, theSwitch)
+        }
+        alertView.bottomSwitchLabel.text = config.text
+    }
 
     private func updateFlingableViewHandler() {
         guard view.superview != nil else { return }
@@ -314,6 +366,12 @@ open class FancyAlertViewController: UIViewController {
     ///
     private var isImageCompact: Bool {
         return configuration?.dividerPosition == .top || isButtonless
+    }
+    
+    // MARK: - Bottom Switch
+    
+    public func isBottomSwitchOn() -> Bool {
+        return alertView.bottomSwitch.isOn
     }
 
     // MARK: - Animation
