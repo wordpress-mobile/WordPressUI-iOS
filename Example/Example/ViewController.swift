@@ -47,9 +47,8 @@ class ViewController: UITableViewController
     
     // MARK: Fancy Alert
     
-    func showFancyAlert(
-        moreInfoButton: FancyAlertViewController.Config.ButtonConfig? = nil,
-        switchConfig: FancyAlertViewController.Config.SwitchConfig? = nil) {
+    func showFancyAlert(moreInfoButton: FancyAlertViewController.Config.ButtonConfig? = nil,
+                        switchConfig: FancyAlertViewController.Config.SwitchConfig? = nil) {
         
         let defaultButton = FancyAlertViewController.Config.ButtonConfig(FancyAlertConstants.defaultButtonTitle) { (controller: FancyAlertViewController, button: UIButton) in
             
@@ -89,7 +88,6 @@ class ViewController: UITableViewController
     }
     
     func showFancyAlertWithSwitch() {
-        
         let switchConfig = FancyAlertViewController.Config.SwitchConfig(
             initialValue: true,
             text: FancyAlertConstants.switchText,
