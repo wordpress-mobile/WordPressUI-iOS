@@ -367,6 +367,12 @@ open class FancyAlertViewController: UIViewController {
     private var isImageCompact: Bool {
         return configuration?.dividerPosition == .top || isButtonless
     }
+    
+    // MARK: - Bottom Switch
+    
+    public func isBottomSwitchOn() -> Bool {
+        return alertView.bottomSwitch.isOn
+    }
 
     // MARK: - Animation
 
