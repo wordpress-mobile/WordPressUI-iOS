@@ -28,7 +28,7 @@ open class FancyAlertViewController: UIViewController {
     public struct Config {
         /// Convenience alias for a title and a handler for a UIButton
         public typealias ButtonConfig = (title: String, handler: FancyAlertButtonHandler?)
-        
+
         public struct SwitchConfig {
             
             /// Closure representing the action of pressing the switch.
@@ -38,6 +38,7 @@ open class FancyAlertViewController: UIViewController {
             ///     - theSwitch: the switch that received the tap.
             ///
             public typealias Action = (_ controller: FancyAlertViewController, _ theSwitch: UISwitch) -> ()
+            public typealias OptionalAction = Action?
             
             /// The initial value for the switch
             let initialValue: Bool
@@ -46,10 +47,13 @@ open class FancyAlertViewController: UIViewController {
             let text: String
             
             /// Action closure executed each time the switch is activated
-            let action: Action
+            let action: Action?
             
             /// Default initializer
-            public init(initialValue: Bool, text: String, action: @escaping Action) {
+            public init(initialValue: Bool,
+                        text: String,
+                        action: Action? = nil) {
+                
                 self.initialValue = initialValue
                 self.text = text
                 self.action = action
@@ -335,7 +339,7 @@ open class FancyAlertViewController: UIViewController {
         
         alertView.bottomSwitch.setOn(config.initialValue, animated: false)
         alertView.bottomSwitch.on(.touchUpInside) { [unowned self] theSwitch in
-            config.action(self, theSwitch)
+            config.action?(self, theSwitch)
         }
         alertView.bottomSwitchLabel.text = config.text
     }
