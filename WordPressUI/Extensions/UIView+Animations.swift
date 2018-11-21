@@ -36,7 +36,7 @@ extension UIView {
                                    delay: delay,
                                    usingSpringWithDamping: damping,
                                    initialSpringVelocity: velocity,
-                                   options: UIViewAnimationOptions(),
+                                   options: UIView.AnimationOptions(),
                                    animations: animations,
                                    completion: completion)
     }
@@ -62,7 +62,7 @@ extension UIView {
             delay: delay,
             usingSpringWithDamping: damping,
             initialSpringVelocity: velocity,
-            options: UIViewAnimationOptions(),
+            options: UIView.AnimationOptions(),
             animations: animations,
             completion: completion
         )

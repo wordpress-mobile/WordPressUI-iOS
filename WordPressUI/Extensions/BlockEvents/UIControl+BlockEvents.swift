@@ -39,7 +39,7 @@ public extension ControlEventBindable where Self: UIControl {
     }
 
     /// Listen for `UIControlEvents` executing the provided closure when triggered
-    public func on(_ events: UIControlEvents, call closure: @escaping (Self) -> Void) {
+    public func on(_ events: UIControl.Event, call closure: @escaping (Self) -> Void) {
         let handler = ControlEventHandler<Self>(sender: self, events: events, closure: closure)
         self.controlEventHandlers.append(handler)
     }
@@ -50,7 +50,7 @@ public extension ControlEventBindable where Self: UIControl {
 private final class ControlEventHandler<Sender: UIControl>: NSObject {
     let closure: (Sender) -> Void
 
-    init(sender: Sender, events: UIControlEvents, closure: @escaping (Sender) -> Void) {
+    init(sender: Sender, events: UIControl.Event, closure: @escaping (Sender) -> Void) {
         self.closure = closure
         super.init()
 

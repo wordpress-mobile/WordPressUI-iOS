@@ -287,7 +287,7 @@ open class FancyAlertViewController: UIViewController {
 
         alertView.titleLabel.accessibilityHint = (isButtonless) ? NSLocalizedString("Double tap to dismiss", comment: "Voiceover accessibility hint informing the user they can double tap a modal alert to dismiss it") : nil
 
-        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, alertView.titleLabel)
+        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: alertView.titleLabel)
     }
 
     private func updateHeaderImage() {
