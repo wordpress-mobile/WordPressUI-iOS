@@ -3,7 +3,7 @@
 private final class BarButtonItemEventHandler<Sender: UIBarButtonItem>: NSObject {
     let closure: (Sender) -> Void
 
-    init(sender: Sender, events: UIControlEvents, closure: @escaping (Sender) -> Void) {
+    init(sender: Sender, events: UIControl.Event, closure: @escaping (Sender) -> Void) {
         self.closure = closure
         super.init()
 

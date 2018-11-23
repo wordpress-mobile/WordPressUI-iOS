@@ -14,7 +14,7 @@ extension UIAlertController {
         return addActionWithTitle(title, style: .default, handler: handler)
     }
 
-    @objc @discardableResult public func addActionWithTitle(_ title: String?, style: UIAlertActionStyle, handler: ((UIAlertAction) -> Void)? = nil) -> UIAlertAction {
+    @objc @discardableResult public func addActionWithTitle(_ title: String?, style: UIAlertAction.Style, handler: ((UIAlertAction) -> Void)? = nil) -> UIAlertAction {
         let action = UIAlertAction(title: title, style: style, handler: handler)
         addAction(action)
 

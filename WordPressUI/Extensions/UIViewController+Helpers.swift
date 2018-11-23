@@ -32,7 +32,7 @@ extension UIViewController {
         } else if let navigationController = self.navigationController {
             if navigationController.presentingViewController != nil &&
                 navigationController.presentingViewController?.presentedViewController == navigationController &&
-                navigationController.childViewControllers.first == self {
+                navigationController.children.first == self {
                 return true
             }
         }
