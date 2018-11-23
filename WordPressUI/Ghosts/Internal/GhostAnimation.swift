@@ -34,7 +34,7 @@ class GhostAnimation: CABasicAnimation {
         super.init()
 
         keyPath = #keyPath(CALayer.backgroundColor)
-        timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         repeatCount = .infinity
         autoreverses = true
     }
