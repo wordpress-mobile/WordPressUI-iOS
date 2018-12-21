@@ -2,7 +2,7 @@ extension UIViewController {
     /// Add a view controller as child view controller
     ///
     /// - Parameter child: The child view controller
-    func add(_ child: UIViewController) {
+    public func add(_ child: UIViewController) {
         addChild(child)
         view.addSubview(child.view)
         child.didMove(toParent: self)
@@ -11,12 +11,12 @@ extension UIViewController {
     /// Remove a specific child view controller
     ///
     /// - Parameter child: The child view controller
-    func remove(_ child: UIViewController) {
+    public func remove(_ child: UIViewController) {
         child.remove()
     }
     
     /// Remove the child view controller
-    func remove() {
+    public func remove() {
         guard parent != nil else {
             return
         }
