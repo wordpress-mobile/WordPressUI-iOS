@@ -13,6 +13,7 @@
 		43067E30203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43067E2F203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift */; };
 		828BEAC6203B59CD003F7078 /* UIImage+Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828BEAC5203B59CD003F7078 /* UIImage+Crop.swift */; };
 		9A43B7AF21CD11290026E196 /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A43B7AE21CD11290026E196 /* UIViewController+ChildViewController.swift */; };
+		9A6EC88D21DA4832007815FF /* UIViewControllerHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6EC88C21DA4832007815FF /* UIViewControllerHelperTest.swift */; };
 		B518D76520740E6900F05DB4 /* UIImageView+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B518D76420740E6900F05DB4 /* UIImageView+Networking.swift */; };
 		B518D76720740F0800F05DB4 /* UIImageView+Blavatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B518D76620740F0800F05DB4 /* UIImageView+Blavatar.swift */; };
 		B518D76D20742ADB00F05DB4 /* FlingableViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B518D76C20742ADB00F05DB4 /* FlingableViewHandler.swift */; };
@@ -86,6 +87,7 @@
 		43067E2F203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+BlockEvents.swift"; sourceTree = "<group>"; };
 		828BEAC5203B59CD003F7078 /* UIImage+Crop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Crop.swift"; sourceTree = "<group>"; };
 		9A43B7AE21CD11290026E196 /* UIViewController+ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildViewController.swift"; sourceTree = "<group>"; };
+		9A6EC88C21DA4832007815FF /* UIViewControllerHelperTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerHelperTest.swift; sourceTree = "<group>"; };
 		B518D76420740E6900F05DB4 /* UIImageView+Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Networking.swift"; sourceTree = "<group>"; };
 		B518D76620740F0800F05DB4 /* UIImageView+Blavatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Blavatar.swift"; sourceTree = "<group>"; };
 		B518D76C20742ADB00F05DB4 /* FlingableViewHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlingableViewHandler.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 		B529F287202C855B00895D88 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				9A6EC88C21DA4832007815FF /* UIViewControllerHelperTest.swift */,
 				B5226C67207CCDB2003C606E /* GravatarTest.swift */,
 				B529F288202C855B00895D88 /* UIColorHelpersTests.swift */,
 			);
@@ -536,6 +539,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A6EC88D21DA4832007815FF /* UIViewControllerHelperTest.swift in Sources */,
 				B529F289202C855B00895D88 /* UIColorHelpersTests.swift in Sources */,
 				B5226C68207CCDB2003C606E /* GravatarTest.swift in Sources */,
 			);
