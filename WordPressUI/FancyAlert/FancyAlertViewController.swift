@@ -331,11 +331,11 @@ open class FancyAlertViewController: UIViewController {
     
     private func updateBottomSwitch(with config: Config.SwitchConfig?) {
         guard let config = config else {
-            alertView.bottomSwitchWrapper.isHiddenInStackView = true
+            alertView.bottomSwitchStackView.isHiddenInStackView = true
             return
         }
         
-        alertView.bottomSwitchWrapper.isHiddenInStackView = false
+        alertView.bottomSwitchStackView.isHiddenInStackView = false
         
         alertView.bottomSwitch.setOn(config.initialValue, animated: false)
         alertView.bottomSwitch.on(.touchUpInside) { [unowned self] theSwitch in
