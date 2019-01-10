@@ -144,6 +144,7 @@ open class FancyAlertView: UIView {
         }
         set {
             moreInfoButton.titleLabel?.font = newValue
+            moreInfoButton.titleLabel?.adjustsFontForContentSizeCategory = true
         }
     }
 
