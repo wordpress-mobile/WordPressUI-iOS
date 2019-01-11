@@ -190,7 +190,7 @@ open class FancyAlertView: UIView {
     }
 
     func preferredContentSizeDidChange() {
-        if #available(iOSApplicationExtension 11.0, *) {
+        if #available(iOS 11.0, *) {
             if traitCollection.preferredContentSizeCategory.isAccessibilityCategory {
                 bottomSwitchStackView.axis = .vertical
             } else {
