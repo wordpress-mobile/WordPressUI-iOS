@@ -46,17 +46,19 @@ open class FancyAlertView: UIView {
     ///
     @IBOutlet weak var bottomSwitch: UISwitch!
     @IBOutlet weak var bottomSwitchLabel: UILabel!
-    @IBOutlet weak var bottomSwitchWrapper: UIView!
+    @IBOutlet weak var bottomSwitchStackView: UIStackView!
+    
 
     /// Wraps the entire view to give it a background and rounded corners
     ///
     @IBOutlet weak var wrapperView: UIView!
+    @IBOutlet weak var wrapperViewHeightConstraint: NSLayoutConstraint!
 
     /// All of the content Views
     ///
     @IBOutlet var contentViews: [UIView]!
 
-
+    @IBOutlet weak var mainStackView: UIStackView!
 
     /// TitleLabel: textColor
     ///
@@ -144,6 +146,7 @@ open class FancyAlertView: UIView {
         }
         set {
             moreInfoButton.titleLabel?.font = newValue
+            moreInfoButton.titleLabel?.adjustsFontForContentSizeCategory = true
         }
     }
 
@@ -175,6 +178,24 @@ open class FancyAlertView: UIView {
     func updateButtonLayout() {
         if defaultButton.intrinsicContentSize.width > defaultButton.bounds.width || cancelButton.intrinsicContentSize.width > cancelButton.bounds.width {
             buttonStackView.axis = .vertical
+        }
+    }
+
+    override open func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        // At the beginning of your implementation, call super to ensure that interface elements higher in the view hierarchy have an opportunity to adjust their layout first
+        super.traitCollectionDidChange(previousTraitCollection)
+        if previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
+            preferredContentSizeDidChange()
+        }
+    }
+
+    func preferredContentSizeDidChange() {
+        if #available(iOS 11.0, *) {
+            if traitCollection.preferredContentSizeCategory.isAccessibilityCategory {
+                bottomSwitchStackView.axis = .vertical
+            } else {
+                bottomSwitchStackView.axis = .horizontal
+            }
         }
     }
 }
