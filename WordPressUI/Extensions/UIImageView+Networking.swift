@@ -10,7 +10,7 @@ public extension UIImageView {
     ///     -   placeholderImage: Image to be displayed while the actual asset gets downloaded.
     ///     -   pointSize: *Maximum* allowed size. if the actual asset exceeds this size, we'll shrink it down.
     ///
-    public func downloadResizedImage(from url: URL?, placeholderImage: UIImage? = nil, pointSize: CGSize) {
+    @objc func downloadResizedImage(from url: URL?, placeholderImage: UIImage? = nil, pointSize: CGSize) {
         downloadImage(from: url, placeholderImage: placeholderImage, success: { [weak self] image in
             guard image.size.height > pointSize.height || image.size.width > pointSize.width else {
                 self?.image = image
@@ -29,7 +29,7 @@ public extension UIImageView {
     ///     -   success: Closure to be executed on success.
     ///     -   failure: Closure to be executed upon failure.
     ///
-    public func downloadImage(from url: URL?, placeholderImage: UIImage? = nil, success: ((UIImage) -> ())? = nil, failure: ((Error?) -> ())? = nil) {
+    @objc func downloadImage(from url: URL?, placeholderImage: UIImage? = nil, success: ((UIImage) -> ())? = nil, failure: ((Error?) -> ())? = nil) {
         // Ideally speaking, this method should *not* receive an Optional URL. But we're doing so, for convenience.
         // If the actual URL was nil, at least we set the Placeholder Image. Capicci?
         guard let url = url else {
@@ -97,7 +97,7 @@ public extension UIImageView {
     /// Overrides the cached UIImage, for a given URL. This is useful for whenever we've just updated a remote resource,
     /// and we need to prevent returning the (old) cached entry.
     ///
-    public func overrideImageCache(for url: URL, with image: UIImage) {
+    @objc func overrideImageCache(for url: URL, with image: UIImage) {
         Downloader.cache.setObject(image, forKey: url as AnyObject)
 
         // Remove all cached responses - removing an individual response does not work since iOS 7.
@@ -106,6 +106,11 @@ public extension UIImageView {
         // Update: Years have gone by (iOS 11 era). Still broken. Still ashamed about this. Thank you, Apple.
         //
         URLSession.shared.configuration.urlCache?.removeAllCachedResponses()
+    }
+
+    @objc func cancelImageDownload() {        
+        downloadURL = nil
+        downloadTask?.cancel()
     }
 
 
