@@ -108,7 +108,7 @@ public extension UIImageView {
         URLSession.shared.configuration.urlCache?.removeAllCachedResponses()
     }
 
-    @objc func cancelImageDownload() {        
+    @objc func cancelImageDownload() {
         downloadURL = nil
         downloadTask?.cancel()
     }
