@@ -47,7 +47,7 @@ public extension UIImageView {
     /// Downloads an image and updates the current UIImageView Instance.
     ///
     /// - Parameters:
-    ///     -   request: The request of the target image
+    ///     -   request: The request for the target image
     ///     -   placeholderImage: Image to be displayed while the actual asset gets downloaded.
     ///     -   success: Closure to be executed on success.
     ///     -   failure: Closure to be executed upon failure.
@@ -59,8 +59,7 @@ public extension UIImageView {
             if let placeholderImage = placeholderImage {
                 image = placeholderImage
             }
-            downloadURL = nil
-            downloadTask?.cancel()
+            cancelImageDownload()
             return
         }
 
@@ -129,6 +128,8 @@ public extension UIImageView {
         URLSession.shared.configuration.urlCache?.removeAllCachedResponses()
     }
 
+    /// Cancels the current download task and clear the downloadURL
+    ///
     @objc func cancelImageDownload() {
         downloadURL = nil
         downloadTask?.cancel()
