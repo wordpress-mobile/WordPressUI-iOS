@@ -40,6 +40,29 @@ public extension UIImageView {
             downloadTask?.cancel()
             return
         }
+        let request = self.request(for: url)
+        downloadImage(usingRequest: request, placeholderImage: placeholderImage, success: success, failure: failure)
+    }
+
+    /// Downloads an image and updates the current UIImageView Instance.
+    ///
+    /// - Parameters:
+    ///     -   request: The request of the target image
+    ///     -   placeholderImage: Image to be displayed while the actual asset gets downloaded.
+    ///     -   success: Closure to be executed on success.
+    ///     -   failure: Closure to be executed upon failure.
+    ///
+    @objc func downloadImage(usingRequest request: URLRequest, placeholderImage: UIImage? = nil, success: ((UIImage) -> ())? = nil, failure: ((Error?) -> ())? = nil) {
+        // Ideally speaking, this method should *not* receive an Optional URL. But we're doing so, for convenience.
+        // If the actual URL was nil, at least we set the Placeholder Image. Capicci?
+        guard let url = request.url else {
+            if let placeholderImage = placeholderImage {
+                image = placeholderImage
+            }
+            downloadURL = nil
+            downloadTask?.cancel()
+            return
+        }
 
         let internalOnSuccess = { [weak self] (image: UIImage) in
             self?.image = image
@@ -68,8 +91,6 @@ public extension UIImageView {
         if let placeholderImage = placeholderImage {
             image = placeholderImage
         }
-
-        let request = self.request(for: url)
 
         let task = URLSession.shared.dataTask(with: request, completionHandler: { [weak self] data, response, error in
             guard let data = data, let image = UIImage(data: data, scale: UIScreen.main.scale) else {
