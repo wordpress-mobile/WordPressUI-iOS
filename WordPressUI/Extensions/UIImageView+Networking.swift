@@ -36,8 +36,7 @@ public extension UIImageView {
             if let placeholderImage = placeholderImage {
                 image = placeholderImage
             }
-            downloadURL = nil
-            downloadTask?.cancel()
+            cancelImageDownload()
             return
         }
         let request = self.request(for: url)
@@ -79,8 +78,8 @@ public extension UIImageView {
         }
 
         // Do this first, if there was any ongoing task for this imageview we need to cancel imediately or else we can apply the cache image and not cancel a previous download
+        cancelImageDownload()
         downloadURL = url
-        downloadTask?.cancel()
 
         if let image = cachedImage {
             internalOnSuccess(image)
@@ -108,7 +107,6 @@ public extension UIImageView {
             }
         })
 
-        downloadTask?.cancel()
         downloadTask = task
         task.resume()
     }
