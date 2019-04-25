@@ -10,7 +10,7 @@ public extension UIImageView {
     ///     -   placeholderImage: Image to be displayed while the actual asset gets downloaded.
     ///     -   pointSize: *Maximum* allowed size. if the actual asset exceeds this size, we'll shrink it down.
     ///
-    public func downloadResizedImage(from url: URL?, placeholderImage: UIImage? = nil, pointSize: CGSize) {
+    @objc func downloadResizedImage(from url: URL?, placeholderImage: UIImage? = nil, pointSize: CGSize) {
         downloadImage(from: url, placeholderImage: placeholderImage, success: { [weak self] image in
             guard image.size.height > pointSize.height || image.size.width > pointSize.width else {
                 self?.image = image
@@ -29,15 +29,36 @@ public extension UIImageView {
     ///     -   success: Closure to be executed on success.
     ///     -   failure: Closure to be executed upon failure.
     ///
-    public func downloadImage(from url: URL?, placeholderImage: UIImage? = nil, success: ((UIImage) -> ())? = nil, failure: ((Error?) -> ())? = nil) {
+    @objc func downloadImage(from url: URL?, placeholderImage: UIImage? = nil, success: ((UIImage) -> ())? = nil, failure: ((Error?) -> ())? = nil) {
         // Ideally speaking, this method should *not* receive an Optional URL. But we're doing so, for convenience.
         // If the actual URL was nil, at least we set the Placeholder Image. Capicci?
         guard let url = url else {
             if let placeholderImage = placeholderImage {
                 image = placeholderImage
             }
-            downloadURL = nil
-            downloadTask?.cancel()
+            cancelImageDownload()
+            return
+        }
+        let request = self.request(for: url)
+        downloadImage(usingRequest: request, placeholderImage: placeholderImage, success: success, failure: failure)
+    }
+
+    /// Downloads an image and updates the current UIImageView Instance.
+    ///
+    /// - Parameters:
+    ///     -   request: The request for the target image
+    ///     -   placeholderImage: Image to be displayed while the actual asset gets downloaded.
+    ///     -   success: Closure to be executed on success.
+    ///     -   failure: Closure to be executed upon failure.
+    ///
+    @objc func downloadImage(usingRequest request: URLRequest, placeholderImage: UIImage? = nil, success: ((UIImage) -> ())? = nil, failure: ((Error?) -> ())? = nil) {
+        // Ideally speaking, this method should *not* receive an Optional URL. But we're doing so, for convenience.
+        // If the actual URL was nil, at least we set the Placeholder Image. Capicci?
+        guard let url = request.url else {
+            if let placeholderImage = placeholderImage {
+                image = placeholderImage
+            }
+            cancelImageDownload()
             return
         }
 
@@ -57,8 +78,8 @@ public extension UIImageView {
         }
 
         // Do this first, if there was any ongoing task for this imageview we need to cancel imediately or else we can apply the cache image and not cancel a previous download
+        cancelImageDownload()
         downloadURL = url
-        downloadTask?.cancel()
 
         if let image = cachedImage {
             internalOnSuccess(image)
@@ -68,8 +89,6 @@ public extension UIImageView {
         if let placeholderImage = placeholderImage {
             image = placeholderImage
         }
-
-        let request = self.request(for: url)
 
         let task = URLSession.shared.dataTask(with: request, completionHandler: { [weak self] data, response, error in
             guard let data = data, let image = UIImage(data: data, scale: UIScreen.main.scale) else {
@@ -88,7 +107,6 @@ public extension UIImageView {
             }
         })
 
-        downloadTask?.cancel()
         downloadTask = task
         task.resume()
     }
@@ -97,7 +115,7 @@ public extension UIImageView {
     /// Overrides the cached UIImage, for a given URL. This is useful for whenever we've just updated a remote resource,
     /// and we need to prevent returning the (old) cached entry.
     ///
-    public func overrideImageCache(for url: URL, with image: UIImage) {
+    @objc func overrideImageCache(for url: URL, with image: UIImage) {
         Downloader.cache.setObject(image, forKey: url as AnyObject)
 
         // Remove all cached responses - removing an individual response does not work since iOS 7.
@@ -106,6 +124,13 @@ public extension UIImageView {
         // Update: Years have gone by (iOS 11 era). Still broken. Still ashamed about this. Thank you, Apple.
         //
         URLSession.shared.configuration.urlCache?.removeAllCachedResponses()
+    }
+
+    /// Cancels the current download task and clear the downloadURL
+    ///
+    @objc func cancelImageDownload() {
+        downloadURL = nil
+        downloadTask?.cancel()
     }
 
 
