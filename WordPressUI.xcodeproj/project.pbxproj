@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		17576E6320AC7A28008612EF /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17576E6220AC7A28008612EF /* GradientView.swift */; };
+		1A40951C2271B3C4009AA86D /* NSBundle+ResourceBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A40951B2271B3C4009AA86D /* NSBundle+ResourceBundle.swift */; };
 		43067E2B203C8CC4001DD610 /* UIControl+BlockEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43067E2A203C8CC4001DD610 /* UIControl+BlockEvents.swift */; };
 		43067E2E203C8D03001DD610 /* UIBarButtonItem+BlockEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43067E2D203C8D03001DD610 /* UIBarButtonItem+BlockEvents.swift */; };
 		43067E30203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43067E2F203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift */; };
@@ -82,6 +83,7 @@
 
 /* Begin PBXFileReference section */
 		17576E6220AC7A28008612EF /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		1A40951B2271B3C4009AA86D /* NSBundle+ResourceBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+ResourceBundle.swift"; sourceTree = "<group>"; };
 		43067E2A203C8CC4001DD610 /* UIControl+BlockEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+BlockEvents.swift"; sourceTree = "<group>"; };
 		43067E2D203C8D03001DD610 /* UIBarButtonItem+BlockEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+BlockEvents.swift"; sourceTree = "<group>"; };
 		43067E2F203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+BlockEvents.swift"; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				43067E29203C8CA4001DD610 /* BlockEvents */,
 				B58C4EBE207C570000E32E4D /* Gravatar */,
 				B5A787BC202B2358007874FB /* CGAffineTransform+Helpers.swift */,
+				1A40951B2271B3C4009AA86D /* NSBundle+ResourceBundle.swift */,
 				B589BE2D207BE662007D72D4 /* NSMutableAttributedString+Helpers.swift */,
 				B5A78825202B4178007874FB /* UIAlertController+Helpers.swift */,
 				B5A787E0202B2B59007874FB /* UIControl+Helpers.swift */,
@@ -501,6 +504,7 @@
 				B5A787B8202B2324007874FB /* UIImage+Rotation.swift in Sources */,
 				B518D76520740E6900F05DB4 /* UIImageView+Networking.swift in Sources */,
 				B534CB4121398638000D5F8D /* UITableView+Ghost.swift in Sources */,
+				1A40951C2271B3C4009AA86D /* NSBundle+ResourceBundle.swift in Sources */,
 				B534CB3E21398638000D5F8D /* UICollectionView+Ghost.swift in Sources */,
 				43067E2B203C8CC4001DD610 /* UIControl+BlockEvents.swift in Sources */,
 				B5A78826202B4178007874FB /* UIAlertController+Helpers.swift in Sources */,
