@@ -39,7 +39,7 @@ public extension ControlEventBindable where Self: UIControl {
     }
 
     /// Listen for `UIControlEvents` executing the provided closure when triggered
-    public func on(_ events: UIControl.Event, call closure: @escaping (Self) -> Void) {
+    func on(_ events: UIControl.Event, call closure: @escaping (Self) -> Void) {
         let handler = ControlEventHandler<Self>(sender: self, events: events, closure: closure)
         self.controlEventHandlers.append(handler)
     }
