@@ -8,9 +8,9 @@ extension UIView {
 
     /// Property that defines if a view is ghostable. Defaults set to true.
     ///
-    public var isGhostable: Bool {
+    public var isGhostableDisabled: Bool {
         get {
-            return objc_getAssociatedObject(self, &Keys.isGhostable) as? Bool ?? true
+            return objc_getAssociatedObject(self, &Keys.isGhostable) as? Bool ?? false
         }
         set {
             objc_setAssociatedObject(self, &Keys.isGhostable, newValue, .OBJC_ASSOCIATION_RETAIN)

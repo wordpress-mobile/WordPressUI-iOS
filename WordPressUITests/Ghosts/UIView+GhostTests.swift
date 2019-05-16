@@ -13,7 +13,7 @@ class UIViewGhostTests: XCTestCase {
 
     func testDoNotAddGhostLayer() {
         let view = UIView()
-        view.isGhostable = false
+        view.isGhostableDisabled = true
 
         view.startGhostAnimation()
 
@@ -24,7 +24,7 @@ class UIViewGhostTests: XCTestCase {
         let subview = UIView()
         let view = UIView()
         view.addSubview(subview)
-        view.isGhostable = false
+        view.isGhostableDisabled = true
 
         view.startGhostAnimation()
 
