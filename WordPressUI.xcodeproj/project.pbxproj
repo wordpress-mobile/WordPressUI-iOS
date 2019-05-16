@@ -12,7 +12,7 @@
 		43067E2B203C8CC4001DD610 /* UIControl+BlockEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43067E2A203C8CC4001DD610 /* UIControl+BlockEvents.swift */; };
 		43067E2E203C8D03001DD610 /* UIBarButtonItem+BlockEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43067E2D203C8D03001DD610 /* UIBarButtonItem+BlockEvents.swift */; };
 		43067E30203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43067E2F203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift */; };
-		57072D94228D897A007AA9C1 /* GhostableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57072D93228D897A007AA9C1 /* GhostableDelegate.swift */; };
+		57072D94228D897A007AA9C1 /* GhostCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57072D93228D897A007AA9C1 /* GhostCellDelegate.swift */; };
 		828BEAC6203B59CD003F7078 /* UIImage+Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828BEAC5203B59CD003F7078 /* UIImage+Crop.swift */; };
 		9A43B7AF21CD11290026E196 /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A43B7AE21CD11290026E196 /* UIViewController+ChildViewController.swift */; };
 		9A6EC88D21DA4832007815FF /* UIViewControllerHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6EC88C21DA4832007815FF /* UIViewControllerHelperTest.swift */; };
@@ -88,7 +88,7 @@
 		43067E2A203C8CC4001DD610 /* UIControl+BlockEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+BlockEvents.swift"; sourceTree = "<group>"; };
 		43067E2D203C8D03001DD610 /* UIBarButtonItem+BlockEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+BlockEvents.swift"; sourceTree = "<group>"; };
 		43067E2F203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+BlockEvents.swift"; sourceTree = "<group>"; };
-		57072D93228D897A007AA9C1 /* GhostableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostableDelegate.swift; sourceTree = "<group>"; };
+		57072D93228D897A007AA9C1 /* GhostCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostCellDelegate.swift; sourceTree = "<group>"; };
 		828BEAC5203B59CD003F7078 /* UIImage+Crop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Crop.swift"; sourceTree = "<group>"; };
 		9A43B7AE21CD11290026E196 /* UIViewController+ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildViewController.swift"; sourceTree = "<group>"; };
 		9A6EC88C21DA4832007815FF /* UIViewControllerHelperTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerHelperTest.swift; sourceTree = "<group>"; };
@@ -208,7 +208,7 @@
 				B534CB3621398637000D5F8D /* UICollectionView+Ghost.swift */,
 				B534CB3921398637000D5F8D /* UITableView+Ghost.swift */,
 				B554016C2170E8580067DC90 /* UIView+Ghost.swift */,
-				57072D93228D897A007AA9C1 /* GhostableDelegate.swift */,
+				57072D93228D897A007AA9C1 /* GhostCellDelegate.swift */,
 			);
 			path = Ghosts;
 			sourceTree = "<group>";
@@ -491,7 +491,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57072D94228D897A007AA9C1 /* GhostableDelegate.swift in Sources */,
+				57072D94228D897A007AA9C1 /* GhostCellDelegate.swift in Sources */,
 				43067E30203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift in Sources */,
 				B554016F2170E90B0067DC90 /* GhostStyle.swift in Sources */,
 				B5A787B0202B2324007874FB /* UIImage+Tint.swift in Sources */,

@@ -1,5 +1,5 @@
 import Foundation
 
-public protocol GhostableDelegate {
+public protocol GhostCellDelegate {
     func willStartGhostAnimation()
 }
