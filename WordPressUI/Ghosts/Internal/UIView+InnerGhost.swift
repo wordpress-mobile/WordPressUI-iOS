@@ -66,7 +66,9 @@ private extension UIView {
     /// Enumerates all of the receiver's Leaf Views.
     ///
     func enumerateGhostableLeafViews(callback: (UIView) -> ()) {
-        guard isGhostable else { return }
+        guard isGhostable else {
+            return
+        }
 
         if subviews.isEmpty {
             callback(self)
