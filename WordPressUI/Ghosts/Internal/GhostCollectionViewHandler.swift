@@ -38,7 +38,7 @@ extension GhostCollectionViewHandler: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: options.reuseIdentifier, for: indexPath)
-        (cell as? GhostCellDelegate)?.willStartGhostAnimation()
+        (cell as? GhostableView)?.ghostAnimationWillStart()
         cell.startGhostAnimation(style: style)
 
         return cell

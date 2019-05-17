@@ -12,7 +12,7 @@
 		43067E2B203C8CC4001DD610 /* UIControl+BlockEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43067E2A203C8CC4001DD610 /* UIControl+BlockEvents.swift */; };
 		43067E2E203C8D03001DD610 /* UIBarButtonItem+BlockEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43067E2D203C8D03001DD610 /* UIBarButtonItem+BlockEvents.swift */; };
 		43067E30203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43067E2F203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift */; };
-		57072D94228D897A007AA9C1 /* GhostCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57072D93228D897A007AA9C1 /* GhostCellDelegate.swift */; };
+		57072D94228D897A007AA9C1 /* GhostableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57072D93228D897A007AA9C1 /* GhostableView.swift */; };
 		57BC0C6D228DF1E000C1F070 /* UIView+GhostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BC0C6C228DF1E000C1F070 /* UIView+GhostTests.swift */; };
 		57BC0C6F228DF35400C1F070 /* UITableView+GhostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BC0C6E228DF35400C1F070 /* UITableView+GhostTests.swift */; };
 		828BEAC6203B59CD003F7078 /* UIImage+Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828BEAC5203B59CD003F7078 /* UIImage+Crop.swift */; };
@@ -90,7 +90,7 @@
 		43067E2A203C8CC4001DD610 /* UIControl+BlockEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+BlockEvents.swift"; sourceTree = "<group>"; };
 		43067E2D203C8D03001DD610 /* UIBarButtonItem+BlockEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+BlockEvents.swift"; sourceTree = "<group>"; };
 		43067E2F203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+BlockEvents.swift"; sourceTree = "<group>"; };
-		57072D93228D897A007AA9C1 /* GhostCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostCellDelegate.swift; sourceTree = "<group>"; };
+		57072D93228D897A007AA9C1 /* GhostableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostableView.swift; sourceTree = "<group>"; };
 		57BC0C6C228DF1E000C1F070 /* UIView+GhostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+GhostTests.swift"; sourceTree = "<group>"; };
 		57BC0C6E228DF35400C1F070 /* UITableView+GhostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+GhostTests.swift"; sourceTree = "<group>"; };
 		828BEAC5203B59CD003F7078 /* UIImage+Crop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Crop.swift"; sourceTree = "<group>"; };
@@ -221,7 +221,7 @@
 				B534CB3621398637000D5F8D /* UICollectionView+Ghost.swift */,
 				B534CB3921398637000D5F8D /* UITableView+Ghost.swift */,
 				B554016C2170E8580067DC90 /* UIView+Ghost.swift */,
-				57072D93228D897A007AA9C1 /* GhostCellDelegate.swift */,
+				57072D93228D897A007AA9C1 /* GhostableView.swift */,
 			);
 			path = Ghosts;
 			sourceTree = "<group>";
@@ -505,7 +505,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57072D94228D897A007AA9C1 /* GhostCellDelegate.swift in Sources */,
+				57072D94228D897A007AA9C1 /* GhostableView.swift in Sources */,
 				43067E30203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift in Sources */,
 				B554016F2170E90B0067DC90 /* GhostStyle.swift in Sources */,
 				B5A787B0202B2324007874FB /* UIImage+Tint.swift in Sources */,

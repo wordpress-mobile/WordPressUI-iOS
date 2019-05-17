@@ -24,10 +24,10 @@ class UITableViewGhostTests: XCTestCase {
     }
 }
 
-class GhostMockCell: UITableViewCell, GhostCellDelegate {
+class GhostMockCell: UITableViewCell, GhostableView {
     static var willStartGhostAnimationCalled = false
 
-    func willStartGhostAnimation() {
+    func ghostAnimationWillStart() {
         GhostMockCell.willStartGhostAnimationCalled = true
     }
 }
