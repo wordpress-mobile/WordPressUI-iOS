@@ -40,7 +40,7 @@ public func ==(lhs: Gravatar, rhs: Gravatar) -> Bool {
 }
 
 public extension Gravatar {
-    public init?(_ url: URL) {
+    init?(_ url: URL) {
         guard Gravatar.isGravatarURL(url) else {
             return nil
         }

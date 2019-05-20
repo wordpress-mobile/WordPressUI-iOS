@@ -6,6 +6,17 @@ import UIKit
 //
 extension UIView {
 
+    /// Property that defines if a view is ghostable. Defaults set to true.
+    ///
+    public var isGhostableDisabled: Bool {
+        get {
+            return objc_getAssociatedObject(self, &Keys.isGhostable) as? Bool ?? false
+        }
+        set {
+            objc_setAssociatedObject(self, &Keys.isGhostable, newValue, .OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+
     /// Applies Ghost Layers and starts the Beating Animation.
     ///
     open func startGhostAnimation(style: GhostStyle = .default) {
@@ -29,5 +40,14 @@ extension UIView {
         enumerateGhostLayers { layer in
             layer.removeFromSuperlayer()
         }
+    }
+}
+
+// MARK: - Nested Types
+//
+private extension UIView {
+
+    enum Keys {
+        static var isGhostable = "isGhostable"
     }
 }

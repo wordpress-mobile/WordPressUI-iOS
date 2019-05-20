@@ -11,7 +11,7 @@ extension UIView {
     func insertGhostLayers(callback: (GhostLayer) -> Void) {
         layoutIfNeeded()
 
-        enumerateLeafViews { leafView in
+        enumerateGhostableLeafViews { leafView in
             guard leafView.containsGhostLayer == false && leafView.isPrivateUIKitInstance == false else {
                 return
             }
@@ -33,7 +33,7 @@ extension UIView {
     /// Enumerates all of the receiver's GhostLayer(s).
     ///
     func enumerateGhostLayers(callback: (GhostLayer) -> Void) {
-        enumerateLeafViews { leafView in
+        enumerateGhostableLeafViews { leafView in
             let targetLayer = leafView.layer.sublayers?.first(where: { $0 is GhostLayer })
             guard let skeletonLayer = targetLayer as? GhostLayer else {
                 return
@@ -65,14 +65,17 @@ private extension UIView {
 
     /// Enumerates all of the receiver's Leaf Views.
     ///
-    func enumerateLeafViews(callback: (UIView) -> ()) {
-        guard !subviews.isEmpty else {
-            callback(self)
+    func enumerateGhostableLeafViews(callback: (UIView) -> ()) {
+        guard !isGhostableDisabled else {
             return
         }
 
-        for subview in subviews {
-            subview.enumerateLeafViews(callback: callback)
+        if subviews.isEmpty {
+            callback(self)
+        } else {
+            for subview in subviews {
+                subview.enumerateGhostableLeafViews(callback: callback)
+            }
         }
     }
 }

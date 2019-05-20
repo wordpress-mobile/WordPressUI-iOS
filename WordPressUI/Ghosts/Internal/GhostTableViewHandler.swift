@@ -42,6 +42,7 @@ extension GhostTableViewHandler: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: options.reuseIdentifier, for: indexPath)
+        (cell as? GhostableView)?.ghostAnimationWillStart()
         cell.startGhostAnimation(style: style)
         return cell
     }

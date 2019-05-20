@@ -8,9 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		17576E6320AC7A28008612EF /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17576E6220AC7A28008612EF /* GradientView.swift */; };
+		1A40951C2271B3C4009AA86D /* NSBundle+ResourceBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A40951B2271B3C4009AA86D /* NSBundle+ResourceBundle.swift */; };
 		43067E2B203C8CC4001DD610 /* UIControl+BlockEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43067E2A203C8CC4001DD610 /* UIControl+BlockEvents.swift */; };
 		43067E2E203C8D03001DD610 /* UIBarButtonItem+BlockEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43067E2D203C8D03001DD610 /* UIBarButtonItem+BlockEvents.swift */; };
 		43067E30203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43067E2F203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift */; };
+		57072D94228D897A007AA9C1 /* GhostableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57072D93228D897A007AA9C1 /* GhostableView.swift */; };
+		57BC0C6D228DF1E000C1F070 /* UIView+GhostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BC0C6C228DF1E000C1F070 /* UIView+GhostTests.swift */; };
+		57BC0C6F228DF35400C1F070 /* UITableView+GhostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BC0C6E228DF35400C1F070 /* UITableView+GhostTests.swift */; };
 		828BEAC6203B59CD003F7078 /* UIImage+Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828BEAC5203B59CD003F7078 /* UIImage+Crop.swift */; };
 		9A43B7AF21CD11290026E196 /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A43B7AE21CD11290026E196 /* UIViewController+ChildViewController.swift */; };
 		9A6EC88D21DA4832007815FF /* UIViewControllerHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6EC88C21DA4832007815FF /* UIViewControllerHelperTest.swift */; };
@@ -82,9 +86,13 @@
 
 /* Begin PBXFileReference section */
 		17576E6220AC7A28008612EF /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		1A40951B2271B3C4009AA86D /* NSBundle+ResourceBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+ResourceBundle.swift"; sourceTree = "<group>"; };
 		43067E2A203C8CC4001DD610 /* UIControl+BlockEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+BlockEvents.swift"; sourceTree = "<group>"; };
 		43067E2D203C8D03001DD610 /* UIBarButtonItem+BlockEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+BlockEvents.swift"; sourceTree = "<group>"; };
 		43067E2F203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+BlockEvents.swift"; sourceTree = "<group>"; };
+		57072D93228D897A007AA9C1 /* GhostableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostableView.swift; sourceTree = "<group>"; };
+		57BC0C6C228DF1E000C1F070 /* UIView+GhostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+GhostTests.swift"; sourceTree = "<group>"; };
+		57BC0C6E228DF35400C1F070 /* UITableView+GhostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+GhostTests.swift"; sourceTree = "<group>"; };
 		828BEAC5203B59CD003F7078 /* UIImage+Crop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Crop.swift"; sourceTree = "<group>"; };
 		9A43B7AE21CD11290026E196 /* UIViewController+ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildViewController.swift"; sourceTree = "<group>"; };
 		9A6EC88C21DA4832007815FF /* UIViewControllerHelperTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerHelperTest.swift; sourceTree = "<group>"; };
@@ -177,6 +185,15 @@
 			path = BlockEvents;
 			sourceTree = "<group>";
 		};
+		57BC0C6B228DF1BA00C1F070 /* Ghosts */ = {
+			isa = PBXGroup;
+			children = (
+				57BC0C6C228DF1E000C1F070 /* UIView+GhostTests.swift */,
+				57BC0C6E228DF35400C1F070 /* UITableView+GhostTests.swift */,
+			);
+			path = Ghosts;
+			sourceTree = "<group>";
+		};
 		B518D76B20742ADB00F05DB4 /* FlingableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +221,7 @@
 				B534CB3621398637000D5F8D /* UICollectionView+Ghost.swift */,
 				B534CB3921398637000D5F8D /* UITableView+Ghost.swift */,
 				B554016C2170E8580067DC90 /* UIView+Ghost.swift */,
+				57072D93228D897A007AA9C1 /* GhostableView.swift */,
 			);
 			path = Ghosts;
 			sourceTree = "<group>";
@@ -299,6 +317,7 @@
 		B59DCB69202B146D00BEBD8A /* WordPressUITests */ = {
 			isa = PBXGroup;
 			children = (
+				57BC0C6B228DF1BA00C1F070 /* Ghosts */,
 				B529F287202C855B00895D88 /* Extensions */,
 				B59DCB6C202B146D00BEBD8A /* Info.plist */,
 			);
@@ -319,6 +338,7 @@
 				43067E29203C8CA4001DD610 /* BlockEvents */,
 				B58C4EBE207C570000E32E4D /* Gravatar */,
 				B5A787BC202B2358007874FB /* CGAffineTransform+Helpers.swift */,
+				1A40951B2271B3C4009AA86D /* NSBundle+ResourceBundle.swift */,
 				B589BE2D207BE662007D72D4 /* NSMutableAttributedString+Helpers.swift */,
 				B5A78825202B4178007874FB /* UIAlertController+Helpers.swift */,
 				B5A787E0202B2B59007874FB /* UIControl+Helpers.swift */,
@@ -485,6 +505,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57072D94228D897A007AA9C1 /* GhostableView.swift in Sources */,
 				43067E30203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift in Sources */,
 				B554016F2170E90B0067DC90 /* GhostStyle.swift in Sources */,
 				B5A787B0202B2324007874FB /* UIImage+Tint.swift in Sources */,
@@ -501,6 +522,7 @@
 				B5A787B8202B2324007874FB /* UIImage+Rotation.swift in Sources */,
 				B518D76520740E6900F05DB4 /* UIImageView+Networking.swift in Sources */,
 				B534CB4121398638000D5F8D /* UITableView+Ghost.swift in Sources */,
+				1A40951C2271B3C4009AA86D /* NSBundle+ResourceBundle.swift in Sources */,
 				B534CB3E21398638000D5F8D /* UICollectionView+Ghost.swift in Sources */,
 				43067E2B203C8CC4001DD610 /* UIControl+BlockEvents.swift in Sources */,
 				B5A78826202B4178007874FB /* UIAlertController+Helpers.swift in Sources */,
@@ -541,6 +563,8 @@
 			files = (
 				9A6EC88D21DA4832007815FF /* UIViewControllerHelperTest.swift in Sources */,
 				B529F289202C855B00895D88 /* UIColorHelpersTests.swift in Sources */,
+				57BC0C6D228DF1E000C1F070 /* UIView+GhostTests.swift in Sources */,
+				57BC0C6F228DF35400C1F070 /* UITableView+GhostTests.swift in Sources */,
 				B5226C68207CCDB2003C606E /* GravatarTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

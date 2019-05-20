@@ -30,7 +30,7 @@ extension UIImage {
     /// Returns WordPressUI's Bundle
     ///
     private static var bundle: Bundle {
-        return Bundle(for: UIKitConstants.self)
+        return Bundle.wordPressUIBundle
     }
 
     /// Renders the Background Image with the specified Background + Size + Radius + Insets parameters.
