@@ -9,9 +9,9 @@ extension UIViewController {
         let visibleAsTopOnStack = navigationController?.topViewController == self && view.window != nil
         let visibleAsPresented  = view.window?.rootViewController?.presentedViewController == self
 
-        let isPresentingAView = presentedViewController != nil
+        let isNotPresentingAView = presentedViewController == nil
 
-        return !isPresentingAView && (visibleAsRoot || visibleAsTopOnStack || visibleAsPresented)
+        return isNotPresentingAView && (visibleAsRoot || visibleAsTopOnStack || visibleAsPresented)
     }
 
     /// Determines if the current ViewController's View is horizontally Compact
