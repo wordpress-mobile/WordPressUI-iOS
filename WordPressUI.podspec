@@ -16,6 +16,7 @@ Pod::Spec.new do |s|
   s.source_files  = 'WordPressUI/**/*.{h,m,swift}'
   s.resource_bundles = {
     'WordPressUI': [
+      'WordPressUI/Resources/*.{xcassets}',
       'WordPressUI/**/*.{storyboard}'
     ]
   }
