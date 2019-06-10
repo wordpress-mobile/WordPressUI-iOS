@@ -9,7 +9,7 @@ extension UIImage {
     ///
     @objc
     public static var siteIconPlaceholderImage: UIImage {
-        return WordPressUIIcons.blavatarPlaceholder()
+        return UIImage(named: "blavatar", in: bundle, compatibleWith: nil)!
     }
 
 
@@ -17,14 +17,14 @@ extension UIImage {
     ///
     @objc
     public static var gravatarPlaceholderImage: UIImage {
-        return WordPressUIIcons.gravatarPlaceholder()
+        return UIImage(named: "gravatar", in: bundle, compatibleWith: nil)!
     }
 
     /// Returns the Link Image.
     ///
     @objc
     public static var linkFieldImage: UIImage {
-        return WordPressUIIcons.linkField()
+        return UIImage(named: "icon-url-field", in: bundle, compatibleWith: nil)!
     }
 
     /// Returns WordPressUI's Bundle
