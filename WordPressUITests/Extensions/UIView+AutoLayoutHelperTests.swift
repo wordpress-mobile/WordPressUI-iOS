@@ -3,13 +3,14 @@ import XCTest
 @testable import WordPressUI
 
 class UIViewAutoLayoutHelperTests: XCTestCase {
-    private lazy var view: UIView = {
-        return UIView(frame: .zero)
-    }()
+    private var view: UIView!
+    private var subview: UIView!
 
-    private lazy var subview: UIView = {
-        return UIView(frame: .zero)
-    }()
+    override func setUp() {
+        super.setUp()
+        view = UIView(frame: .zero)
+        subview = UIView(frame: .zero)
+    }
 
     // MARK: tests for `pinSubviewToAllEdges`
 
@@ -17,53 +18,103 @@ class UIViewAutoLayoutHelperTests: XCTestCase {
         view.addSubview(subview)
         view.pinSubviewToAllEdges(subview)
 
-        let topConstraint = getConstraint(from: view, filter: { $0.firstAnchor == view.topAnchor })
+        let topConstraint = getConstraint(from: view,
+                                          filter: { $0.firstAnchor == view.topAnchor && $0.secondAnchor == subview.topAnchor })
         XCTAssertEqual(topConstraint.constant, 0)
-        XCTAssertEqual(topConstraint.secondAnchor, subview.topAnchor)
 
-        let leadingConstraint = getConstraint(from: view, filter: { $0.firstAnchor == view.leadingAnchor })
+        let leadingConstraint = getConstraint(from: view,
+                                              filter: { $0.firstAnchor == view.leadingAnchor && $0.secondAnchor == subview.leadingAnchor })
         XCTAssertEqual(leadingConstraint.constant, 0)
-        XCTAssertEqual(leadingConstraint.secondAnchor, subview.leadingAnchor)
 
-        let trailingConstraint = getConstraint(from: view, filter: { $0.firstAnchor == view.trailingAnchor })
+        let trailingConstraint = getConstraint(from: view,
+                                               filter: { $0.firstAnchor == view.trailingAnchor && $0.secondAnchor == subview.trailingAnchor })
         XCTAssertEqual(trailingConstraint.constant, 0)
-        XCTAssertEqual(trailingConstraint.secondAnchor, subview.trailingAnchor)
 
-        let bottomConstraint = getConstraint(from: view, filter: { $0.firstAnchor == view.bottomAnchor })
+        let bottomConstraint = getConstraint(from: view,
+                                             filter: { $0.firstAnchor == view.bottomAnchor && $0.secondAnchor == subview.bottomAnchor })
         XCTAssertEqual(bottomConstraint.constant, 0)
         XCTAssertEqual(bottomConstraint.secondAnchor, subview.bottomAnchor)
     }
 
     func testPinSubviewToAllEdgesWithNonZeroInsets() {
         view.addSubview(subview)
-        let insets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        let insets = UIEdgeInsets(top: 10, left: 12, bottom: 17, right: 25)
         view.pinSubviewToAllEdges(subview, insets: insets)
 
         // Self.top = subview.top - insets.top
-        let topConstraint = getConstraint(from: view, filter: { $0.firstAnchor == view.topAnchor })
+        let topConstraint = getConstraint(from: view,
+                                          filter: { $0.firstAnchor == view.topAnchor && $0.secondAnchor == subview.topAnchor })
         XCTAssertEqual(topConstraint.constant, -insets.top)
-        XCTAssertEqual(topConstraint.secondAnchor, subview.topAnchor)
 
         // Self.leading = subview.leading - insets.left
-        let leadingConstraint = getConstraint(from: view, filter: { $0.firstAnchor == view.leadingAnchor })
+        let leadingConstraint = getConstraint(from: view,
+                                              filter: { $0.firstAnchor == view.leadingAnchor && $0.secondAnchor == subview.leadingAnchor })
         XCTAssertEqual(leadingConstraint.constant, -insets.left)
-        XCTAssertEqual(leadingConstraint.secondAnchor, subview.leadingAnchor)
 
         // Self.trailing = subview.trailing + insets.right
-        let trailingConstraint = getConstraint(from: view, filter: { $0.firstAnchor == view.trailingAnchor })
+        let trailingConstraint = getConstraint(from: view,
+                                               filter: { $0.firstAnchor == view.trailingAnchor && $0.secondAnchor == subview.trailingAnchor })
         XCTAssertEqual(trailingConstraint.constant, insets.right)
-        XCTAssertEqual(trailingConstraint.secondAnchor, subview.trailingAnchor)
 
         // Self.bottom = subview.bottom + insets.bottom
-        let bottomConstraint = getConstraint(from: view, filter: { $0.firstAnchor == view.bottomAnchor })
+        let bottomConstraint = getConstraint(from: view,
+                                             filter: { $0.firstAnchor == view.bottomAnchor && $0.secondAnchor == subview.bottomAnchor })
         XCTAssertEqual(bottomConstraint.constant, insets.bottom)
-        XCTAssertEqual(bottomConstraint.secondAnchor, subview.bottomAnchor)
+    }
+
+    // MARK: tests for `pinSubviewToSafeArea`
+
+    func testPinSubviewToSafeAreaWithZeroInsets() {
+        view.addSubview(subview)
+        view.pinSubviewToSafeArea(subview)
+
+        let topConstraint = getConstraint(from: view,
+                                          filter: { $0.firstAnchor == view.safeAreaLayoutGuide.topAnchor && $0.secondAnchor == subview.topAnchor })
+        XCTAssertEqual(topConstraint.constant, 0)
+
+        let leadingConstraint = getConstraint(from: view,
+                                              filter: { $0.firstAnchor == view.safeAreaLayoutGuide.leadingAnchor && $0.secondAnchor == subview.leadingAnchor })
+        XCTAssertEqual(leadingConstraint.constant, 0)
+
+        let trailingConstraint = getConstraint(from: view,
+                                               filter: { $0.firstAnchor == view.safeAreaLayoutGuide.trailingAnchor && $0.secondAnchor == subview.trailingAnchor })
+        XCTAssertEqual(trailingConstraint.constant, 0)
+
+        let bottomConstraint = getConstraint(from: view,
+                                             filter: { $0.firstAnchor == view.safeAreaLayoutGuide.bottomAnchor && $0.secondAnchor == subview.bottomAnchor })
+        XCTAssertEqual(bottomConstraint.constant, 0)
+    }
+
+    func testPinSubviewToSafeAreaWithNonZeroInsets() {
+        view.addSubview(subview)
+        let insets = UIEdgeInsets(top: 10, left: 12, bottom: 17, right: 25)
+        view.pinSubviewToSafeArea(subview, insets: insets)
+
+        // Self safe area.top = subview.top - insets.top
+        let topConstraint = getConstraint(from: view,
+                                          filter: { $0.firstAnchor == view.safeAreaLayoutGuide.topAnchor && $0.secondAnchor == subview.topAnchor })
+        XCTAssertEqual(topConstraint.constant, -insets.top)
+
+        // Self safe area.leading = subview.leading - insets.left
+        let leadingConstraint = getConstraint(from: view,
+                                              filter: { $0.firstAnchor == view.safeAreaLayoutGuide.leadingAnchor && $0.secondAnchor == subview.leadingAnchor })
+        XCTAssertEqual(leadingConstraint.constant, -insets.left)
+
+        // Self safe area.trailing = subview.trailing + insets.right
+        let trailingConstraint = getConstraint(from: view,
+                                               filter: { $0.firstAnchor == view.safeAreaLayoutGuide.trailingAnchor && $0.secondAnchor == subview.trailingAnchor })
+        XCTAssertEqual(trailingConstraint.constant, insets.right)
+
+        // Self safe area.bottom = subview.bottom + insets.bottom
+        let bottomConstraint = getConstraint(from: view,
+                                             filter: { $0.firstAnchor == view.safeAreaLayoutGuide.bottomAnchor && $0.secondAnchor == subview.bottomAnchor })
+        XCTAssertEqual(bottomConstraint.constant, insets.bottom)
     }
 
     private func getConstraint(from view: UIView, filter: (NSLayoutConstraint) -> Bool) -> NSLayoutConstraint {
         let constraints = view.constraints.filter(filter)
         guard let constraint = constraints.first, constraints.count == 1 else {
-            XCTFail("View top constraint should have been created")
+            XCTFail("Exactly one constraint corresponding to the given filter should have been created")
             fatalError()
         }
         return constraint
