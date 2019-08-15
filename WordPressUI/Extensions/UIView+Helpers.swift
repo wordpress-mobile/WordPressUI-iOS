@@ -14,12 +14,24 @@ extension UIView {
         addConstraints(newConstraints)
     }
 
+    /// Adds constraints that pin a subview to self with zero insets.
+    ///
+    /// - Parameter subview: a subview to be pinned to self.
     @objc public func pinSubviewToAllEdges(_ subview: UIView) {
+        pinSubviewToAllEdges(subview, insets: .zero)
+    }
+
+    /// Adds constraints that pin a subview to self with padding insets.
+    ///
+    /// - Parameters:
+    ///   - subview: a subview to be pinned to self.
+    ///   - insets: spacing between each subview edge to self. A positive value for an edge indicates that the subview is inside self on that edge.
+    @objc public func pinSubviewToAllEdges(_ subview: UIView, insets: UIEdgeInsets) {
         NSLayoutConstraint.activate([
-            leadingAnchor.constraint(equalTo: subview.leadingAnchor),
-            trailingAnchor.constraint(equalTo: subview.trailingAnchor),
-            topAnchor.constraint(equalTo: subview.topAnchor),
-            bottomAnchor.constraint(equalTo: subview.bottomAnchor),
+            leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: -insets.left),
+            trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: insets.right),
+            topAnchor.constraint(equalTo: subview.topAnchor, constant: -insets.top),
+            bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: insets.bottom),
             ])
     }
 
@@ -30,6 +42,30 @@ extension UIView {
             layoutMarginsGuide.topAnchor.constraint(equalTo: subview.topAnchor),
             layoutMarginsGuide.bottomAnchor.constraint(equalTo: subview.bottomAnchor),
             ])
+    }
+
+    /// Adds constraints that pin a subview to self's safe area with padding insets.
+    ///
+    /// - Parameters:
+    ///   - subview: a subview to be pinned to self's safe area.
+    @objc public func pinSubviewToSafeArea(_ subview: UIView) {
+        pinSubviewToSafeArea(subview, insets: .zero)
+    }
+
+    /// Adds constraints that pin a subview to self's safe area with padding insets.
+    ///
+    /// - Parameters:
+    ///   - subview: a subview to be pinned to self's safe area.
+    ///   - insets: spacing between each subview edge to self's safe area. A positive value for an edge indicates that the subview is inside safe area on that edge.
+    @objc public func pinSubviewToSafeArea(_ subview: UIView, insets: UIEdgeInsets) {
+        if #available(iOS 11.0, *) {
+            NSLayoutConstraint.activate([
+                safeAreaLayoutGuide.leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: -insets.left),
+                safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: insets.right),
+                safeAreaLayoutGuide.topAnchor.constraint(equalTo: subview.topAnchor, constant: -insets.top),
+                safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: insets.bottom),
+                ])
+        }
     }
 
     @objc public func findFirstResponder() -> UIView? {
