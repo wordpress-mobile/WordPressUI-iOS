@@ -49,13 +49,6 @@ extension UIView {
 ///
 private extension UIView {
 
-    /// Indicates if the receiver contains a GhostLayer.
-    ///
-    var containsGhostLayer: Bool {
-        let output = layer.sublayers?.contains { $0 is GhostLayer }
-        return output ?? false
-    }
-
     /// Indicates if the receiver's classname starts with an underscore (UIKit's internals).
     ///
     var isPrivateUIKitInstance: Bool {

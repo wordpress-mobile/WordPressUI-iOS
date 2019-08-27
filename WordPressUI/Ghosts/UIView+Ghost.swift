@@ -17,6 +17,13 @@ extension UIView {
         }
     }
 
+    /// Indicates if the receiver contains a GhostLayer.
+    ///
+    var containsGhostLayer: Bool {
+        let output = layer.sublayers?.contains { $0 is GhostLayer }
+        return output ?? false
+    }
+
     /// Applies Ghost Layers and starts the Beating Animation.
     ///
     open func startGhostAnimation(style: GhostStyle = .default) {
