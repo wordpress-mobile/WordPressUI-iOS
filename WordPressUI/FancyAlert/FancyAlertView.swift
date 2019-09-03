@@ -22,6 +22,7 @@ open class FancyAlertView: UIView {
     /// Body
     ///
     @IBOutlet weak var bodyLabel: UILabel!
+    @IBOutlet weak var bodyWrapperView: UIView!
 
     /// Dividers
     ///
@@ -79,6 +80,17 @@ open class FancyAlertView: UIView {
         }
         set {
             bodyLabel.textColor = newValue
+        }
+    }
+
+    /// BodyWrapper: backgroundColor
+    ///
+    @objc public dynamic var bodyBackgroundColor: UIColor? {
+        get {
+            return bodyWrapperView.backgroundColor
+        }
+        set {
+            bodyWrapperView.backgroundColor = newValue
         }
     }
 
@@ -169,6 +181,17 @@ open class FancyAlertView: UIView {
         }
         set {
             headerImageWrapperView.backgroundColor = newValue
+        }
+    }
+
+    /// ButtonWrapper: backgroundColor
+    ///
+    @objc public dynamic var bottomBackgroundColor: UIColor? {
+        get {
+            return buttonWrapperView.backgroundColor
+        }
+        set {
+            buttonWrapperView.backgroundColor = newValue
         }
     }
 
