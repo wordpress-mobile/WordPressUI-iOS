@@ -28,7 +28,11 @@ class ViewController: UITableViewController
                     self.showFancyAlertWithSwitch()
                 })]
             ),
-            DemoSection(title: "Misc UI Elements", rows: []),
+            DemoSection(title: "Misc UI Elements", rows: [
+                DemoRow(title: "Fancy Buttons", action: {
+                    self.showFancyButtons()
+                })
+            ]),
         ]
     }
     
@@ -100,6 +104,12 @@ class ViewController: UITableViewController
         })
         
         showFancyAlert(switchConfig: switchConfig)
+    }
+
+    // MARK: - Fancy Buttons
+
+    func showFancyButtons() {
+        performSegue(withIdentifier: "FancyButtonsSegue", sender: self)
     }
     
     // MARK: - Test Messages for the User
@@ -184,3 +194,5 @@ struct DemoRow {
     var title: String
     var action: RowAction
 }
+
+class FancyButtonsViewController: UIViewController {}
