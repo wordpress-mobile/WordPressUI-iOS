@@ -13,7 +13,7 @@ open class FancyButton: UIButton {
             configureBackgrounds()
         }
     }
-    @objc public dynamic var primaryNormalBorderColor = Primary.normalBorderColor {
+    @objc public dynamic var primaryNormalBorderColor: UIColor? = nil {
         didSet {
             configureBackgrounds()
         }
@@ -26,7 +26,7 @@ open class FancyButton: UIButton {
             configureBackgrounds()
         }
     }
-    @objc public dynamic var primaryHighlightBorderColor = Primary.highlightBorderColor {
+    @objc public dynamic var primaryHighlightBorderColor: UIColor? = nil {
         didSet {
             configureBackgrounds()
         }
@@ -185,9 +185,7 @@ private extension FancyButton {
     ///
     struct Primary {
         static let normalBackgroundColor = UIColor(red: 0x00/255.0, green: 0xAA/255.0, blue: 0xDC/255.0, alpha: 0xFF/255.0)
-        static let normalBorderColor = UIColor(red: 0x00/255.0, green: 0x87/255.0, blue: 0xBE/255.0, alpha: 0xFF/255.0)
         static let highlightBackgroundColor = UIColor(red: 0x00/255.0, green: 0x87/255.0, blue: 0xBE/255.0, alpha: 0xFF/255.0)
-        static let highlightBorderColor = normalBorderColor
     }
 
     /// Style: Secondary
