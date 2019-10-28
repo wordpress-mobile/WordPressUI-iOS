@@ -4,7 +4,6 @@ public struct Gravatar {
     fileprivate struct Defaults {
         static let scheme = "https"
         static let host = "secure.gravatar.com"
-        // unknownHash = md5("unknown@gravatar.com")
         static let unknownHash = "ad516503a11cd5ca435acc9bb6523536"
     }
 
