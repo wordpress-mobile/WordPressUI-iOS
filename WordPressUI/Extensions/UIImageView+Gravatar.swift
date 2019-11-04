@@ -213,7 +213,7 @@ extension UIImageView {
         return email
             .lowercased()
             .trimmingCharacters(in: .whitespaces)
-            .md5()
+            .md5Hash()
     }
 
     /// Returns the required gravatar size. If the current view's size is zero, falls back to the default size.
