@@ -67,7 +67,7 @@ public extension UIImageView {
             success?(image)
         }
 
-        let cachedImage = Downloader.cache.object(forKey: url as AnyObject) as? UIImage
+        let cachedImage = Downloader.cache.value(forKey: url)
 
         // If we are asking for the same URL let's just stay like we are
         guard url != downloadURL || taskFinishedWitherror() else {
@@ -97,7 +97,7 @@ public extension UIImageView {
             }
 
             DispatchQueue.main.async {
-                Downloader.cache.setObject(image, forKey: url as AnyObject)
+                Downloader.cache.insert(image, forKey: url)
 
                 if response?.url == self?.downloadURL {
                     internalOnSuccess(image)
@@ -116,7 +116,7 @@ public extension UIImageView {
     /// and we need to prevent returning the (old) cached entry.
     ///
     @objc func overrideImageCache(for url: URL, with image: UIImage) {
-        Downloader.cache.setObject(image, forKey: url as AnyObject)
+        Downloader.cache.insert(image, forKey: url)
 
         // Remove all cached responses - removing an individual response does not work since iOS 7.
         // This feels hacky to do but what else can we do...
@@ -124,6 +124,10 @@ public extension UIImageView {
         // Update: Years have gone by (iOS 11 era). Still broken. Still ashamed about this. Thank you, Apple.
         //
         URLSession.shared.configuration.urlCache?.removeAllCachedResponses()
+    }
+    
+    @objc func getImageFromCache(for url: URL) -> UIImage? {
+        return Downloader.cache.value(forKey: url)
     }
 
     /// Cancels the current download task and clear the downloadURL
@@ -181,7 +185,7 @@ public extension UIImageView {
 
         /// Stores all of the previously downloaded images.
         ///
-        static let cache = NSCache<AnyObject, AnyObject>()
+        static let cache = ImageCache<URL, UIImage>()
 
         /// Key used to associate the current URL.
         ///
@@ -190,5 +194,127 @@ public extension UIImageView {
         /// Key used to associate a Download task to the current instance.
         ///
         static var taskKey = "downloadTaskKey"
+    }
+}
+
+public final class ImageCache<Key: Hashable, Value> {
+    
+    /// Wrap our public-facing Key values in order to make them NSCache compatible.
+    private let storage = NSCache<WrappedKey, Entry>()
+    
+    /// Hold of the current date, in order to determine whether a given entry is still valid
+    private let dateProvider: () -> Date
+    
+    /// Entry lifetime
+    private let entryLifetime: TimeInterval
+    
+    /// KeyTracker type, which will become the delegate of our underlying NSCache, in order to get notified whenever an entry was removed
+    private let keyTracker = KeyTracker()
+
+    /// Init method,
+    /// Date provider: default current date
+    /// Entry lifetime:  1 week  as default entry lifetime
+    /// Maximum entry count: 0 by default, so there is no count limit.
+    ///
+    init(dateProvider: @escaping () -> Date = Date.init,
+         entryLifetime: TimeInterval = 7 * 24 * 60 * 60,
+         maximumEntryCount: Int = 0) {
+        self.dateProvider = dateProvider
+        self.entryLifetime = entryLifetime
+        storage.countLimit = maximumEntryCount
+        storage.delegate = keyTracker
+    }
+    
+    /// Insert a new value into cache
+    func insert(_ value: Value, forKey key: Key) {
+        let date = dateProvider().addingTimeInterval(entryLifetime)
+        let entry = Entry(key: key, value: value, expirationDate: date)
+        storage.setObject(entry, forKey: WrappedKey(entry.key))
+        keyTracker.keys.insert(entry.key)
+    }
+
+    /// Get a value from the cache
+    func value(forKey key: Key) -> Value? {
+        guard let entry = storage.object(forKey: WrappedKey(key)) else {
+            return nil
+        }
+
+        guard dateProvider() < entry.expirationDate else {
+            // Discard values that have expired
+            removeValue(forKey: key)
+            return nil
+        }
+
+        return entry.value
+    }
+
+    /// Remove a value from the cache
+    func removeValue(forKey key: Key) {
+        storage.removeObject(forKey: WrappedKey(key))
+    }
+}
+
+private extension ImageCache {
+    
+    /// Wrap our public-facing Key values in order to make them NSCache compatible
+    final class WrappedKey: NSObject {
+        let key: Key
+
+        init(_ key: Key) { self.key = key }
+
+        override var hash: Int { return key.hashValue }
+
+        override func isEqual(_ object: Any?) -> Bool {
+            guard let value = object as? WrappedKey else {
+                return false
+            }
+
+            return value.key == key
+        }
+    }
+}
+
+private extension ImageCache {
+    final class Entry {
+        let key: Key
+        let value: Value
+        let expirationDate: Date
+
+        init(key: Key, value: Value, expirationDate: Date) {
+            self.key = key
+            self.value = value
+            self.expirationDate = expirationDate
+        }
+    }
+}
+
+private extension ImageCache {
+    subscript(key: Key) -> Value? {
+        get { return value(forKey: key) }
+        set {
+            guard let value = newValue else {
+                // If nil was assigned using our subscript,
+                // then we remove any value for that key
+                removeValue(forKey: key)
+                return
+            }
+
+            insert(value, forKey: key)
+        }
+    }
+}
+
+private extension ImageCache {
+    final class KeyTracker: NSObject, NSCacheDelegate {
+        var keys = Set<Key>()
+
+        func cache(_ cache: NSCache<AnyObject, AnyObject>,
+                   willEvictObject object: Any) {
+            guard let entry = object as? Entry else {
+                return
+            }
+
+            keys.remove(entry.key)
+        }
     }
 }
