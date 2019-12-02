@@ -67,7 +67,7 @@ public extension UIImageView {
             success?(image)
         }
 
-        let cachedImage = Downloader.cache.value(forKey: url)
+        let cachedImage = Downloader.cache.entry(forKey: url)?.value
 
         // If we are asking for the same URL let's just stay like we are
         guard url != downloadURL || taskFinishedWitherror() else {
@@ -127,7 +127,7 @@ public extension UIImageView {
     }
     
     @objc func getImageFromCache(for url: URL) -> UIImage? {
-        return Downloader.cache.value(forKey: url)
+        return Downloader.cache.entry(forKey: url)?.value
     }
 
     /// Cancels the current download task and clear the downloadURL
@@ -234,18 +234,17 @@ public final class ImageCache<Key: Hashable, Value> {
     }
 
     /// Get a value from the cache
-    func value(forKey key: Key) -> Value? {
+    func entry(forKey key: Key) -> Entry? {
         guard let entry = storage.object(forKey: WrappedKey(key)) else {
             return nil
         }
 
         guard dateProvider() < entry.expirationDate else {
-            // Discard values that have expired
             removeValue(forKey: key)
             return nil
         }
 
-        return entry.value
+        return entry
     }
 
     /// Remove a value from the cache
@@ -274,7 +273,7 @@ private extension ImageCache {
     }
 }
 
-private extension ImageCache {
+extension ImageCache {
     final class Entry {
         let key: Key
         let value: Value
@@ -284,22 +283,6 @@ private extension ImageCache {
             self.key = key
             self.value = value
             self.expirationDate = expirationDate
-        }
-    }
-}
-
-private extension ImageCache {
-    subscript(key: Key) -> Value? {
-        get { return value(forKey: key) }
-        set {
-            guard let value = newValue else {
-                // If nil was assigned using our subscript,
-                // then we remove any value for that key
-                removeValue(forKey: key)
-                return
-            }
-
-            insert(value, forKey: key)
         }
     }
 }
