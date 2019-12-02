@@ -230,7 +230,7 @@ public final class ImageCache<Key: Hashable, Value> {
         let date = dateProvider().addingTimeInterval(entryLifetime)
         let entry = Entry(key: key, value: value, expirationDate: date)
         storage.setObject(entry, forKey: WrappedKey(entry.key))
-        keyTracker.keys.insert(entry.key)
+        keyTracker.keys.insert(key)
     }
 
     /// Get a value from the cache
