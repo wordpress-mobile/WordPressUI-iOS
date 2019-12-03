@@ -202,9 +202,6 @@ public final class ImageCache {
     /// Wrap our public-facing Key values in order to make them NSCache compatible.
     private let storage = NSCache<WrappedKey, Entry>()
     
-    /// Hold of the current date, in order to determine whether a given entry is still valid
-    private let dateProvider: () -> Date
-    
     /// Persistance
     private let persistance: Bool
     
@@ -216,8 +213,7 @@ public final class ImageCache {
     /// Maximum entry count: 0 by default, so there is no count limit.
     /// If persistent is equal true, images are also stored on disk
     ///
-    init(dateProvider: @escaping () -> Date = Date.init,
-         maximumEntryCount: Int = 0,
+    init(maximumEntryCount: Int = 0,
          persistent: Bool = true) {
         self.dateProvider = dateProvider
         self.persistance = persistent
