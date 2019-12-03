@@ -230,6 +230,7 @@ public final class ImageCache<Key: Hashable, Value> {
         let date = dateProvider().addingTimeInterval(entryLifetime)
         let entry = Entry(key: key, value: value, expirationDate: date)
         storage.setObject(entry, forKey: WrappedKey(entry.key))
+        //saveImageToDisk(url: entry.key, image: <#T##UIImage#>)
         keyTracker.keys.insert(key)
     }
 
@@ -251,6 +252,71 @@ public final class ImageCache<Key: Hashable, Value> {
     func removeValue(forKey key: Key) {
         storage.removeObject(forKey: WrappedKey(key))
     }
+    
+   /// Stores data for the given key. The method returns instantly and the data
+   /// is written asynchronously.
+    private func saveImageToDisk(url: URL, image: UIImage) throws {
+       let fileManager: FileManager = .default
+       let folderURLs = fileManager.urls(
+           for: .cachesDirectory,
+           in: .userDomainMask
+       )
+    
+       let fileURL = folderURLs[0].appendingPathComponent(url.absoluteString.md5 + ".png")
+        if let data = image.pngData(){
+            try data.write(to: fileURL)
+        }
+    }
+    
+    private func getImageFromDisk(url: URL) -> UIImage?{
+        let directory = folderDirectory()
+        
+        let fileURL = directory.appendingPathComponent(url.absoluteString.md5 + ".png")
+        return UIImage(contentsOfFile: fileURL.absoluteString)
+    }
+    
+    private func removeImageFromDisk(url: URL){
+        let directory = folderDirectory()
+        
+        let fileURL = directory.appendingPathComponent(url.absoluteString.md5 + ".png")
+        
+        if fileManager().fileExists(atPath: fileURL.path){
+            try? fileManager().removeItem(at: fileURL)
+        }
+    }
+    
+}
+
+/// Helper private methods
+///
+private extension ImageCache {
+    
+    func folderDirectory() -> URL {
+        let folderURLs = fileManager().urls(
+            for: .cachesDirectory,
+            in: .userDomainMask
+        )
+        
+        return folderURLs[0]
+    }
+    
+    func fileManager() -> FileManager {
+        return .default
+    }
+}
+
+extension ImageCache {
+    final class Entry {
+        let key: Key
+        let value: Value
+        let expirationDate: Date
+
+        init(key: Key, value: Value, expirationDate: Date) {
+            self.key = key
+            self.value = value
+            self.expirationDate = expirationDate
+        }
+    }
 }
 
 private extension ImageCache {
@@ -269,20 +335,6 @@ private extension ImageCache {
             }
 
             return value.key == key
-        }
-    }
-}
-
-extension ImageCache {
-    final class Entry {
-        let key: Key
-        let value: Value
-        let expirationDate: Date
-
-        init(key: Key, value: Value, expirationDate: Date) {
-            self.key = key
-            self.value = value
-            self.expirationDate = expirationDate
         }
     }
 }
