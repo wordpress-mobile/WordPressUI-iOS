@@ -67,7 +67,7 @@ public extension UIImageView {
             success?(image)
         }
 
-        let cachedImage = Downloader.cache.entry(forKey: url)?.value
+        let cachedImage = Downloader.cache.getImage(forURL: url)
 
         // If we are asking for the same URL let's just stay like we are
         guard url != downloadURL || taskFinishedWitherror() else {
@@ -127,7 +127,7 @@ public extension UIImageView {
     }
     
     @objc func getImageFromCache(for url: URL) -> UIImage? {
-        return Downloader.cache.entry(forKey: url)?.value
+        return Downloader.cache.getImage(forURL: url)
     }
 
     /// Cancels the current download task and clear the downloadURL
@@ -185,7 +185,7 @@ public extension UIImageView {
 
         /// Stores all of the previously downloaded images.
         ///
-        static let cache = ImageCache<URL, UIImage>()
+        static let cache = ImageCache()
 
         /// Key used to associate the current URL.
         ///
@@ -197,7 +197,7 @@ public extension UIImageView {
     }
 }
 
-public final class ImageCache<Key: Hashable, Value> {
+public final class ImageCache {
     
     /// Wrap our public-facing Key values in order to make them NSCache compatible.
     private let storage = NSCache<WrappedKey, Entry>()
@@ -205,57 +205,63 @@ public final class ImageCache<Key: Hashable, Value> {
     /// Hold of the current date, in order to determine whether a given entry is still valid
     private let dateProvider: () -> Date
     
-    /// Entry lifetime
-    private let entryLifetime: TimeInterval
+    /// Persistance
+    private let persistance: Bool
     
     /// KeyTracker type, which will become the delegate of our underlying NSCache, in order to get notified whenever an entry was removed
     private let keyTracker = KeyTracker()
 
     /// Init method,
     /// Date provider: default current date
-    /// Entry lifetime:  1 week  as default entry lifetime
     /// Maximum entry count: 0 by default, so there is no count limit.
+    /// If persistent is equal true, images are also stored on disk
     ///
     init(dateProvider: @escaping () -> Date = Date.init,
-         entryLifetime: TimeInterval = 7 * 24 * 60 * 60,
-         maximumEntryCount: Int = 0) {
+         maximumEntryCount: Int = 0,
+         persistent: Bool = true) {
         self.dateProvider = dateProvider
-        self.entryLifetime = entryLifetime
+        self.persistance = persistent
         storage.countLimit = maximumEntryCount
         storage.delegate = keyTracker
     }
     
     /// Insert a new value into cache
-    func insert(_ value: Value, forKey key: Key) {
-        let date = dateProvider().addingTimeInterval(entryLifetime)
-        let entry = Entry(key: key, value: value, expirationDate: date)
+    func insert(_ image: UIImage, forKey key: URL) {
+        let entry = Entry(key: key, value: image)
         storage.setObject(entry, forKey: WrappedKey(entry.key))
-        //saveImageToDisk(url: entry.key, image: <#T##UIImage#>)
+        try? saveImageToDisk(url: entry.key, image: entry.value)
         keyTracker.keys.insert(key)
     }
 
     /// Get a value from the cache
-    func entry(forKey key: Key) -> Entry? {
-        guard let entry = storage.object(forKey: WrappedKey(key)) else {
-            return nil
+    func getImage(forURL url: URL) -> UIImage? {
+        
+        var entry = storage.object(forKey: WrappedKey(url))
+        
+        if entry == nil, let imageFromDisk = getImageFromDisk(url: url) {
+            entry = Entry(key: url, value: imageFromDisk)
+            if let entry = entry{
+                storage.setObject(entry, forKey: WrappedKey(entry.key))
+                keyTracker.keys.insert(url)
+            }
         }
 
-        guard dateProvider() < entry.expirationDate else {
-            removeValue(forKey: key)
-            return nil
-        }
-
-        return entry
+        return entry?.value
     }
 
     /// Remove a value from the cache
-    func removeValue(forKey key: Key) {
-        storage.removeObject(forKey: WrappedKey(key))
+    func removeImage(forURL url: URL) {
+        storage.removeObject(forKey: WrappedKey(url))
+        removeImageFromDisk(url: url)
     }
     
    /// Stores data for the given key. The method returns instantly and the data
    /// is written asynchronously.
     private func saveImageToDisk(url: URL, image: UIImage) throws {
+       guard persistance == true else {
+           return
+       }
+        
        let fileManager: FileManager = .default
        let folderURLs = fileManager.urls(
            for: .cachesDirectory,
@@ -269,17 +275,22 @@ public final class ImageCache<Key: Hashable, Value> {
     }
     
     private func getImageFromDisk(url: URL) -> UIImage?{
-        let directory = folderDirectory()
+        guard persistance == true else {
+            return nil
+        }
         
+        let directory = folderDirectory()
         let fileURL = directory.appendingPathComponent(url.absoluteString.md5 + ".png")
         return UIImage(contentsOfFile: fileURL.absoluteString)
     }
     
     private func removeImageFromDisk(url: URL){
+        guard persistance == true else {
+            return
+        }
+        
         let directory = folderDirectory()
-        
         let fileURL = directory.appendingPathComponent(url.absoluteString.md5 + ".png")
-        
         if fileManager().fileExists(atPath: fileURL.path){
             try? fileManager().removeItem(at: fileURL)
         }
@@ -307,14 +318,12 @@ private extension ImageCache {
 
 extension ImageCache {
     final class Entry {
-        let key: Key
-        let value: Value
-        let expirationDate: Date
+        let key: URL
+        let value: UIImage
 
-        init(key: Key, value: Value, expirationDate: Date) {
+        init(key: URL, value: UIImage) {
             self.key = key
             self.value = value
-            self.expirationDate = expirationDate
         }
     }
 }
@@ -323,9 +332,9 @@ private extension ImageCache {
     
     /// Wrap our public-facing Key values in order to make them NSCache compatible
     final class WrappedKey: NSObject {
-        let key: Key
+        let key: URL
 
-        init(_ key: Key) { self.key = key }
+        init(_ key: URL) { self.key = key }
 
         override var hash: Int { return key.hashValue }
 
@@ -341,7 +350,7 @@ private extension ImageCache {
 
 private extension ImageCache {
     final class KeyTracker: NSObject, NSCacheDelegate {
-        var keys = Set<Key>()
+        var keys = Set<URL>()
 
         func cache(_ cache: NSCache<AnyObject, AnyObject>,
                    willEvictObject object: Any) {
