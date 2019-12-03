@@ -13,6 +13,7 @@
 		43067E2B203C8CC4001DD610 /* UIControl+BlockEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43067E2A203C8CC4001DD610 /* UIControl+BlockEvents.swift */; };
 		43067E2E203C8D03001DD610 /* UIBarButtonItem+BlockEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43067E2D203C8D03001DD610 /* UIBarButtonItem+BlockEvents.swift */; };
 		43067E30203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43067E2F203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift */; };
+		4501067F23966CCF00E24722 /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4501067E23966CCF00E24722 /* String+MD5.swift */; };
 		57072D94228D897A007AA9C1 /* GhostableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57072D93228D897A007AA9C1 /* GhostableView.swift */; };
 		577FC78722985DD0005BA78F /* UIView+ChangeLayoutMarginsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577FC78622985DD0005BA78F /* UIView+ChangeLayoutMarginsTests.swift */; };
 		57BC0C6D228DF1E000C1F070 /* UIView+GhostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BC0C6C228DF1E000C1F070 /* UIView+GhostTests.swift */; };
@@ -93,6 +94,7 @@
 		43067E2A203C8CC4001DD610 /* UIControl+BlockEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+BlockEvents.swift"; sourceTree = "<group>"; };
 		43067E2D203C8D03001DD610 /* UIBarButtonItem+BlockEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+BlockEvents.swift"; sourceTree = "<group>"; };
 		43067E2F203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+BlockEvents.swift"; sourceTree = "<group>"; };
+		4501067E23966CCF00E24722 /* String+MD5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+MD5.swift"; sourceTree = "<group>"; };
 		57072D93228D897A007AA9C1 /* GhostableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostableView.swift; sourceTree = "<group>"; };
 		577FC78622985DD0005BA78F /* UIView+ChangeLayoutMarginsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ChangeLayoutMarginsTests.swift"; sourceTree = "<group>"; };
 		57BC0C6C228DF1E000C1F070 /* UIView+GhostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+GhostTests.swift"; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 				B518D76620740F0800F05DB4 /* UIImageView+Blavatar.swift */,
 				B58C4EAE207C503000E32E4D /* UIImageView+Gravatar.swift */,
 				B518D76420740E6900F05DB4 /* UIImageView+Networking.swift */,
+				4501067E23966CCF00E24722 /* String+MD5.swift */,
 				B5A787AD202B2323007874FB /* UITableView+Helpers.swift */,
 				B5A787A7202B2322007874FB /* UITableViewController+Helpers.swift */,
 				B5A787A5202B2322007874FB /* UITextField+TextHelper.swift */,
@@ -518,6 +521,7 @@
 				B58C4EC4207C570000E32E4D /* NSString+Gravatar.m in Sources */,
 				B592B45520643E3400FF568E /* FancyAlertView.swift in Sources */,
 				B534CB4321398638000D5F8D /* GhostOptions.swift in Sources */,
+				4501067F23966CCF00E24722 /* String+MD5.swift in Sources */,
 				B5A787B1202B2324007874FB /* UITextField+TextHelper.swift in Sources */,
 				B5A787DB202B2AA7007874FB /* UIColor+Helpers.m in Sources */,
 				9A43B7AF21CD11290026E196 /* UIViewController+ChildViewController.swift in Sources */,
