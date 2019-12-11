@@ -9,25 +9,25 @@ workflows:
     jobs:
       - ios/test:
           name: Unit Tests
-          xcode-version: "10.2.0"
+          xcode-version: "11.2.1"
           workspace: WordPressUI.xcworkspace
           scheme: WordPressUI
-          device: iPhone XS
-          ios-version: "12.2"
+          device: iPhone 11
+          ios-version: "13.2.2"
           bundle-install: false
           pod-install: false
       - ios/test:
           name: UI Tests
-          xcode-version: "10.2.0"
+          xcode-version: "11.2.1"
           workspace: WordPressUI.xcworkspace
           scheme: Example
-          device: iPhone XS
-          ios-version: "12.2"
+          device: iPhone 11
+          ios-version: "13.2.2"
           bundle-install: false
           pod-install: false
       - ios/validate-podspec:
           name: Validate Podspec
-          xcode-version: "10.2.0"
+          xcode-version: "11.2.1"
           podspec-path: WordPressUI.podspec
           bundle-install: true
       - ios/publish-podspec:
