@@ -264,6 +264,9 @@ open class FancyAlertViewController: UIViewController {
         update(alertView.titleAccessoryButton, with: configuration.titleAccessoryButton)
         updateBottomSwitch(with: configuration.switchConfig)
 
+        alertView.defaultButton.accessibilityIdentifier = "fancy-alert-view-default-button"
+        alertView.cancelButton.accessibilityIdentifier = "fancy-alert-view-cancel-button"
+
         // If we have no title accessory button, we need to
         // disable the trailing constraint to allow the title to flow correctly
         alertView.titleAccessoryButtonTrailingConstraint.isActive = (configuration.titleAccessoryButton != nil)
