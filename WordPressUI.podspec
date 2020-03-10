@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.homepage      = "http://apps.wordpress.com"
   s.license       = "GPLv2"
   s.author        = { "Jorge Leandro Perez" => "jorge.perez@automattic.com" }
-  s.platform      = :ios, "11.3"
+  s.platform      = :ios, "11.2.1"
   s.swift_version = '5.0'
   s.source        = { :git => "https://github.com/wordpress-mobile/WordPressUI-iOS.git", :tag => s.version.to_s }
   s.source_files  = 'WordPressUI/**/*.{h,m,swift}'
