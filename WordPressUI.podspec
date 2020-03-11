@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name          = "WordPressUI"
-  s.version       = "1.5.1"
+  s.version       = "1.5.2-beta.1"
   s.summary       = "Home of reusable WordPress UI components."
 
   s.description   = <<-DESC
@@ -10,8 +10,8 @@ Pod::Spec.new do |s|
   s.homepage      = "http://apps.wordpress.com"
   s.license       = "GPLv2"
   s.author        = { "Jorge Leandro Perez" => "jorge.perez@automattic.com" }
-  s.platform      = :ios, "10.0"
-  s.swift_version = '4.2'
+  s.platform      = :ios, "11.0"
+  s.swift_version = '5.0'
   s.source        = { :git => "https://github.com/wordpress-mobile/WordPressUI-iOS.git", :tag => s.version.to_s }
   s.source_files  = 'WordPressUI/**/*.{h,m,swift}'
   s.resource_bundles = {
