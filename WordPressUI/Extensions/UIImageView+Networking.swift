@@ -64,6 +64,7 @@ public extension UIImageView {
 
         let internalOnSuccess = { [weak self] (image: UIImage) in
             self?.image = image
+            self?.downloadURL  = url
             success?(image)
         }
 
@@ -79,7 +80,6 @@ public extension UIImageView {
 
         // Do this first, if there was any ongoing task for this imageview we need to cancel imediately or else we can apply the cache image and not cancel a previous download
         cancelImageDownload()
-        downloadURL = url
 
         if let image = cachedImage {
             internalOnSuccess(image)
