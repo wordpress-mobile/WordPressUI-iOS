@@ -26,18 +26,18 @@ public class BottomSheetViewController: UIViewController {
     private var customHeaderSpacing: CGFloat?
 
     /// Additional safe are insets for regular horizontal size class
-    var additionalSafeAreaInsetsRegular: UIEdgeInsets = .zero
+    public var additionalSafeAreaInsetsRegular: UIEdgeInsets = .zero
 
     private weak var childViewController: DrawerPresentableViewController?
 
-    init(childViewController: DrawerPresentableViewController,
+    public init(childViewController: DrawerPresentableViewController,
          customHeaderSpacing: CGFloat? = nil) {
         self.childViewController = childViewController
         self.customHeaderSpacing = customHeaderSpacing
         super.init(nibName: nil, bundle: nil)
     }
 
-    func show(from presenting: UIViewController, sourceView: UIView? = nil, arrowDirections: UIPopoverArrowDirection = .any) {
+    public func show(from presenting: UIViewController, sourceView: UIView? = nil, arrowDirections: UIPopoverArrowDirection = .any) {
         if UIDevice.isPad() {
             modalPresentationStyle = .popover
             popoverPresentationController?.permittedArrowDirections = arrowDirections
@@ -65,6 +65,13 @@ public class BottomSheetViewController: UIViewController {
 
     private var stackView: UIStackView!
 
+    private var defaultBrackgroundColor: UIColor {
+        if #available(iOS 13, *) {
+            return .systemBackground
+        }
+        return .white
+    }
+
     @objc func buttonPressed() {
         dismiss(animated: true, completion: nil)
     }
@@ -79,7 +86,7 @@ public class BottomSheetViewController: UIViewController {
         view.clipsToBounds = true
         view.layer.cornerRadius = Constants.cornerRadius
         view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-        view.backgroundColor = childViewController?.view.backgroundColor
+        view.backgroundColor = childViewController?.view.backgroundColor ?? defaultBrackgroundColor
 
         NSLayoutConstraint.activate([
             gripButton.heightAnchor.constraint(equalToConstant: Constants.gripHeight)

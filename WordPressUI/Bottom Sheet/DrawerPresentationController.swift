@@ -72,7 +72,7 @@ private enum Constants {
     }
 }
 
-typealias DrawerPresentableViewController = DrawerPresentable & UIViewController
+public typealias DrawerPresentableViewController = DrawerPresentable & UIViewController
 
 public extension DrawerPresentable where Self: UIViewController {
     // Default values
@@ -507,8 +507,9 @@ private extension DrawerPresentationController {
     }
 
     private var rootViewController: UIViewController? {
-        let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        guard let application = UIApplication.value(forKeyPath: #keyPath(UIApplication.shared)) as? UIApplication
+            else { return nil }
 
-        return keyWindow?.rootViewController
+        return application.keyWindow?.rootViewController
     }
 }

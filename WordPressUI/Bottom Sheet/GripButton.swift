@@ -1,5 +1,5 @@
 // A UIView with a centered "grip" view (like in Apple Maps)
-class GripButton: UIButton {
+public class GripButton: UIButton {
 
     private enum Constants {
         static let width: CGFloat = 32

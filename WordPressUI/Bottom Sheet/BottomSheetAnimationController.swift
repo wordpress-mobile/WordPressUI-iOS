@@ -1,17 +1,17 @@
-class BottomSheetAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
-    enum TransitionType {
+public class BottomSheetAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
+    public enum TransitionType {
         case presenting
         case dismissing
     }
 
     private let transitionType: TransitionType
 
-    init(transitionType: TransitionType) {
+    public init(transitionType: TransitionType) {
         self.transitionType = transitionType
         super.init()
     }
 
-    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard let toView: UIView = transitionContext.view(forKey: .to) ?? transitionContext.viewController(forKey: .to)?.view,
               let fromView: UIView = transitionContext.view(forKey: .from) ?? transitionContext.viewController(forKey: .from)?.view else {
             return
@@ -40,7 +40,7 @@ class BottomSheetAnimationController: NSObject, UIViewControllerAnimatedTransiti
         })
     }
 
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.25
     }
 }
