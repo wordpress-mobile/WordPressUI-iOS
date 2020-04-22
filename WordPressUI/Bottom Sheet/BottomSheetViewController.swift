@@ -132,7 +132,9 @@ public class BottomSheetViewController: UIViewController {
             childViewController?.preferredContentSize = newValue
         }
         get {
-            return childViewController?.preferredContentSize ?? super.preferredContentSize
+            var preferredContentSizePlusAdditionalMargin = (childViewController?.preferredContentSize ?? super.preferredContentSize)
+            preferredContentSizePlusAdditionalMargin.height += BottomSheetViewController.Constants.additionalContentTopMargin
+            return preferredContentSizePlusAdditionalMargin
         }
     }
 
