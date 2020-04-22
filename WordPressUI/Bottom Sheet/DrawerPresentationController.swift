@@ -19,6 +19,9 @@ public enum DrawerHeight {
 
     // Height in the hidden state will be equal the screens height
     case hidden
+
+    // Calculate the intrisinc content based on the View Controller
+    case intrinsicHeight
 }
 
 public enum DrawerWidth {
@@ -265,6 +268,10 @@ public class DrawerPresentationController: FancyAlertPresentationController {
 
         case .maxHeight:
             topMargin = safeAreaInsets.top
+
+        case .intrinsicHeight:
+            let height = presentedViewController.children.first?.preferredContentSize.height ?? 0 + BottomSheetViewController.Constants.additionalContentTopMargin
+            topMargin = calculatedTopMargin(for: height)
 
         case .hidden:
             topMargin = UIScreen.main.bounds.height
