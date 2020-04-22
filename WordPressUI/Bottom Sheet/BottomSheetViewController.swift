@@ -1,11 +1,17 @@
 import UIKit
 
 public class BottomSheetViewController: UIViewController {
-    enum Constants {
+    public enum Constants {
         static let gripHeight: CGFloat = 5
         static let cornerRadius: CGFloat = 8
         static let buttonSpacing: CGFloat = 8
         static let minimumWidth: CGFloat = 300
+
+        /// The height of the space above the bottom sheet content, including the grip view and space around it.
+        ///
+        public static let additionalContentTopMargin: CGFloat = BottomSheetViewController.Constants.gripHeight
+            + BottomSheetViewController.Constants.Header.spacing
+            + BottomSheetViewController.Constants.Stack.insets.top
 
         enum Header {
             static let spacing: CGFloat = 16
