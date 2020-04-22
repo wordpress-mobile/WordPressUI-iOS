@@ -99,7 +99,7 @@ public extension UIImageView {
             DispatchQueue.main.async {
                 Downloader.cache.setObject(image, forKey: url as AnyObject)
 
-                if response?.url == self?.downloadURL {
+                if response?.url == url {
                     internalOnSuccess(image)
                 }
 
