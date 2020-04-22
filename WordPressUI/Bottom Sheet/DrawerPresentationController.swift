@@ -270,7 +270,7 @@ public class DrawerPresentationController: FancyAlertPresentationController {
             topMargin = safeAreaInsets.top
 
         case .intrinsicHeight:
-            let height = presentedViewController.preferredContentSize.height ?? 0
+            let height = presentedViewController.preferredContentSize.height
             topMargin = calculatedTopMargin(for: height)
 
         case .hidden:
