@@ -18,6 +18,11 @@
 		57BC0C6D228DF1E000C1F070 /* UIView+GhostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BC0C6C228DF1E000C1F070 /* UIView+GhostTests.swift */; };
 		57BC0C6F228DF35400C1F070 /* UITableView+GhostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BC0C6E228DF35400C1F070 /* UITableView+GhostTests.swift */; };
 		828BEAC6203B59CD003F7078 /* UIImage+Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828BEAC5203B59CD003F7078 /* UIImage+Crop.swift */; };
+		8B5100D2244F6C6C00672D74 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5100D1244F6C6C00672D74 /* BottomSheetViewController.swift */; };
+		8B5100D4244F6CE000672D74 /* DrawerPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5100D3244F6CE000672D74 /* DrawerPresentationController.swift */; };
+		8B5100D6244F6D0F00672D74 /* BottomSheetAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5100D5244F6D0F00672D74 /* BottomSheetAnimationController.swift */; };
+		8B5100D8244F6D2E00672D74 /* GripButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5100D7244F6D2E00672D74 /* GripButton.swift */; };
+		8B9147712451CBFB0028B0AE /* BottomSheetViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9147702451CBFB0028B0AE /* BottomSheetViewControllerTests.swift */; };
 		9A43B7AF21CD11290026E196 /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A43B7AE21CD11290026E196 /* UIViewController+ChildViewController.swift */; };
 		9A6EC88D21DA4832007815FF /* UIViewControllerHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6EC88C21DA4832007815FF /* UIViewControllerHelperTest.swift */; };
 		B518D76520740E6900F05DB4 /* UIImageView+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B518D76420740E6900F05DB4 /* UIImageView+Networking.swift */; };
@@ -98,6 +103,11 @@
 		57BC0C6C228DF1E000C1F070 /* UIView+GhostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+GhostTests.swift"; sourceTree = "<group>"; };
 		57BC0C6E228DF35400C1F070 /* UITableView+GhostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+GhostTests.swift"; sourceTree = "<group>"; };
 		828BEAC5203B59CD003F7078 /* UIImage+Crop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Crop.swift"; sourceTree = "<group>"; };
+		8B5100D1244F6C6C00672D74 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
+		8B5100D3244F6CE000672D74 /* DrawerPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerPresentationController.swift; sourceTree = "<group>"; };
+		8B5100D5244F6D0F00672D74 /* BottomSheetAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetAnimationController.swift; sourceTree = "<group>"; };
+		8B5100D7244F6D2E00672D74 /* GripButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripButton.swift; sourceTree = "<group>"; };
+		8B9147702451CBFB0028B0AE /* BottomSheetViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewControllerTests.swift; sourceTree = "<group>"; };
 		9A43B7AE21CD11290026E196 /* UIViewController+ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildViewController.swift"; sourceTree = "<group>"; };
 		9A6EC88C21DA4832007815FF /* UIViewControllerHelperTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerHelperTest.swift; sourceTree = "<group>"; };
 		B518D76420740E6900F05DB4 /* UIImageView+Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Networking.swift"; sourceTree = "<group>"; };
@@ -196,6 +206,25 @@
 				57BC0C6E228DF35400C1F070 /* UITableView+GhostTests.swift */,
 			);
 			path = Ghosts;
+			sourceTree = "<group>";
+		};
+		8B5100D0244F6C0200672D74 /* BottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				8B5100D1244F6C6C00672D74 /* BottomSheetViewController.swift */,
+				8B5100D3244F6CE000672D74 /* DrawerPresentationController.swift */,
+				8B5100D5244F6D0F00672D74 /* BottomSheetAnimationController.swift */,
+				8B5100D7244F6D2E00672D74 /* GripButton.swift */,
+			);
+			path = BottomSheet;
+			sourceTree = "<group>";
+		};
+		8B91476F2451CBEB0028B0AE /* BottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				8B9147702451CBFB0028B0AE /* BottomSheetViewControllerTests.swift */,
+			);
+			path = BottomSheet;
 			sourceTree = "<group>";
 		};
 		B518D76B20742ADB00F05DB4 /* FlingableView */ = {
@@ -306,6 +335,7 @@
 		B59DCB5E202B146D00BEBD8A /* WordPressUI */ = {
 			isa = PBXGroup;
 			children = (
+				8B5100D0244F6C0200672D74 /* BottomSheet */,
 				B534CB3521398609000D5F8D /* Ghosts */,
 				B592B4482064296500FF568E /* FancyAlert */,
 				B518D76B20742ADB00F05DB4 /* FlingableView */,
@@ -323,6 +353,7 @@
 		B59DCB69202B146D00BEBD8A /* WordPressUITests */ = {
 			isa = PBXGroup;
 			children = (
+				8B91476F2451CBEB0028B0AE /* BottomSheet */,
 				57BC0C6B228DF1BA00C1F070 /* Ghosts */,
 				B529F287202C855B00895D88 /* Extensions */,
 				B59DCB6C202B146D00BEBD8A /* Info.plist */,
@@ -511,6 +542,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B5100D8244F6D2E00672D74 /* GripButton.swift in Sources */,
 				57072D94228D897A007AA9C1 /* GhostableView.swift in Sources */,
 				43067E30203C8D27001DD610 /* UIGestureRecognizer+BlockEvents.swift in Sources */,
 				B554016F2170E90B0067DC90 /* GhostStyle.swift in Sources */,
@@ -518,6 +550,7 @@
 				B58C4EC4207C570000E32E4D /* NSString+Gravatar.m in Sources */,
 				B592B45520643E3400FF568E /* FancyAlertView.swift in Sources */,
 				B534CB4321398638000D5F8D /* GhostOptions.swift in Sources */,
+				8B5100D4244F6CE000672D74 /* DrawerPresentationController.swift in Sources */,
 				B5A787B1202B2324007874FB /* UITextField+TextHelper.swift in Sources */,
 				B5A787DB202B2AA7007874FB /* UIColor+Helpers.m in Sources */,
 				9A43B7AF21CD11290026E196 /* UIViewController+ChildViewController.swift in Sources */,
@@ -531,9 +564,11 @@
 				1A40951C2271B3C4009AA86D /* NSBundle+ResourceBundle.swift in Sources */,
 				B534CB3E21398638000D5F8D /* UICollectionView+Ghost.swift in Sources */,
 				43067E2B203C8CC4001DD610 /* UIControl+BlockEvents.swift in Sources */,
+				8B5100D6244F6D0F00672D74 /* BottomSheetAnimationController.swift in Sources */,
 				B5A78826202B4178007874FB /* UIAlertController+Helpers.swift in Sources */,
 				B5A787B9202B2324007874FB /* UITableView+Helpers.swift in Sources */,
 				B534CB4021398638000D5F8D /* GhostTableViewHandler.swift in Sources */,
+				8B5100D2244F6C6C00672D74 /* BottomSheetViewController.swift in Sources */,
 				B589BE2E207BE662007D72D4 /* NSMutableAttributedString+Helpers.swift in Sources */,
 				B5D91458206AD8BA00EF333D /* FancyButton.swift in Sources */,
 				B58C4EC2207C570000E32E4D /* Gravatar.swift in Sources */,
@@ -574,6 +609,7 @@
 				57BC0C6D228DF1E000C1F070 /* UIView+GhostTests.swift in Sources */,
 				57BC0C6F228DF35400C1F070 /* UITableView+GhostTests.swift in Sources */,
 				B5226C68207CCDB2003C606E /* GravatarTest.swift in Sources */,
+				8B9147712451CBFB0028B0AE /* BottomSheetViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,7 +693,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = WordPressUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.WordPressUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -751,7 +787,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = WordPressUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.WordPressUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -908,7 +944,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = WordPressUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.WordPressUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -931,7 +967,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = WordPressUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.WordPressUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";

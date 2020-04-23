@@ -23,4 +23,3 @@ Pod::Spec.new do |s|
   s.requires_arc  = true
   s.header_dir    = 'WordPressUI'
 end
-
