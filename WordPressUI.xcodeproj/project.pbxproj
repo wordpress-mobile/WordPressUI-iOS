@@ -22,6 +22,7 @@
 		8B5100D4244F6CE000672D74 /* DrawerPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5100D3244F6CE000672D74 /* DrawerPresentationController.swift */; };
 		8B5100D6244F6D0F00672D74 /* BottomSheetAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5100D5244F6D0F00672D74 /* BottomSheetAnimationController.swift */; };
 		8B5100D8244F6D2E00672D74 /* GripButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5100D7244F6D2E00672D74 /* GripButton.swift */; };
+		8B9147712451CBFB0028B0AE /* BottomSheetViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9147702451CBFB0028B0AE /* BottomSheetViewControllerTests.swift */; };
 		9A43B7AF21CD11290026E196 /* UIViewController+ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A43B7AE21CD11290026E196 /* UIViewController+ChildViewController.swift */; };
 		9A6EC88D21DA4832007815FF /* UIViewControllerHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6EC88C21DA4832007815FF /* UIViewControllerHelperTest.swift */; };
 		B518D76520740E6900F05DB4 /* UIImageView+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B518D76420740E6900F05DB4 /* UIImageView+Networking.swift */; };
@@ -106,6 +107,7 @@
 		8B5100D3244F6CE000672D74 /* DrawerPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerPresentationController.swift; sourceTree = "<group>"; };
 		8B5100D5244F6D0F00672D74 /* BottomSheetAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetAnimationController.swift; sourceTree = "<group>"; };
 		8B5100D7244F6D2E00672D74 /* GripButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripButton.swift; sourceTree = "<group>"; };
+		8B9147702451CBFB0028B0AE /* BottomSheetViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewControllerTests.swift; sourceTree = "<group>"; };
 		9A43B7AE21CD11290026E196 /* UIViewController+ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ChildViewController.swift"; sourceTree = "<group>"; };
 		9A6EC88C21DA4832007815FF /* UIViewControllerHelperTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerHelperTest.swift; sourceTree = "<group>"; };
 		B518D76420740E6900F05DB4 /* UIImageView+Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Networking.swift"; sourceTree = "<group>"; };
@@ -206,7 +208,7 @@
 			path = Ghosts;
 			sourceTree = "<group>";
 		};
-		8B5100D0244F6C0200672D74 /* Bottom Sheet */ = {
+		8B5100D0244F6C0200672D74 /* BottomSheet */ = {
 			isa = PBXGroup;
 			children = (
 				8B5100D1244F6C6C00672D74 /* BottomSheetViewController.swift */,
@@ -214,7 +216,15 @@
 				8B5100D5244F6D0F00672D74 /* BottomSheetAnimationController.swift */,
 				8B5100D7244F6D2E00672D74 /* GripButton.swift */,
 			);
-			path = "Bottom Sheet";
+			path = BottomSheet;
+			sourceTree = "<group>";
+		};
+		8B91476F2451CBEB0028B0AE /* BottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				8B9147702451CBFB0028B0AE /* BottomSheetViewControllerTests.swift */,
+			);
+			path = BottomSheet;
 			sourceTree = "<group>";
 		};
 		B518D76B20742ADB00F05DB4 /* FlingableView */ = {
@@ -325,7 +335,7 @@
 		B59DCB5E202B146D00BEBD8A /* WordPressUI */ = {
 			isa = PBXGroup;
 			children = (
-				8B5100D0244F6C0200672D74 /* Bottom Sheet */,
+				8B5100D0244F6C0200672D74 /* BottomSheet */,
 				B534CB3521398609000D5F8D /* Ghosts */,
 				B592B4482064296500FF568E /* FancyAlert */,
 				B518D76B20742ADB00F05DB4 /* FlingableView */,
@@ -343,6 +353,7 @@
 		B59DCB69202B146D00BEBD8A /* WordPressUITests */ = {
 			isa = PBXGroup;
 			children = (
+				8B91476F2451CBEB0028B0AE /* BottomSheet */,
 				57BC0C6B228DF1BA00C1F070 /* Ghosts */,
 				B529F287202C855B00895D88 /* Extensions */,
 				B59DCB6C202B146D00BEBD8A /* Info.plist */,
@@ -598,6 +609,7 @@
 				57BC0C6D228DF1E000C1F070 /* UIView+GhostTests.swift in Sources */,
 				57BC0C6F228DF35400C1F070 /* UITableView+GhostTests.swift in Sources */,
 				B5226C68207CCDB2003C606E /* GravatarTest.swift in Sources */,
+				8B9147712451CBFB0028B0AE /* BottomSheetViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
