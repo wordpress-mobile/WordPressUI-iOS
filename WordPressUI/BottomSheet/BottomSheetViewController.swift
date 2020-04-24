@@ -133,7 +133,10 @@ public class BottomSheetViewController: UIViewController {
         }
         get {
             var preferredContentSizePlusAdditionalMargin = (childViewController?.preferredContentSize ?? super.preferredContentSize)
-            preferredContentSizePlusAdditionalMargin.height += BottomSheetViewController.Constants.additionalContentTopMargin
+            // Add additional height only if preferred content size exists. Othwerwise, default popover sizing breaks.
+            if preferredContentSizePlusAdditionalMargin.height != 0 {
+                preferredContentSizePlusAdditionalMargin.height += BottomSheetViewController.Constants.additionalContentTopMargin
+            }
             return preferredContentSizePlusAdditionalMargin
         }
     }
