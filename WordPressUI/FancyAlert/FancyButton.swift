@@ -120,7 +120,11 @@ open class FancyButton: UIButton {
         super.awakeFromNib()
         configureAppearance()
     }
-
+    
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        configureBackgrounds()
+    }
 
     /// Setup: Everything = [Insets, Backgrounds, titleColor(s), titleLabel]
     ///
