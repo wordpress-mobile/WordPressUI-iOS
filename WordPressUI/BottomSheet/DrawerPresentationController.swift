@@ -380,7 +380,7 @@ private extension DrawerPresentationController {
             
             /// When scrolling, we want the drag start point to be reset once the view begins to move down, otherwise the drag start point will be incorrect.
             if isScrolling == true && scrollViewYOffset == 0 && yPosition == expandedYPosition {
-                dragStartPoint = CGPoint.zero
+                dragStartPoint = .zero
                 animated = true /// Animate this transition or else the value will jump
             }
             
@@ -388,7 +388,7 @@ private extension DrawerPresentationController {
             var yTranslation = translation.y
             
             /// Slows the deceleration rate
-            if presentedView.frame.origin.y < expandedYPosition {
+            if isScrolling == true && presentedView.frame.origin.y < expandedYPosition {
                 yTranslation /= 2.0
             }
 
@@ -406,12 +406,12 @@ private extension DrawerPresentationController {
 
             let maxY = topMargin(with: .maxHeight)
             var yPosition = startY + yTranslation
-            if presentableViewController?.scrollableView?.isScrolling == true {
+            if isScrolling == true {
                 /// During scrolling, ensure yPosition doesn't extend past the expanded position
                 yPosition = max(yPosition, expandedYPosition)
             }
+            
             let newMargin = max(yPosition, maxY)
-
             setTopMargin(newMargin, animated: animated)
 
         case .ended:
