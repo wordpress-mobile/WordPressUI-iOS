@@ -356,7 +356,9 @@ private extension DrawerPresentationController {
     @objc func pan(_ gesture: UIPanGestureRecognizer) {
         guard let presentedView = self.presentedView else { return }
         
-        guard (presentableViewController?.scrollableView?.contentOffset.y ?? 0) <= 0 else { return }
+        let isScrolling = presentableViewController?.scrollableView?.isScrolling
+        
+        guard (presentableViewController?.scrollableView?.contentOffset.y ?? 0) <= 0 || isScrolling == false else { return }
         
         /// Ignore the animation once panning begins so we can immediately interact
         isPresentedViewAnimating = false
@@ -369,7 +371,7 @@ private extension DrawerPresentationController {
         case .began:
             /// We don't want to start the pan after a scroll where the pan began, since the scroll has taken place during that gesture.
             /// `dragStartPoint` will be set in the `.changed` case below once scrolling has stopped at the top of the content and panning has begun.
-            if presentableViewController?.scrollableView?.isScrolling == false || yPosition != expandedYPosition {
+            if isScrolling == false || yPosition != expandedYPosition {
                 dragStartPoint = presentedView.frame.origin
             }
 
@@ -377,9 +379,9 @@ private extension DrawerPresentationController {
             var animated = false
             
             /// When scrolling, we want the drag start point to be reset once the view begins to move down, otherwise the drag start point will be incorrect.
-            if presentableViewController?.scrollableView?.isScrolling == true && scrollViewYOffset == 0 && yPosition == expandedYPosition {
+            if isScrolling == true && scrollViewYOffset == 0 && yPosition == expandedYPosition {
                 dragStartPoint = CGPoint.zero
-                animated = true /// Animate this transition or else the value will jump to a
+                animated = true /// Animate this transition or else the value will jump
             }
             
             let startY = dragStartPoint?.y ?? 0
@@ -403,7 +405,12 @@ private extension DrawerPresentationController {
             }
 
             let maxY = topMargin(with: .maxHeight)
-            let newMargin = max((startY + yTranslation), maxY)
+            var yPosition = startY + yTranslation
+            if presentableViewController?.scrollableView?.isScrolling == true {
+                /// During scrolling, ensure yPosition doesn't extend past the expanded position
+                yPosition = max(yPosition, expandedYPosition)
+            }
+            let newMargin = max(yPosition, maxY)
 
             setTopMargin(newMargin, animated: animated)
 
