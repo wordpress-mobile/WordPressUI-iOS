@@ -369,21 +369,11 @@ private extension DrawerPresentationController {
 
         switch gesture.state {
         case .began:
-            /// We don't want to start the pan after a scroll where the pan began, since the scroll has taken place during that gesture.
-            /// `dragStartPoint` will be set in the `.changed` case below once scrolling has stopped at the top of the content and panning has begun.
-            if !isScrolling || yPosition != expandedYPosition {
-                dragStartPoint = presentedView.frame.origin
-            }
+            dragStartPoint = presentedView.frame.origin
 
         case .changed:
             var animated = false
-            
-            /// When scrolling, we want the drag start point to be reset once the view begins to move down, otherwise the drag start point will be incorrect.
-            if isScrolling && scrollViewYOffset == 0 && yPosition == expandedYPosition {
-                dragStartPoint = .zero
-                animated = true /// Animate this transition or else the value will jump
-            }
-            
+                                    
             let startY = dragStartPoint?.y ?? 0
             var yTranslation = translation.y
             
@@ -502,11 +492,6 @@ private extension DrawerPresentationController {
                 haltScrolling(scrollView)
             }
 
-        } else if presentedViewController.view.isKind(of: UIScrollView.self)
-            && !isPresentedViewAnimating && scrollView.contentOffset.y <= 0 {
-            /// When dragging quickly and letting go, this uses the deceleration curve to properly animate.
-            /// A "fling" upward on the scroll view, as an example.
-            handleTopBounce(for: scrollView, change: change)
         } else {
             /// Allow normal scrolling (with tracking)
             trackScrolling(scrollView)
@@ -526,45 +511,6 @@ private extension DrawerPresentationController {
     private func trackScrolling(_ scrollView: UIScrollView) {
         scrollViewYOffset = max(scrollView.contentOffset.y, 0)
         scrollView.showsVerticalScrollIndicator = true
-    }
-    
-    /// Handles the case where the scroll view content offset is negative.
-    /// This helps transition between scrolling behavior and modal transition animation.
-    /// The deceleration of the scroll is used to position the presented view for a smooth transition.
-    /// - Parameters:
-    ///   - scrollView: The scroll view for which to track content offset changes.
-    ///   - change: The change representing the old and new offsets.
-    private func handleTopBounce(for scrollView: UIScrollView, change: NSKeyValueObservedChange<CGPoint>) {
-
-        guard let oldYValue = change.oldValue?.y, scrollView.isDecelerating
-            else { return }
-
-        let yOffset = scrollView.contentOffset.y
-        let presentedSize = containerView?.frame.size ?? .zero
-
-        /// Decrease the bounds of the view by `yOffset` to pin the scroll view to its current spot.
-        presentedView?.bounds.size = CGSize(width: presentedSize.width, height: presentedSize.height + yOffset)
-
-        if oldYValue > yOffset {
-            /**
-             Move the view in the opposite direction to the decreasing bounds
-             until half way through the deceleration so that it appears
-             as if we're transferring the scrollView drag momentum to the entire view
-             */
-            presentedView?.frame.origin.y = expandedYPosition - yOffset
-        } else {
-            scrollViewYOffset = 0
-            snap(toY: collapsedYPosition)
-        }
-
-        scrollView.showsVerticalScrollIndicator = false
-    }
-    
-    /// Snaps to the closes position from `yPosition`.
-    /// - Parameter yPosition: The position on the `y` axis to snap closest to.
-    private func snap(toY yPosition: CGFloat) {
-        let position = closestPosition(for: yPosition)
-        transition(to: position)
     }
 }
 
