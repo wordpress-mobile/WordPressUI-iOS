@@ -372,8 +372,6 @@ private extension DrawerPresentationController {
             dragStartPoint = presentedView.frame.origin
 
         case .changed:
-            var animated = false
-                                    
             let startY = dragStartPoint?.y ?? 0
             var yTranslation = translation.y
             
@@ -402,7 +400,7 @@ private extension DrawerPresentationController {
             }
             
             let newMargin = max(yPosition, maxY)
-            setTopMargin(newMargin, animated: animated)
+            setTopMargin(newMargin, animated: false)
 
         case .ended:
             /// Helper closure to prevent user transition/dismiss
