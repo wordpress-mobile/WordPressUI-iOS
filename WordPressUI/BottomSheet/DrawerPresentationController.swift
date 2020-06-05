@@ -56,6 +56,8 @@ public protocol DrawerPresentable: AnyObject {
 
     /// A scroll view that should have its insets adjusted when the drawer is expanded/collapsed
     var scrollableView: UIScrollView? { get }
+
+    func handleDismiss()
 }
 
 private enum Constants {
@@ -125,6 +127,8 @@ public extension DrawerPresentable where Self: UIViewController {
 
         return presentationController ?? navigationPresentationController ?? navParentPresetationController ?? parentPresentationController
     }
+
+    func handleDismiss() { }
 }
 
 public class DrawerPresentationController: FancyAlertPresentationController {
