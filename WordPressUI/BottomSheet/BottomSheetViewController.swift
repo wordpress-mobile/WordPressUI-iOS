@@ -171,6 +171,9 @@ extension BottomSheetViewController: UIViewControllerTransitioningDelegate {
     }
 
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if let childViewController = childViewController {
+            childViewController.handleDismiss()
+        }
         return BottomSheetAnimationController(transitionType: .dismissing)
     }
 
