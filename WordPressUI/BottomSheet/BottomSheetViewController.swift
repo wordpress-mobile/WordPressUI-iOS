@@ -43,12 +43,22 @@ public class BottomSheetViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
 
-    public func show(from presenting: UIViewController, sourceView: UIView? = nil, arrowDirections: UIPopoverArrowDirection = .any) {
+    /// Presents the bottom sheet given an optional anchor and arrow directions for the popover on iPad.
+    /// - Parameters:
+    ///   - presenting: the view controller that presents the bottom sheet.
+    ///   - sourceView: optional anchor view for the popover on iPad.
+    ///   - sourceBarButtonItem: optional anchor bar button item for the popover on iPad. If non-nil, `sourceView` and `arrowDirections` are not used.
+    ///   - arrowDirections: optional arrow directions for the popover on iPad.
+    public func show(from presenting: UIViewController, sourceView: UIView? = nil, sourceBarButtonItem: UIBarButtonItem? = nil, arrowDirections: UIPopoverArrowDirection = .any) {
         if UIDevice.isPad() {
             modalPresentationStyle = .popover
-            popoverPresentationController?.permittedArrowDirections = arrowDirections
-            popoverPresentationController?.sourceView = sourceView ?? UIView()
-            popoverPresentationController?.sourceRect = sourceView?.bounds ?? .zero
+            if let sourceBarButtonItem = sourceBarButtonItem {
+                popoverPresentationController?.barButtonItem = sourceBarButtonItem
+            } else {
+                popoverPresentationController?.permittedArrowDirections = arrowDirections
+                popoverPresentationController?.sourceView = sourceView ?? UIView()
+                popoverPresentationController?.sourceRect = sourceView?.bounds ?? .zero
+            }
             popoverPresentationController?.backgroundColor = view.backgroundColor
         } else {
             transitioningDelegate = self
