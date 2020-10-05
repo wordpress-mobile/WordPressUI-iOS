@@ -101,7 +101,7 @@ open class FancyButton: UIButton {
 
     /// Indicates if the current instance should be rendered with the "Primary" Style.
     ///
-    @IBInspectable var isPrimary: Bool = false {
+    @IBInspectable public var isPrimary: Bool = false {
         didSet {
             configureBackgrounds()
             configureTitleColors()
@@ -120,7 +120,11 @@ open class FancyButton: UIButton {
         super.awakeFromNib()
         configureAppearance()
     }
-
+    
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        configureBackgrounds()
+    }
 
     /// Setup: Everything = [Insets, Backgrounds, titleColor(s), titleLabel]
     ///
