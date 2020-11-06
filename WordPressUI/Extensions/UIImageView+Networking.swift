@@ -2,6 +2,9 @@ import Foundation
 
 
 public extension UIImageView {
+    public enum ImageDownloadError: Error {
+        case urlMismatch
+    }
 
     /// Downloads an image and updates the current UIImageView Instance.
     ///
@@ -97,11 +100,12 @@ public extension UIImageView {
             }
 
             DispatchQueue.main.async {
-                Downloader.cache.setObject(image, forKey: url as AnyObject)
-
                 if response?.url == url {
-                    internalOnSuccess(image)
-                }
+                     Downloader.cache.setObject(image, forKey: url as AnyObject)
+                     internalOnSuccess(image)
+                 } else {
+                     failure?(ImageDownloadError.urlMismatch)
+                 }
 
                 self?.downloadTask = nil
             }
