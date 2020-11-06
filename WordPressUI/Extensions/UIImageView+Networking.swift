@@ -2,7 +2,7 @@ import Foundation
 
 
 public extension UIImageView {
-    public enum ImageDownloadError: Error {
+    enum ImageDownloadError: Error {
         case urlMismatch
     }
 
