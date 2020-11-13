@@ -16,6 +16,8 @@
 		F1C4EC05218A37D800B8A9F7 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C4EC04218A37D800B8A9F7 /* ExampleUITests.swift */; };
 		F1C4EC20218A386100B8A9F7 /* WordPressUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1C4EC1A218A385100B8A9F7 /* WordPressUI.framework */; };
 		F1C61C80218B3E5300F30530 /* WordPressUI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F1C4EC1A218A385100B8A9F7 /* WordPressUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F5A7AA19255E015A00A3AE02 /* FancyAlertExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A7AA18255E015A00A3AE02 /* FancyAlertExample.swift */; };
+		F5A7AA24255E029700A3AE02 /* BottomSheetExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A7AA23255E029700A3AE02 /* BottomSheetExample.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +86,8 @@
 		F1C4EC04218A37D800B8A9F7 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		F1C4EC06218A37D800B8A9F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1C4EC14218A385100B8A9F7 /* WordPressUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = WordPressUI.xcodeproj; path = ../WordPressUI.xcodeproj; sourceTree = "<group>"; };
+		F5A7AA18255E015A00A3AE02 /* FancyAlertExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FancyAlertExample.swift; sourceTree = "<group>"; };
+		F5A7AA23255E029700A3AE02 /* BottomSheetExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetExample.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,8 @@
 			children = (
 				F1C4EBE4218A37D700B8A9F7 /* AppDelegate.swift */,
 				F1C4EBE6218A37D700B8A9F7 /* ViewController.swift */,
+				F5A7AA23255E029700A3AE02 /* BottomSheetExample.swift */,
+				F5A7AA18255E015A00A3AE02 /* FancyAlertExample.swift */,
 				F1C4EBE8218A37D700B8A9F7 /* Main.storyboard */,
 				F1C4EBEB218A37D800B8A9F7 /* Assets.xcassets */,
 				F1C4EBED218A37D800B8A9F7 /* LaunchScreen.storyboard */,
@@ -345,6 +351,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5A7AA19255E015A00A3AE02 /* FancyAlertExample.swift in Sources */,
+				F5A7AA24255E029700A3AE02 /* BottomSheetExample.swift in Sources */,
 				F1C4EBE7218A37D700B8A9F7 /* ViewController.swift in Sources */,
 				F1C4EBE5218A37D700B8A9F7 /* AppDelegate.swift in Sources */,
 			);
