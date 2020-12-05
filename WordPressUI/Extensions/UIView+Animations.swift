@@ -134,6 +134,24 @@ extension UIView {
         })
     }
 
+    /// Applies a Cross Dissolve transition to fade a view to or from visibile then set's the Hidden value to reflect the current alpha's state.
+    ///
+    public func animatableSetIsHidden(_ isHidden: Bool, animated: Bool = true, _ completion: ((Bool) -> Void)? = nil) {
+        guard self.isHidden != isHidden else { return }
+        guard animated else {
+            self.isHidden = isHidden
+            return
+        }
+
+        self.isHidden = false
+        let alpha: CGFloat = isHidden ? UIKitConstants.alphaZero : UIKitConstants.alphaFull
+        UIView.animate(withDuration: Animations.duration, delay: 0, options: .transitionCrossDissolve, animations: {
+            self.alpha = alpha
+        }) { success in
+            self.isHidden = isHidden
+            completion?(success)
+        }
+    }
 
     /// Private Constants
     ///
