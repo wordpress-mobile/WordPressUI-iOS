@@ -33,6 +33,11 @@ class ViewController: UITableViewController
                     self.showFancyButtons()
                 })
             ]),
+            DemoSection(title: "Keyboard Animations", rows: [
+                DemoRow(title: "Keyboard Animations", action: {
+                    self.performSegue(withIdentifier: "KeyboardAnimationsSegue", sender: self)
+                })
+            ])
         ]
     }
     
