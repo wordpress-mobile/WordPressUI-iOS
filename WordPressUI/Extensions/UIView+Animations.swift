@@ -159,14 +159,14 @@ extension UIView {
     ///
     public static func animate(withKeyboard notification: Notification, _ animations: @escaping (CGRect, CGRect) -> Void ) {
         guard let userInfo = notification.userInfo else { return }
-        let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0
-        let beginFrame = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue ?? CGRect.zero
-        let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue ?? CGRect.zero
-        let animationCurve = AnimationOptions(rawValue: (userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt ?? 0))
+        let duration: TimeInterval = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval ?? 0
+        let beginFrame: CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue ?? CGRect.zero
+        let endFrame: CGRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue ?? CGRect.zero
+        let animationCurve: AnimationOptions = AnimationOptions(rawValue: (userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt ?? 0))
 
-        UIView.animate(withDuration: duration, delay: 0, options: animationCurve) {
+        UIView.animate(withDuration: duration, delay: 0, options: animationCurve, animations: {
             animations(beginFrame, endFrame)
-        }
+        }, completion: nil)
     }
        
     /// Private Constants
