@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PbN-Bb-478">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PbN-Bb-478">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -34,6 +35,7 @@
                     <navigationItem key="navigationItem" title="Root View Controller" id="ua7-K6-ibe"/>
                     <connections>
                         <segue destination="sFZ-hP-s6g" kind="show" identifier="FancyButtonsSegue" id="avn-Um-QAq"/>
+                        <segue destination="3m8-q6-5bU" kind="show" identifier="KeyboardAnimationsSegue" id="5OM-6x-B3U"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ePj-1F-MpD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -49,59 +51,59 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="4IX-T0-GRU">
-                                <rect key="frame" x="96.5" y="79.5" width="182" height="552"/>
+                                <rect key="frame" x="97" y="79.5" width="181" height="552"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DLq-Jr-68H" customClass="FancyButton" customModule="WordPressUI">
-                                        <rect key="frame" x="0.0" y="0.0" width="182" height="34"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="181" height="34"/>
                                         <state key="normal" title="Primary enabled"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimary" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99W-Sf-T4r" customClass="FancyButton" customModule="WordPressUI">
-                                        <rect key="frame" x="0.0" y="74" width="182" height="34"/>
+                                        <rect key="frame" x="0.0" y="74" width="181" height="34"/>
                                         <state key="normal" title="Primary selected"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimary" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V1C-qw-HGz" customClass="FancyButton" customModule="WordPressUI">
-                                        <rect key="frame" x="0.0" y="148" width="182" height="34"/>
+                                        <rect key="frame" x="0.0" y="148" width="181" height="34"/>
                                         <state key="normal" title="Primary highlighted"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimary" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rse-9O-SFu" customClass="FancyButton" customModule="WordPressUI">
-                                        <rect key="frame" x="0.0" y="222" width="182" height="34"/>
+                                        <rect key="frame" x="0.0" y="222" width="181" height="34"/>
                                         <state key="normal" title="Primary disabled"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimary" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAb-pT-sYQ" customClass="FancyButton" customModule="WordPressUI">
-                                        <rect key="frame" x="0.0" y="296" width="182" height="34"/>
+                                        <rect key="frame" x="0.0" y="296" width="181" height="34"/>
                                         <state key="normal" title="Secondary enabled"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimary" value="NO"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="raJ-LB-lIj" customClass="FancyButton" customModule="WordPressUI">
-                                        <rect key="frame" x="0.0" y="370" width="182" height="34"/>
+                                        <rect key="frame" x="0.0" y="370" width="181" height="34"/>
                                         <state key="normal" title="Secondary selected"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimary" value="NO"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Cb-gy-BQF" customClass="FancyButton" customModule="WordPressUI">
-                                        <rect key="frame" x="0.0" y="444" width="182" height="34"/>
+                                        <rect key="frame" x="0.0" y="444" width="181" height="34"/>
                                         <state key="normal" title="Secondary highlighted"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimary" value="NO"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jbE-un-BvP" customClass="FancyButton" customModule="WordPressUI">
-                                        <rect key="frame" x="0.0" y="518" width="182" height="34"/>
+                                        <rect key="frame" x="0.0" y="518" width="181" height="34"/>
                                         <state key="normal" title="Secondary disabled"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimary" value="YES"/>
@@ -110,12 +112,12 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="O2a-cZ-0ji"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="4IX-T0-GRU" firstAttribute="centerX" secondItem="O2a-cZ-0ji" secondAttribute="centerX" id="cF8-1m-2mC"/>
                             <constraint firstItem="4IX-T0-GRU" firstAttribute="centerY" secondItem="O2a-cZ-0ji" secondAttribute="centerY" id="mrV-bV-4yf"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="O2a-cZ-0ji"/>
                     </view>
                     <navigationItem key="navigationItem" id="QQQ-hf-TLL"/>
                 </viewController>
@@ -139,5 +141,73 @@
             </objects>
             <point key="canvasLocation" x="-385" y="-244"/>
         </scene>
+        <!--Keyboard Animations Example View Controller-->
+        <scene sceneID="UfJ-pv-GgC">
+            <objects>
+                <viewController id="3m8-q6-5bU" customClass="KeyboardAnimationsExampleViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uT8-tJ-oqm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tap here to open keyboard" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X2k-Nt-hCp">
+                                <rect key="frame" x="16" y="64" width="343" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="yes"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mDX-xF-zCr">
+                                <rect key="frame" x="179" y="615" width="176" height="32"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="5" maxX="20" maxY="5"/>
+                                <state key="normal" title="Toggle Keyboard">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTapButton:" destination="3m8-q6-5bU" eventType="touchUpInside" id="NyL-xt-8sS"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tapping in the text box should animate the button below so that it is always above the keyboard." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QNw-4D-Eed">
+                                <rect key="frame" x="16" y="113" width="343" height="61"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Bkc-dm-Xs7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Bkc-dm-Xs7" firstAttribute="trailing" secondItem="X2k-Nt-hCp" secondAttribute="trailing" constant="16" id="ApP-NI-m7w"/>
+                            <constraint firstItem="QNw-4D-Eed" firstAttribute="trailing" secondItem="X2k-Nt-hCp" secondAttribute="trailing" id="FUF-g1-dPe"/>
+                            <constraint firstItem="Bkc-dm-Xs7" firstAttribute="bottom" secondItem="mDX-xF-zCr" secondAttribute="bottom" constant="20" id="OcG-gK-VkP"/>
+                            <constraint firstItem="X2k-Nt-hCp" firstAttribute="leading" secondItem="Bkc-dm-Xs7" secondAttribute="leading" constant="16" id="TzF-42-Fp4"/>
+                            <constraint firstItem="mDX-xF-zCr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Bkc-dm-Xs7" secondAttribute="leading" constant="20" id="VvH-uI-USN"/>
+                            <constraint firstItem="QNw-4D-Eed" firstAttribute="top" secondItem="X2k-Nt-hCp" secondAttribute="bottom" constant="15" id="ce1-7o-5Ha"/>
+                            <constraint firstItem="QNw-4D-Eed" firstAttribute="leading" secondItem="X2k-Nt-hCp" secondAttribute="leading" id="l4J-BD-OsV"/>
+                            <constraint firstItem="X2k-Nt-hCp" firstAttribute="top" secondItem="Bkc-dm-Xs7" secondAttribute="top" constant="20" id="ruU-dE-ACz"/>
+                            <constraint firstItem="Bkc-dm-Xs7" firstAttribute="trailing" secondItem="mDX-xF-zCr" secondAttribute="trailing" constant="20" id="un4-ys-yHq"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="NCF-t9-dFX"/>
+                    <connections>
+                        <outlet property="bottomConstraintForAnimation" destination="OcG-gK-VkP" id="QxE-Bt-iDj"/>
+                        <outlet property="textView" destination="X2k-Nt-hCp" id="vEd-Y9-1df"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bAl-pf-sw6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="565.60000000000002" y="1110.4947526236883"/>
+        </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

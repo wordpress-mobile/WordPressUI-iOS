@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46B30DCD2583F63100A25E66 /* KeyboardAnimationsExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B30DCC2583F63100A25E66 /* KeyboardAnimationsExampleViewController.swift */; };
 		F1C4EBE5218A37D700B8A9F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C4EBE4218A37D700B8A9F7 /* AppDelegate.swift */; };
 		F1C4EBE7218A37D700B8A9F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C4EBE6218A37D700B8A9F7 /* ViewController.swift */; };
 		F1C4EBEA218A37D700B8A9F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1C4EBE8218A37D700B8A9F7 /* Main.storyboard */; };
@@ -70,6 +71,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		46B30DCC2583F63100A25E66 /* KeyboardAnimationsExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAnimationsExampleViewController.swift; sourceTree = "<group>"; };
 		F1C4EBE1218A37D700B8A9F7 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1C4EBE4218A37D700B8A9F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1C4EBE6218A37D700B8A9F7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			children = (
 				F1C4EBE4218A37D700B8A9F7 /* AppDelegate.swift */,
 				F1C4EBE6218A37D700B8A9F7 /* ViewController.swift */,
+				46B30DCC2583F63100A25E66 /* KeyboardAnimationsExampleViewController.swift */,
 				F1C4EBE8218A37D700B8A9F7 /* Main.storyboard */,
 				F1C4EBEB218A37D800B8A9F7 /* Assets.xcassets */,
 				F1C4EBED218A37D800B8A9F7 /* LaunchScreen.storyboard */,
@@ -346,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1C4EBE7218A37D700B8A9F7 /* ViewController.swift in Sources */,
+				46B30DCD2583F63100A25E66 /* KeyboardAnimationsExampleViewController.swift in Sources */,
 				F1C4EBE5218A37D700B8A9F7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
