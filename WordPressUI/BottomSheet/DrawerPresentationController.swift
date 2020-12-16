@@ -299,6 +299,7 @@ public class DrawerPresentationController: FancyAlertPresentationController {
 
     override public func containerViewWillLayoutSubviews() {
         super.containerViewWillLayoutSubviews()
+        presentedView?.frame = frameOfPresentedViewInContainerView
 
         addGestures()
         observe(scrollView: presentableViewController?.scrollableView)
