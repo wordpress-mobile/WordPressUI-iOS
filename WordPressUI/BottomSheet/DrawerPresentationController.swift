@@ -484,7 +484,7 @@ private extension DrawerPresentationController {
             /// Halts scrolling when scrolling down from expanded or up from compact
             haltScrolling(scrollView)
 
-        } else if scrollView.isScrolling || isPresentedViewAnimating {
+        } else if scrollView.isScrolling {
 
             if isPresentedViewAnchored {
                 /// Allow normal scrolling (with tracking)
