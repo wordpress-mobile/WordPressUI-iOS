@@ -167,10 +167,18 @@ public class BottomSheetViewController: UIViewController {
     }
 
     @objc func keyboardWillShow(_ notification: NSNotification) {
+        guard childViewController?.presentedViewController == nil else {
+            return
+        }
+
         self.presentedVC?.transition(to: .expanded)
     }
 
     @objc func keyboardWillHide(_ notification: NSNotification) {
+        guard childViewController?.presentedViewController == nil else {
+            return
+        }
+
         self.presentedVC?.transition(to: .collapsed)
     }
 }
