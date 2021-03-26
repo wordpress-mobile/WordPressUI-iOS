@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary       = "Home of reusable WordPress UI components."
   s.description   = <<-DESC
                     This framework contains standalone and reusable components, brought to you by the WordPress iOS Team.
-                    DESC
+                  DESC
 
   s.homepage      = "https://github.com/wordpress-mobile/WordPressUI-iOS"
   s.license       = { :type => "GPLv2", :file => "LICENSE" }
