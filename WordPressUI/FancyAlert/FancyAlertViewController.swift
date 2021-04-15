@@ -333,15 +333,19 @@ open class FancyAlertViewController: UIViewController {
 
             alertView.headerImageViewWrapperBottomConstraint?.constant = Constants.headerImageVerticalConstraintRegular
             alertView.buttonWrapperViewTopConstraint?.constant = Constants.headerImageVerticalConstraintRegular
-        case .top, .topWithPadding:
+        case .top:
             alertView.topDividerView.isHiddenInStackView = false
             alertView.bottomDividerView.isHiddenInStackView = true
 
             // the image touches the divider if it is at the top
             alertView.headerImageViewWrapperBottomConstraint?.constant = 0.0
             alertView.buttonWrapperViewTopConstraint?.constant = 0.0
-            fallthrough
         case .topWithPadding:
+            alertView.topDividerView.isHiddenInStackView = false
+            alertView.bottomDividerView.isHiddenInStackView = true
+
+            alertView.headerImageViewWrapperBottomConstraint?.constant = 0.0
+            alertView.buttonWrapperViewTopConstraint?.constant = 0.0
             alertView.headerImageViewTopConstraint.constant = 0.0
             alertView.headerImageViewWrapperTopConstraint.constant = 0.0
         }
