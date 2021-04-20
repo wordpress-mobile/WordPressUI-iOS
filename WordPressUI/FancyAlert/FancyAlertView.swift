@@ -11,6 +11,7 @@ open class FancyAlertView: UIView {
     @IBOutlet weak var headerImageView: UIImageView!
     @IBOutlet weak var headerImageViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerImageViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var headerImageViewWrapperTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerImageViewWrapperBottomConstraint: NSLayoutConstraint?
     @IBOutlet weak var headerImageWrapperView: UIView!
 

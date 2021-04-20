@@ -20,6 +20,7 @@ open class FancyAlertViewController: UIViewController {
 
     public enum DividerPosition {
         case top
+        case topWithPadding
         case bottom
     }
 
@@ -69,6 +70,9 @@ open class FancyAlertViewController: UIViewController {
         /// The image displayed at the top of the dialog
         let headerImage: UIImage?
 
+        /// Background color for the header section
+        let headerBackgroundColor: UIColor?
+
         /// The position of the horizontal rule
         let dividerPosition: DividerPosition?
 
@@ -101,6 +105,7 @@ open class FancyAlertViewController: UIViewController {
         public init(titleText: String?,
                     bodyText: String?,
                     headerImage: UIImage?,
+                    headerBackgroundColor: UIColor? = nil,
                     dividerPosition: DividerPosition?,
                     defaultButton: ButtonConfig?,
                     cancelButton: ButtonConfig?,
@@ -114,6 +119,7 @@ open class FancyAlertViewController: UIViewController {
             self.titleText = titleText
             self.bodyText = bodyText
             self.headerImage = headerImage
+            self.headerBackgroundColor = headerBackgroundColor
             self.dividerPosition = dividerPosition
             self.defaultButton = defaultButton
             self.cancelButton = cancelButton
@@ -255,7 +261,7 @@ open class FancyAlertViewController: UIViewController {
 
         updateDivider()
 
-        updateHeaderImage()
+        updateHeader()
 
         update(alertView.defaultButton, with: configuration.defaultButton)
         update(alertView.cancelButton, with: configuration.cancelButton)
@@ -293,7 +299,7 @@ open class FancyAlertViewController: UIViewController {
         UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: alertView.titleLabel)
     }
 
-    private func updateHeaderImage() {
+    private func updateHeader() {
         if let headerImage = configuration?.headerImage {
             alertView.headerImageView.image = headerImage
             alertView.headerImageWrapperView.isHiddenInStackView = false
@@ -309,15 +315,40 @@ open class FancyAlertViewController: UIViewController {
         } else {
             alertView.headerImageWrapperView.isHiddenInStackView = true
         }
+
+        if let headerBackgroundColor = configuration?.headerBackgroundColor {
+            alertView.headerBackgroundColor = headerBackgroundColor
+        }
     }
 
     private func updateDivider() {
-        alertView.topDividerView.isHiddenInStackView = configuration?.dividerPosition == .bottom
-        alertView.bottomDividerView.isHiddenInStackView = isButtonless || configuration?.dividerPosition == .top
+        guard let dividerPosition = configuration?.dividerPosition else {
+            return
+        }
 
-        // the image touches the divider if it is at the top
-        alertView.headerImageViewWrapperBottomConstraint?.constant = configuration?.dividerPosition == .top ? 0.0 : Constants.headerImageVerticalConstraintRegular
-        alertView.buttonWrapperViewTopConstraint?.constant = configuration?.dividerPosition == .top ? 0.0 : Constants.headerImageVerticalConstraintRegular
+        switch dividerPosition {
+        case .bottom:
+            alertView.topDividerView.isHiddenInStackView = true
+            alertView.bottomDividerView.isHiddenInStackView = isButtonless
+
+            alertView.headerImageViewWrapperBottomConstraint?.constant = Constants.headerImageVerticalConstraintRegular
+            alertView.buttonWrapperViewTopConstraint?.constant = Constants.headerImageVerticalConstraintRegular
+        case .top:
+            alertView.topDividerView.isHiddenInStackView = false
+            alertView.bottomDividerView.isHiddenInStackView = true
+
+            // the image touches the divider if it is at the top
+            alertView.headerImageViewWrapperBottomConstraint?.constant = 0.0
+            alertView.buttonWrapperViewTopConstraint?.constant = 0.0
+        case .topWithPadding:
+            alertView.topDividerView.isHiddenInStackView = false
+            alertView.bottomDividerView.isHiddenInStackView = true
+
+            alertView.headerImageViewWrapperBottomConstraint?.constant = 0.0
+            alertView.buttonWrapperViewTopConstraint?.constant = 0.0
+            alertView.headerImageViewTopConstraint.constant = 0.0
+            alertView.headerImageViewWrapperTopConstraint.constant = 0.0
+        }
     }
 
     private func update(_ button: UIButton, with buttonConfig: Config.ButtonConfig?) {

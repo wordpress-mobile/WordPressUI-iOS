@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZA1-84-qnC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZA1-84-qnC">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -69,7 +69,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rzT-7k-QCD" userLabel="Content Container">
                                                         <rect key="frame" x="0.0" y="163" width="334" height="172"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rH2-Nt-ZNa">
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" verticalHuggingPriority="999" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rH2-Nt-ZNa">
                                                                 <rect key="frame" x="71.5" y="15.5" width="46" height="30"/>
                                                                 <inset key="titleEdgeInsets" minX="0.0" minY="4" maxX="0.0" maxY="4"/>
                                                                 <state key="normal" title="Button"/>
@@ -98,7 +98,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwf-Ap-GLo">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwf-Ap-GLo">
                                                                         <rect key="frame" x="0.0" y="54.5" width="51" height="77.5"/>
                                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                         <state key="normal" title="Button"/>
@@ -240,6 +240,7 @@
                             <outlet property="headerImageViewBottomConstraint" destination="ZWi-7r-zDG" id="yAS-zo-6nQ"/>
                             <outlet property="headerImageViewTopConstraint" destination="DQh-Mz-Xe8" id="2lF-3H-olA"/>
                             <outlet property="headerImageViewWrapperBottomConstraint" destination="H7l-cv-jTE" id="Ngi-WU-EAx"/>
+                            <outlet property="headerImageViewWrapperTopConstraint" destination="9fD-hk-lWz" id="mqs-oJ-Nl0"/>
                             <outlet property="headerImageWrapperView" destination="zUD-7D-1OQ" id="VWO-PN-oRv"/>
                             <outlet property="mainStackView" destination="hxn-lJ-Q8T" id="7dw-UT-qjI"/>
                             <outlet property="moreInfoButton" destination="bwf-Ap-GLo" id="icj-gN-96T"/>
