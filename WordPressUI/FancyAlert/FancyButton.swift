@@ -126,6 +126,31 @@ open class FancyButton: UIButton {
         configureBackgrounds()
     }
 
+    // This implementation is required to allow the text of a button to
+    // wrap appropriately including insets above and below.
+    //
+    open override var intrinsicContentSize: CGSize {
+        guard let titleLabel = titleLabel else {
+            return super.intrinsicContentSize
+        }
+
+        let horizontalInsets = contentEdgeInsets.left + contentEdgeInsets.right
+        let verticalInsets = contentEdgeInsets.top + contentEdgeInsets.bottom
+
+        var size = titleLabel.sizeThatFits(CGSize(width: titleLabel.preferredMaxLayoutWidth - horizontalInsets,
+                                                  height: .greatestFiniteMagnitude))
+        size.width += horizontalInsets
+        size.height += verticalInsets
+
+        return size
+    }
+
+    open override func layoutSubviews() {
+        titleLabel?.preferredMaxLayoutWidth = bounds.width
+
+        super.layoutSubviews()
+    }
+
     /// Setup: Everything = [Insets, Backgrounds, titleColor(s), titleLabel]
     ///
     private func configureAppearance() {
