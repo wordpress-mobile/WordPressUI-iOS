@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name          = "WordPressUI"
-  s.version       = "1.11.1-beta.2"
+  s.version       = "1.11.0-beta.2"
 
   s.summary       = "Home of reusable WordPress UI components."
   s.description   = <<-DESC
