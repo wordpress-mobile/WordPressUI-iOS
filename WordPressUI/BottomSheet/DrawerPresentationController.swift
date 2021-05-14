@@ -506,6 +506,11 @@ private extension DrawerPresentationController {
     /// Stops scrolling behavior on `scrollView` and anchors to `scrollViewYOffset`.
     /// - Parameter scrollView: The scroll view to stop and anchor anchor
     private func haltScrolling(_ scrollView: UIScrollView) {
+        // Only halt the scrolling if we haven't halted it before
+        guard scrollView.showsVerticalScrollIndicator else {
+            return
+        }
+
         scrollView.setContentOffset(CGPoint(x: 0, y: scrollViewYOffset), animated: false)
         scrollView.showsVerticalScrollIndicator = false
     }
