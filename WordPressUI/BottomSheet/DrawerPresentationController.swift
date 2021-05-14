@@ -274,6 +274,9 @@ public class DrawerPresentationController: FancyAlertPresentationController {
             topMargin = safeAreaInsets.top
 
         case .intrinsicHeight:
+            // Force a layout to make sure we get the correct size from the views
+            presentedViewController.view.layoutIfNeeded()
+
             let height = presentedViewController.preferredContentSize.height
             topMargin = calculatedTopMargin(for: height)
 
