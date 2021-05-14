@@ -7,12 +7,6 @@ public class BottomSheetViewController: UIViewController {
         static let buttonSpacing: CGFloat = 8
         static let minimumWidth: CGFloat = 300
 
-        /// The height of the space above the bottom sheet content, including the grip view and space around it.
-        ///
-        public static let additionalContentTopMargin: CGFloat = BottomSheetViewController.Constants.gripHeight
-            + BottomSheetViewController.Constants.Header.spacing
-            + BottomSheetViewController.Constants.Stack.insets.top
-
         enum Header {
             static let spacing: CGFloat = 16
             static let insets: UIEdgeInsets = UIEdgeInsets(top: 0, left: 18, bottom: 0, right: 18)
@@ -149,12 +143,7 @@ public class BottomSheetViewController: UIViewController {
     }
 
     func computePaddedPreferredContentSize() -> CGSize {
-        var preferredContentSizePlusAdditionalMargin = (childViewController?.preferredContentSize ?? super.preferredContentSize)
-        // Add additional height only if preferred content size exists. Othwerwise, default popover sizing breaks.
-        if preferredContentSizePlusAdditionalMargin.height != 0 {
-            preferredContentSizePlusAdditionalMargin.height += BottomSheetViewController.Constants.additionalContentTopMargin
-        }
-        return preferredContentSizePlusAdditionalMargin
+        return (childViewController?.preferredContentSize ?? super.preferredContentSize)
     }
 
     public override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
