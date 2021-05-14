@@ -133,6 +133,8 @@ public class BottomSheetViewController: UIViewController {
 
     override public var preferredContentSize: CGSize {
         set {
+            childViewController?.view.layoutIfNeeded()
+
             childViewController?.preferredContentSize = newValue
             // Continue to make the assignment via super so preferredContentSizeDidChange is called on iPad popovers, resizing them as needed.
             super.preferredContentSize = computePaddedPreferredContentSize()
