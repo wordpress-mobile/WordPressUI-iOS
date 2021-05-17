@@ -10,8 +10,8 @@ public class BottomSheetViewController: UIViewController {
         /// The height of the space above the bottom sheet content, including the grip view and space around it.
         ///
         public static let additionalContentTopMargin: CGFloat = BottomSheetViewController.Constants.gripHeight
-        + BottomSheetViewController.Constants.Header.spacing
-                    + BottomSheetViewController.Constants.Stack.insets.top
+            + BottomSheetViewController.Constants.Header.spacing
+            + BottomSheetViewController.Constants.Stack.insets.top
 
         enum Header {
             static let spacing: CGFloat = 16
