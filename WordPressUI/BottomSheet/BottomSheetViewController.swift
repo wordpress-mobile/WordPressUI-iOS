@@ -140,15 +140,29 @@ public class BottomSheetViewController: UIViewController {
     override public var preferredContentSize: CGSize {
         set {
             childViewController?.preferredContentSize = newValue
+            // Continue to make the assignment via super so preferredContentSizeDidChange is called on iPad popovers, resizing them as needed.
+            super.preferredContentSize = computePaddedPreferredContentSize()
         }
         get {
-            var preferredContentSizePlusAdditionalMargin = (childViewController?.preferredContentSize ?? super.preferredContentSize)
-            // Add additional height only if preferred content size exists. Othwerwise, default popover sizing breaks.
-            if preferredContentSizePlusAdditionalMargin.height != 0 {
-                preferredContentSizePlusAdditionalMargin.height += BottomSheetViewController.Constants.additionalContentTopMargin
-            }
-            return preferredContentSizePlusAdditionalMargin
+            return computePaddedPreferredContentSize()
         }
+    }
+
+    func computePaddedPreferredContentSize() -> CGSize {
+        var preferredContentSizePlusAdditionalMargin = (childViewController?.preferredContentSize ?? super.preferredContentSize)
+        // Add additional height only if preferred content size exists. Othwerwise, default popover sizing breaks.
+        if preferredContentSizePlusAdditionalMargin.height != 0 {
+            preferredContentSizePlusAdditionalMargin.height += BottomSheetViewController.Constants.additionalContentTopMargin
+        }
+        return preferredContentSizePlusAdditionalMargin
+    }
+
+    public override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
+        super.preferredContentSizeDidChange(forChildContentContainer: container)
+        // Update our preferred size in response to a child updating theres.
+        // While this leads to a recursive call, the sizes are the same preventing a loop.
+        // The assignment is needed in order for iPad popovers to correctly resize.
+        preferredContentSize = container.preferredContentSize
     }
 
     override public func accessibilityPerformEscape() -> Bool {
