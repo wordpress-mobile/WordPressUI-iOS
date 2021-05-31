@@ -51,7 +51,14 @@ public class BottomSheetViewController: UIViewController {
     ///   - arrowDirections: optional arrow directions for the popover on iPad.
     public func show(from presenting: UIViewController, sourceView: UIView? = nil, sourceBarButtonItem: UIBarButtonItem? = nil, arrowDirections: UIPopoverArrowDirection = .any) {
         if UIDevice.isPad() {
-            modalPresentationStyle = .popover
+            // If the user is using a larger text option we'll display the content in a sheet since
+            // the font may be too large to display in a popover
+            if traitCollection.preferredContentSizeCategory.isAccessibilityCategory {
+                modalPresentationStyle = .formSheet
+            } else {
+                modalPresentationStyle = .popover
+            }
+
             if let sourceBarButtonItem = sourceBarButtonItem {
                 popoverPresentationController?.barButtonItem = sourceBarButtonItem
             } else {
@@ -59,6 +66,7 @@ public class BottomSheetViewController: UIViewController {
                 popoverPresentationController?.sourceView = sourceView ?? UIView()
                 popoverPresentationController?.sourceRect = sourceView?.bounds ?? .zero
             }
+
             popoverPresentationController?.backgroundColor = view.backgroundColor
         } else {
             transitioningDelegate = self
@@ -139,22 +147,19 @@ public class BottomSheetViewController: UIViewController {
 
     override public var preferredContentSize: CGSize {
         set {
+            childViewController?.view.layoutIfNeeded()
+
             childViewController?.preferredContentSize = newValue
             // Continue to make the assignment via super so preferredContentSizeDidChange is called on iPad popovers, resizing them as needed.
-            super.preferredContentSize = computePaddedPreferredContentSize()
+            super.preferredContentSize = computePreferredContentSize()
         }
         get {
-            return computePaddedPreferredContentSize()
+            return computePreferredContentSize()
         }
     }
 
-    func computePaddedPreferredContentSize() -> CGSize {
-        var preferredContentSizePlusAdditionalMargin = (childViewController?.preferredContentSize ?? super.preferredContentSize)
-        // Add additional height only if preferred content size exists. Othwerwise, default popover sizing breaks.
-        if preferredContentSizePlusAdditionalMargin.height != 0 {
-            preferredContentSizePlusAdditionalMargin.height += BottomSheetViewController.Constants.additionalContentTopMargin
-        }
-        return preferredContentSizePlusAdditionalMargin
+    func computePreferredContentSize() -> CGSize {
+        return (childViewController?.preferredContentSize ?? super.preferredContentSize)
     }
 
     public override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
