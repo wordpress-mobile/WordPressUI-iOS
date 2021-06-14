@@ -71,6 +71,7 @@ public class BottomSheetViewController: UIViewController {
                 popoverPresentationController?.sourceRect = sourceView?.bounds ?? .zero
             }
 
+            popoverPresentationController?.delegate = self
             popoverPresentationController?.backgroundColor = view.backgroundColor
         } else {
             transitioningDelegate = self
@@ -212,9 +213,9 @@ extension BottomSheetViewController: UIViewControllerTransitioningDelegate {
     }
 
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if let childViewController = childViewController {
-            childViewController.handleDismiss()
-        }
+
+        handleDismiss()
+
         return BottomSheetAnimationController(transitionType: .dismissing)
     }
 
@@ -243,5 +244,17 @@ extension BottomSheetViewController: DrawerPresentable {
 
     public var scrollableView: UIScrollView? {
         return childViewController?.scrollableView
+    }
+
+    public func handleDismiss() {
+        if let childViewController = childViewController {
+            childViewController.handleDismiss()
+        }
+    }
+}
+
+extension BottomSheetViewController: UIPopoverPresentationControllerDelegate {
+    public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        handleDismiss()
     }
 }
