@@ -49,8 +49,14 @@ public class BottomSheetViewController: UIViewController {
     ///   - sourceView: optional anchor view for the popover on iPad.
     ///   - sourceBarButtonItem: optional anchor bar button item for the popover on iPad. If non-nil, `sourceView` and `arrowDirections` are not used.
     ///   - arrowDirections: optional arrow directions for the popover on iPad.
-    public func show(from presenting: UIViewController, sourceView: UIView? = nil, sourceBarButtonItem: UIBarButtonItem? = nil, arrowDirections: UIPopoverArrowDirection = .any) {
+    ///   - useFormSheet: if set to true, the presentation style on iPad will always be `formSheet`
+    public func show(from presenting: UIViewController, sourceView: UIView? = nil, sourceBarButtonItem: UIBarButtonItem? = nil, arrowDirections: UIPopoverArrowDirection = .any, useFormSheet: Bool = false) {
         if UIDevice.isPad() {
+            guard !useFormSheet else {
+                modalPresentationStyle = .formSheet
+                presenting.present(self, animated: true)
+                return
+            }
             // If the user is using a larger text option we'll display the content in a sheet since
             // the font may be too large to display in a popover
             if traitCollection.preferredContentSizeCategory.isAccessibilityCategory {
