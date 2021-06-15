@@ -44,42 +44,42 @@ public class BottomSheetViewController: UIViewController {
     }
 
     /// Presents the bottom sheet given an optional anchor and arrow directions for the popover on iPad.
+    /// If no anchors are provided, on iPad it will present a form sheet.
     /// - Parameters:
     ///   - presenting: the view controller that presents the bottom sheet.
     ///   - sourceView: optional anchor view for the popover on iPad.
     ///   - sourceBarButtonItem: optional anchor bar button item for the popover on iPad. If non-nil, `sourceView` and `arrowDirections` are not used.
     ///   - arrowDirections: optional arrow directions for the popover on iPad.
-    ///   - useFormSheet: if set to true, the presentation style on iPad will always be `formSheet`
-    public func show(from presenting: UIViewController, sourceView: UIView? = nil, sourceBarButtonItem: UIBarButtonItem? = nil, arrowDirections: UIPopoverArrowDirection = .any, useFormSheet: Bool = false) {
+    public func show(from presenting: UIViewController,
+                     sourceView: UIView? = nil,
+                     sourceBarButtonItem: UIBarButtonItem? = nil,
+                     arrowDirections: UIPopoverArrowDirection = .any) {
         if UIDevice.isPad() {
-            guard !useFormSheet else {
-                modalPresentationStyle = .formSheet
-                presenting.present(self, animated: true)
-                return
-            }
-            // If the user is using a larger text option we'll display the content in a sheet since
-            // the font may be too large to display in a popover
-            if traitCollection.preferredContentSizeCategory.isAccessibilityCategory {
+
+            // If the anchor views are not set, or the user is using a larger text option
+            // we'll display the content in a sheet
+            if (sourceBarButtonItem == nil && sourceView == nil) ||
+                traitCollection.preferredContentSizeCategory.isAccessibilityCategory {
                 modalPresentationStyle = .formSheet
             } else {
                 modalPresentationStyle = .popover
+
+                if let sourceBarButtonItem = sourceBarButtonItem {
+                    popoverPresentationController?.barButtonItem = sourceBarButtonItem
+                } else {
+                    popoverPresentationController?.permittedArrowDirections = arrowDirections
+                    popoverPresentationController?.sourceView = sourceView
+                    popoverPresentationController?.sourceRect = sourceView?.bounds ?? .zero
+                }
+
+                popoverPresentationController?.delegate = self
+                popoverPresentationController?.backgroundColor = view.backgroundColor
             }
 
-            if let sourceBarButtonItem = sourceBarButtonItem {
-                popoverPresentationController?.barButtonItem = sourceBarButtonItem
-            } else {
-                popoverPresentationController?.permittedArrowDirections = arrowDirections
-                popoverPresentationController?.sourceView = sourceView ?? UIView()
-                popoverPresentationController?.sourceRect = sourceView?.bounds ?? .zero
-            }
-
-            popoverPresentationController?.delegate = self
-            popoverPresentationController?.backgroundColor = view.backgroundColor
         } else {
             transitioningDelegate = self
             modalPresentationStyle = .custom
         }
-
         presenting.present(self, animated: true)
     }
 
