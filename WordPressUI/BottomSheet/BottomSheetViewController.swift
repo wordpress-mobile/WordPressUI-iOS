@@ -31,6 +31,10 @@ public class BottomSheetViewController: UIViewController {
 
     private var customHeaderSpacing: CGFloat?
 
+    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return childViewController?.supportedInterfaceOrientations ?? super.supportedInterfaceOrientations
+    }
+
     /// Additional safe are insets for regular horizontal size class
     public var additionalSafeAreaInsetsRegular: UIEdgeInsets = .zero
 
