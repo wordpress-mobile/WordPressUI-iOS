@@ -1,20 +1,22 @@
-Pod::Spec.new do |s|
-  s.name          = "WordPressUI"
-  s.version       = "1.12.1"
+# forzen_string_literal: true
 
-  s.summary       = "Home of reusable WordPress UI components."
+Pod::Spec.new do |s|
+  s.name          = 'WordPressUI'
+  s.version       = '1.12.1'
+
+  s.summary       = 'Home of reusable WordPress UI components.'
   s.description   = <<-DESC
                     This framework contains standalone and reusable components, brought to you by the WordPress iOS Team.
-                  DESC
+  DESC
 
-  s.homepage      = "https://github.com/wordpress-mobile/WordPressUI-iOS"
-  s.license       = { :type => "GPLv2", :file => "LICENSE" }
-  s.author        = { "The WordPress Mobile Team" => "mobile@wordpress.org" }
+  s.homepage      = 'https://github.com/wordpress-mobile/WordPressUI-iOS'
+  s.license       = { type: 'GPLv2', file: 'LICENSE' }
+  s.author        = { 'The WordPress Mobile Team' => 'mobile@wordpress.org' }
 
-  s.platform      = :ios, "11.0"
+  s.platform      = :ios, '11.0'
   s.swift_version = '5.0'
 
-  s.source        = { :git => "https://github.com/wordpress-mobile/WordPressUI-iOS.git", :tag => s.version.to_s }
+  s.source        = { git: 'https://github.com/wordpress-mobile/WordPressUI-iOS.git', tag: s.version.to_s }
   s.source_files  = 'WordPressUI/**/*.{h,m,swift}'
   s.resource_bundles = {
     'WordPressUIResources': [
@@ -22,5 +24,5 @@ Pod::Spec.new do |s|
       'WordPressUI/**/*.{storyboard}'
     ]
   }
-  s.header_dir    = 'WordPressUI'
+  s.header_dir = 'WordPressUI'
 end
