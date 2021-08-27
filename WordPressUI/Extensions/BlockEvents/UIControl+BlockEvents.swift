@@ -23,7 +23,7 @@
  SOFTWARE.
  */
 
-public protocol ControlEventBindable: class { }
+public protocol ControlEventBindable: AnyObject { }
 
 extension UIControl: ControlEventBindable { }
 
