@@ -74,12 +74,12 @@ public extension UIImageView {
             failure?(ImageDownloadError.noURLSpecifiedInRequest)
             return
         }
-        
+
         if let cachedImage = Downloader.cache.object(forKey: url as AnyObject) as? UIImage {
             handleSuccess(cachedImage, url)
             return
         }
-        
+
         // Using the placeholder only makes sense if we know we're going to download an image
         // that's not immediately available to us.
         if let placeholderImage = placeholderImage {
@@ -99,7 +99,7 @@ public extension UIImageView {
                 } else {
                     failure?(ImageDownloadError.urlMismatch)
                 }
-                
+
                 self?.downloadTask = nil
             }
         })
