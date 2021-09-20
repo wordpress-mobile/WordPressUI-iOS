@@ -42,7 +42,7 @@ public extension UIImageView {
             if let placeholderImage = placeholderImage {
                 self.image = placeholderImage
             }
-            
+
             return
         }
 
@@ -60,7 +60,7 @@ public extension UIImageView {
     ///
     @objc func downloadImage(usingRequest request: URLRequest, placeholderImage: UIImage? = nil, success: ((UIImage) -> ())? = nil, failure: ((Error?) -> ())? = nil) {
         cancelImageDownload()
-        
+
         let handleSuccess = { [weak self] (image: UIImage, url: URL) in
             self?.image = image
             success?(image)
@@ -70,7 +70,7 @@ public extension UIImageView {
             if let placeholderImage = placeholderImage {
                 image = placeholderImage
             }
-            
+
             failure?(ImageDownloadError.noURLSpecifiedInRequest)
             return
         }
