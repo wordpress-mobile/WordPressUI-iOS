@@ -38,14 +38,14 @@ public extension UIImageView {
         // If the actual URL was nil, at least we set the Placeholder Image. Capicci?
         guard let url = url else {
             cancelImageDownload()
-            
+
             if let placeholderImage = placeholderImage {
                 self.image = placeholderImage
             }
             
             return
         }
-        
+
         let request = self.request(for: url)
         downloadImage(usingRequest: request, placeholderImage: placeholderImage, success: success, failure: failure)
     }
@@ -65,7 +65,7 @@ public extension UIImageView {
             self?.image = image
             success?(image)
         }
-        
+
         guard let url = request.url else {
             if let placeholderImage = placeholderImage {
                 image = placeholderImage
