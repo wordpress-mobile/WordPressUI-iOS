@@ -67,27 +67,26 @@ extension UIImageView {
     public func downloadGravatarWithEmail(_ email: String, rating: GravatarRatings = .default, placeholderImage: UIImage = .gravatarPlaceholderImage) {
         let gravatarURL = gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating)
 
-        listenForGravatarChanges()
+        listenForGravatarChanges(forEmail: email)
         downloadImage(from: gravatarURL, placeholderImage: placeholderImage)
     }
 
     /// Configures the UIImageView to listen for changes to the gravatar it is displaying
-    private func listenForGravatarChanges() {
-        guard gravatarWrapper == nil else {
-            return
+    private func listenForGravatarChanges(forEmail trackedEmail: String) {
+        if let currentObersver = gravatarWrapper?.observer {
+            NotificationCenter.default.removeObserver(currentObersver)
+            gravatarWrapper = nil
         }
 
         let observer = NotificationCenter.default.addObserver(forName: .GravatarImageUpdateNotification, object: nil, queue: nil) { [weak self] (notification) in
             guard let userInfo = notification.userInfo,
                 let email = userInfo[Defaults.emailKey] as? String,
-                let image = userInfo[Defaults.imageKey] as? UIImage,
-                let downloadURL = self?.downloadURL else {
+                email == trackedEmail,
+                let image = userInfo[Defaults.imageKey] as? UIImage else {
                     return
             }
-            let testHash = self?.gravatarHash(of: email) ?? ""
-            if downloadURL.absoluteString.contains(testHash) {
-                self?.image = image
-            }
+
+            self?.image = image
         }
         gravatarWrapper = GravatarNotificationWrapper(observer: observer)
     }
@@ -167,7 +166,7 @@ extension UIImageView {
             return
         }
 
-        listenForGravatarChanges()
+        listenForGravatarChanges(forEmail: email)
         overrideImageCache(for: gravatarURL, with: image)
     }
 
