@@ -3,6 +3,7 @@ import Foundation
 
 public extension UIImageView {
     enum ImageDownloadError: Error {
+        case noURLSpecifiedInRequest
         case urlMismatch
     }
 
@@ -36,12 +37,15 @@ public extension UIImageView {
         // Ideally speaking, this method should *not* receive an Optional URL. But we're doing so, for convenience.
         // If the actual URL was nil, at least we set the Placeholder Image. Capicci?
         guard let url = url else {
-            if let placeholderImage = placeholderImage {
-                image = placeholderImage
-            }
             cancelImageDownload()
+            
+            if let placeholderImage = placeholderImage {
+                self.image = placeholderImage
+            }
+            
             return
         }
+        
         let request = self.request(for: url)
         downloadImage(usingRequest: request, placeholderImage: placeholderImage, success: success, failure: failure)
     }
@@ -55,42 +59,31 @@ public extension UIImageView {
     ///     -   failure: Closure to be executed upon failure.
     ///
     @objc func downloadImage(usingRequest request: URLRequest, placeholderImage: UIImage? = nil, success: ((UIImage) -> ())? = nil, failure: ((Error?) -> ())? = nil) {
-        // Ideally speaking, this method should *not* receive an Optional URL. But we're doing so, for convenience.
-        // If the actual URL was nil, at least we set the Placeholder Image. Capicci?
+        cancelImageDownload()
+        
+        let handleSuccess = { [weak self] (image: UIImage, url: URL) in
+            self?.image = image
+            success?(image)
+        }
+        
         guard let url = request.url else {
             if let placeholderImage = placeholderImage {
                 image = placeholderImage
             }
-            cancelImageDownload()
+            
+            failure?(ImageDownloadError.noURLSpecifiedInRequest)
             return
         }
-
-        let internalOnSuccess = { [weak self] (image: UIImage) in
-            self?.image = image
-            self?.downloadURL  = url
-            success?(image)
-        }
-
-        let cachedImage = Downloader.cache.object(forKey: url as AnyObject) as? UIImage
-
-        // If we are asking for the same URL let's just stay like we are
-        guard url != downloadURL || taskFinishedWitherror() else {
-            if let image = cachedImage {
-                internalOnSuccess(image)
-            }
+        
+        if let cachedImage = Downloader.cache.object(forKey: url as AnyObject) as? UIImage {
+            handleSuccess(cachedImage, url)
             return
         }
-
-        // Do this first, if there was any ongoing task for this imageview we need to cancel imediately or else we can apply the cache image and not cancel a previous download
-        cancelImageDownload()
-
-        if let image = cachedImage {
-            internalOnSuccess(image)
-            return
-        }
-
+        
+        // Using the placeholder only makes sense if we know we're going to download an image
+        // that's not immediately available to us.
         if let placeholderImage = placeholderImage {
-            image = placeholderImage
+            self.image = placeholderImage
         }
 
         let task = URLSession.shared.dataTask(with: request, completionHandler: { [weak self] data, response, error in
@@ -101,12 +94,12 @@ public extension UIImageView {
 
             DispatchQueue.main.async {
                 if response?.url == url {
-                     Downloader.cache.setObject(image, forKey: url as AnyObject)
-                     internalOnSuccess(image)
-                 } else {
-                     failure?(ImageDownloadError.urlMismatch)
-                 }
-
+                    Downloader.cache.setObject(image, forKey: url as AnyObject)
+                    handleSuccess(image, url)
+                } else {
+                    failure?(ImageDownloadError.urlMismatch)
+                }
+                
                 self?.downloadTask = nil
             }
         })
@@ -133,15 +126,8 @@ public extension UIImageView {
     /// Cancels the current download task and clear the downloadURL
     ///
     @objc func cancelImageDownload() {
-        downloadURL = nil
         downloadTask?.cancel()
-    }
-
-
-    /// Returns true if the task finished with an error.
-    ///
-    private func taskFinishedWitherror() -> Bool {
-        return downloadTask?.error != nil
+        downloadTask = nil
     }
 
     /// Returns a URLRequest for an image, hosted at the specified URL.
@@ -152,18 +138,6 @@ public extension UIImageView {
         request.addValue("image/*", forHTTPHeaderField: "Accept")
 
         return request
-    }
-
-
-    /// Stores the Image's remote URL, if any.
-    ///
-    internal var downloadURL: URL? {
-        get {
-            return objc_getAssociatedObject(self, &Downloader.urlKey) as? URL
-        }
-        set {
-            objc_setAssociatedObject(self, &Downloader.urlKey, newValue as AnyObject, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
     }
 
 
