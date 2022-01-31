@@ -13,27 +13,11 @@
 		F1C4EBEA218A37D700B8A9F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1C4EBE8218A37D700B8A9F7 /* Main.storyboard */; };
 		F1C4EBEC218A37D800B8A9F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1C4EBEB218A37D800B8A9F7 /* Assets.xcassets */; };
 		F1C4EBEF218A37D800B8A9F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1C4EBED218A37D800B8A9F7 /* LaunchScreen.storyboard */; };
-		F1C4EBFA218A37D800B8A9F7 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C4EBF9218A37D800B8A9F7 /* ExampleTests.swift */; };
-		F1C4EC05218A37D800B8A9F7 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C4EC04218A37D800B8A9F7 /* ExampleUITests.swift */; };
 		F1C4EC20218A386100B8A9F7 /* WordPressUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1C4EC1A218A385100B8A9F7 /* WordPressUI.framework */; };
 		F1C61C80218B3E5300F30530 /* WordPressUI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F1C4EC1A218A385100B8A9F7 /* WordPressUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F1C4EBF6218A37D800B8A9F7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F1C4EBD9218A37D700B8A9F7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F1C4EBE0218A37D700B8A9F7;
-			remoteInfo = Example;
-		};
-		F1C4EC01218A37D800B8A9F7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F1C4EBD9218A37D700B8A9F7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F1C4EBE0218A37D700B8A9F7;
-			remoteInfo = Example;
-		};
 		F1C4EC19218A385100B8A9F7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F1C4EC14218A385100B8A9F7 /* WordPressUI.xcodeproj */;
@@ -79,12 +63,6 @@
 		F1C4EBEB218A37D800B8A9F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1C4EBEE218A37D800B8A9F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F1C4EBF0218A37D800B8A9F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F1C4EBF5218A37D800B8A9F7 /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F1C4EBF9218A37D800B8A9F7 /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
-		F1C4EBFB218A37D800B8A9F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F1C4EC00218A37D800B8A9F7 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F1C4EC04218A37D800B8A9F7 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
-		F1C4EC06218A37D800B8A9F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1C4EC14218A385100B8A9F7 /* WordPressUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = WordPressUI.xcodeproj; path = ../WordPressUI.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,20 +75,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F1C4EBF2218A37D800B8A9F7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F1C4EBFD218A37D800B8A9F7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -118,8 +82,6 @@
 			isa = PBXGroup;
 			children = (
 				F1C4EBE3218A37D700B8A9F7 /* Example */,
-				F1C4EBF8218A37D800B8A9F7 /* ExampleTests */,
-				F1C4EC03218A37D800B8A9F7 /* ExampleUITests */,
 				F1C4EC13218A384300B8A9F7 /* Dependencies */,
 				F1C4EBE2218A37D700B8A9F7 /* Products */,
 				F1C4EC1F218A386100B8A9F7 /* Frameworks */,
@@ -130,8 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				F1C4EBE1218A37D700B8A9F7 /* Example.app */,
-				F1C4EBF5218A37D800B8A9F7 /* ExampleTests.xctest */,
-				F1C4EC00218A37D800B8A9F7 /* ExampleUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -148,24 +108,6 @@
 				F1C4EBF0218A37D800B8A9F7 /* Info.plist */,
 			);
 			path = Example;
-			sourceTree = "<group>";
-		};
-		F1C4EBF8218A37D800B8A9F7 /* ExampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				F1C4EBF9218A37D800B8A9F7 /* ExampleTests.swift */,
-				F1C4EBFB218A37D800B8A9F7 /* Info.plist */,
-			);
-			path = ExampleTests;
-			sourceTree = "<group>";
-		};
-		F1C4EC03218A37D800B8A9F7 /* ExampleUITests */ = {
-			isa = PBXGroup;
-			children = (
-				F1C4EC04218A37D800B8A9F7 /* ExampleUITests.swift */,
-				F1C4EC06218A37D800B8A9F7 /* Info.plist */,
-			);
-			path = ExampleUITests;
 			sourceTree = "<group>";
 		};
 		F1C4EC13218A384300B8A9F7 /* Dependencies */ = {
@@ -214,42 +156,6 @@
 			productReference = F1C4EBE1218A37D700B8A9F7 /* Example.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F1C4EBF4218A37D800B8A9F7 /* ExampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F1C4EC0C218A37D800B8A9F7 /* Build configuration list for PBXNativeTarget "ExampleTests" */;
-			buildPhases = (
-				F1C4EBF1218A37D800B8A9F7 /* Sources */,
-				F1C4EBF2218A37D800B8A9F7 /* Frameworks */,
-				F1C4EBF3218A37D800B8A9F7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F1C4EBF7218A37D800B8A9F7 /* PBXTargetDependency */,
-			);
-			name = ExampleTests;
-			productName = ExampleTests;
-			productReference = F1C4EBF5218A37D800B8A9F7 /* ExampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		F1C4EBFF218A37D800B8A9F7 /* ExampleUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F1C4EC0F218A37D800B8A9F7 /* Build configuration list for PBXNativeTarget "ExampleUITests" */;
-			buildPhases = (
-				F1C4EBFC218A37D800B8A9F7 /* Sources */,
-				F1C4EBFD218A37D800B8A9F7 /* Frameworks */,
-				F1C4EBFE218A37D800B8A9F7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F1C4EC02218A37D800B8A9F7 /* PBXTargetDependency */,
-			);
-			name = ExampleUITests;
-			productName = ExampleUITests;
-			productReference = F1C4EC00218A37D800B8A9F7 /* ExampleUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -262,14 +168,6 @@
 				TargetAttributes = {
 					F1C4EBE0218A37D700B8A9F7 = {
 						CreatedOnToolsVersion = 10.0;
-					};
-					F1C4EBF4218A37D800B8A9F7 = {
-						CreatedOnToolsVersion = 10.0;
-						TestTargetID = F1C4EBE0218A37D700B8A9F7;
-					};
-					F1C4EBFF218A37D800B8A9F7 = {
-						CreatedOnToolsVersion = 10.0;
-						TestTargetID = F1C4EBE0218A37D700B8A9F7;
 					};
 				};
 			};
@@ -293,8 +191,6 @@
 			projectRoot = "";
 			targets = (
 				F1C4EBE0218A37D700B8A9F7 /* Example */,
-				F1C4EBF4218A37D800B8A9F7 /* ExampleTests */,
-				F1C4EBFF218A37D800B8A9F7 /* ExampleUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -327,20 +223,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F1C4EBF3218A37D800B8A9F7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F1C4EBFE218A37D800B8A9F7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -354,35 +236,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F1C4EBF1218A37D800B8A9F7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F1C4EBFA218A37D800B8A9F7 /* ExampleTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F1C4EBFC218A37D800B8A9F7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F1C4EC05218A37D800B8A9F7 /* ExampleUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F1C4EBF7218A37D800B8A9F7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F1C4EBE0218A37D700B8A9F7 /* Example */;
-			targetProxy = F1C4EBF6218A37D800B8A9F7 /* PBXContainerItemProxy */;
-		};
-		F1C4EC02218A37D800B8A9F7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F1C4EBE0218A37D700B8A9F7 /* Example */;
-			targetProxy = F1C4EC01218A37D800B8A9F7 /* PBXContainerItemProxy */;
-		};
 		F1C4EC1E218A385A00B8A9F7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = WordPressUI;
@@ -562,88 +418,6 @@
 			};
 			name = Release;
 		};
-		F1C4EC0D218A37D800B8A9F7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PZYM8XX95Q;
-				INFOPLIST_FILE = ExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.ExampleTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
-			};
-			name = Debug;
-		};
-		F1C4EC0E218A37D800B8A9F7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PZYM8XX95Q;
-				INFOPLIST_FILE = ExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.ExampleTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
-			};
-			name = Release;
-		};
-		F1C4EC10218A37D800B8A9F7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PZYM8XX95Q;
-				INFOPLIST_FILE = ExampleUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.ExampleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Example;
-			};
-			name = Debug;
-		};
-		F1C4EC11218A37D800B8A9F7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PZYM8XX95Q;
-				INFOPLIST_FILE = ExampleUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.ExampleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Example;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -661,24 +435,6 @@
 			buildConfigurations = (
 				F1C4EC0A218A37D800B8A9F7 /* Debug */,
 				F1C4EC0B218A37D800B8A9F7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F1C4EC0C218A37D800B8A9F7 /* Build configuration list for PBXNativeTarget "ExampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F1C4EC0D218A37D800B8A9F7 /* Debug */,
-				F1C4EC0E218A37D800B8A9F7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F1C4EC0F218A37D800B8A9F7 /* Build configuration list for PBXNativeTarget "ExampleUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F1C4EC10218A37D800B8A9F7 /* Debug */,
-				F1C4EC11218A37D800B8A9F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
