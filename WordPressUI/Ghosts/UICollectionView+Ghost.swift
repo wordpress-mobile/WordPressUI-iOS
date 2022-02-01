@@ -13,8 +13,9 @@ extension UICollectionView {
             return
         }
 
-        preserveInitialDelegates()
+        preserveInitialDelegatesAndSettings()
         setupGhostHandler(options: options, style: style)
+        allowsSelection = false
 
         reloadData()
     }
@@ -26,7 +27,7 @@ extension UICollectionView {
             return
         }
 
-        restoreInitialDelegates()
+        restoreInitialDelegatesAndSettings()
         resetAssociatedReferences()
         removeGhostLayers()
 
@@ -54,18 +55,20 @@ private extension UICollectionView {
         ghostHandler = handler
     }
 
-    /// Preserves the DataSource + Delegate.
+    /// Preserves the DataSource + Delegate + allowsSelection state.
     ///
-    func preserveInitialDelegates() {
+    func preserveInitialDelegatesAndSettings() {
         initialDataSource = dataSource
         initialDelegate = delegate
+        initialAllowsSelection = allowsSelection
     }
 
-    /// Restores the initial DataSource + Delegate.
+    /// Restores the initial DataSource + Delegate + allowsSelection state.
     ///
-    func restoreInitialDelegates() {
+    func restoreInitialDelegatesAndSettings() {
         dataSource = initialDataSource
         delegate = initialDelegate
+        allowsSelection = initialAllowsSelection ?? true
     }
 
     /// Cleans up all of the (private) internal references.
@@ -74,6 +77,7 @@ private extension UICollectionView {
         initialDataSource = nil
         initialDelegate = nil
         ghostHandler = nil
+        initialAllowsSelection = nil
     }
 }
 
@@ -114,6 +118,17 @@ private extension UICollectionView {
             objc_setAssociatedObject(self, &Keys.originalDelegate, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
     }
+
+    /// Previous allowsSelection state.
+    ///
+    var initialAllowsSelection: Bool? {
+        get {
+            return objc_getAssociatedObject(self, &Keys.originalAllowsSelection) as? Bool
+        }
+        set {
+            objc_setAssociatedObject(self, &Keys.originalAllowsSelection, newValue, .OBJC_ASSOCIATION_RETAIN)
+        }
+    }
 }
 
 
@@ -125,5 +140,6 @@ private extension UICollectionView {
         static var ghostHandler = "ghostHandler"
         static var originalDataSource = "originalDataSource"
         static var originalDelegate = "originalDelegate"
+        static var originalAllowsSelection = "originalAllowsSelection"
     }
 }
