@@ -194,6 +194,7 @@
 			children = (
 				3FC095F72834C76C00C8477D /* Supporting Files */,
 				3FC095F62834C74B00C8477D /* WordPressUI */,
+				3FC095FA2834FFBA00C8477D /* WordPressUI-Objective-C */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -232,6 +233,23 @@
 				B59DCB60202B146D00BEBD8A /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3FC095FA2834FFBA00C8477D /* WordPressUI-Objective-C */ = {
+			isa = PBXGroup;
+			children = (
+				B58C4EC0207C570000E32E4D /* NSString+Gravatar.h */,
+				B58C4EC1207C570000E32E4D /* NSString+Gravatar.m */,
+				B5A787CD202B2AA6007874FB /* UIColor+Helpers.h */,
+				B5A787D1202B2AA6007874FB /* UIColor+Helpers.m */,
+				B5A787CF202B2AA6007874FB /* UIImage+Resize.h */,
+				B5A787D5202B2AA6007874FB /* UIImage+Resize.m */,
+				B5A787CC202B2AA6007874FB /* UIImage+Util.h */,
+				B5A787D2202B2AA6007874FB /* UIImage+Util.m */,
+				B5C82AE22077C01B00DB2E78 /* UILabel+SuggestSize.h */,
+				B5C82AE42077C02100DB2E78 /* UILabel+SuggestSize.m */,
+			);
+			path = "WordPressUI-Objective-C";
 			sourceTree = "<group>";
 		};
 		43067E29203C8CA4001DD610 /* BlockEvents */ = {
@@ -331,8 +349,6 @@
 			isa = PBXGroup;
 			children = (
 				B58C4EBF207C570000E32E4D /* Gravatar.swift */,
-				B58C4EC0207C570000E32E4D /* NSString+Gravatar.h */,
-				B58C4EC1207C570000E32E4D /* NSString+Gravatar.m */,
 			);
 			path = Gravatar;
 			sourceTree = "<group>";
@@ -418,14 +434,6 @@
 		B5A787CB202B2AA6007874FB /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				B5A787CD202B2AA6007874FB /* UIColor+Helpers.h */,
-				B5A787D1202B2AA6007874FB /* UIColor+Helpers.m */,
-				B5A787CF202B2AA6007874FB /* UIImage+Resize.h */,
-				B5A787D5202B2AA6007874FB /* UIImage+Resize.m */,
-				B5A787CC202B2AA6007874FB /* UIImage+Util.h */,
-				B5A787D2202B2AA6007874FB /* UIImage+Util.m */,
-				B5C82AE22077C01B00DB2E78 /* UILabel+SuggestSize.h */,
-				B5C82AE42077C02100DB2E78 /* UILabel+SuggestSize.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
