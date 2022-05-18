@@ -347,8 +347,6 @@
 				FF20AD1620B76A2300082398 /* WordPressUI.podspec */,
 				3FC095F42834C1E200C8477D /* Sources */,
 				3FC095F52834C29100C8477D /* Tests */,
-				B59DCB5E202B146D00BEBD8A /* WordPressUI */,
-				B59DCB69202B146D00BEBD8A /* WordPressUITests */,
 				B59DCB5D202B146D00BEBD8A /* Products */,
 				B5A78796202B1A58007874FB /* Frameworks */,
 			);
@@ -361,20 +359,6 @@
 				B59DCB65202B146D00BEBD8A /* WordPressUITests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		B59DCB5E202B146D00BEBD8A /* WordPressUI */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = WordPressUI;
-			sourceTree = "<group>";
-		};
-		B59DCB69202B146D00BEBD8A /* WordPressUITests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = WordPressUITests;
 			sourceTree = "<group>";
 		};
 		B5A78796202B1A58007874FB /* Frameworks */ = {
