@@ -189,6 +189,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3FC095F42834C1E200C8477D /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				8B5100D0244F6C0200672D74 /* BottomSheet */,
+				B534CB3521398609000D5F8D /* Ghosts */,
+				B592B4482064296500FF568E /* FancyAlert */,
+				B518D76B20742ADB00F05DB4 /* FlingableView */,
+				B5A787CB202B2AA6007874FB /* Categories */,
+				B5A787F3202B3587007874FB /* Constants */,
+				B5A78799202B1A93007874FB /* Extensions */,
+				B5393FE8206D7047007BF9D4 /* Tools */,
+				B58C4EC8207C594300E32E4D /* Resources */,
+				B59DCB5F202B146D00BEBD8A /* WordPressUI.h */,
+				B59DCB60202B146D00BEBD8A /* Info.plist */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		43067E29203C8CA4001DD610 /* BlockEvents */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,17 +353,7 @@
 		B59DCB5E202B146D00BEBD8A /* WordPressUI */ = {
 			isa = PBXGroup;
 			children = (
-				8B5100D0244F6C0200672D74 /* BottomSheet */,
-				B534CB3521398609000D5F8D /* Ghosts */,
-				B592B4482064296500FF568E /* FancyAlert */,
-				B518D76B20742ADB00F05DB4 /* FlingableView */,
-				B5A787CB202B2AA6007874FB /* Categories */,
-				B5A787F3202B3587007874FB /* Constants */,
-				B5A78799202B1A93007874FB /* Extensions */,
-				B5393FE8206D7047007BF9D4 /* Tools */,
-				B58C4EC8207C594300E32E4D /* Resources */,
-				B59DCB5F202B146D00BEBD8A /* WordPressUI.h */,
-				B59DCB60202B146D00BEBD8A /* Info.plist */,
+				3FC095F42834C1E200C8477D /* Sources */,
 			);
 			path = WordPressUI;
 			sourceTree = "<group>";
