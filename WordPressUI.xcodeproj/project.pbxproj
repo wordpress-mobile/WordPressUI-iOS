@@ -445,9 +445,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B59DCB70202B146D00BEBD8A /* Build configuration list for PBXNativeTarget "WordPressUI" */;
 			buildPhases = (
+				B59DCB59202B146D00BEBD8A /* Headers */,
 				B59DCB57202B146D00BEBD8A /* Sources */,
 				B59DCB58202B146D00BEBD8A /* Frameworks */,
-				B59DCB59202B146D00BEBD8A /* Headers */,
 				B59DCB5A202B146D00BEBD8A /* Resources */,
 			);
 			buildRules = (
