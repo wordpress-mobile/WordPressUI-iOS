@@ -94,7 +94,11 @@ public class BottomSheetViewController: UIViewController {
     private var gripButton: UIButton = {
         let button = GripButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        button.addTarget(
+            BottomSheetViewController.self,
+            action: #selector(buttonPressed),
+            for: .touchUpInside
+        )
         button.accessibilityLabel = NSLocalizedString("Dismiss", comment: "Accessibility label for button to dismiss a bottom sheet")
         return button
     }()
