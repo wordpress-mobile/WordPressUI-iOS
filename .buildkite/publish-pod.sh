@@ -5,7 +5,6 @@ SPECS_REPO="git@github.com:wordpress-mobile/cocoapods-specs.git"
 SLACK_WEBHOOK=$PODS_SLACK_WEBHOOK
 
 echo "--- :rubygems: Setting up Gems"
-gem install bundler
 install_gems
 
 echo "--- :cocoapods: Publishing Pod to CocoaPods CDN"
