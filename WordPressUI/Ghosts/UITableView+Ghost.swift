@@ -8,7 +8,7 @@ extension UITableView {
 
     /// Displays Ghost Content with the specified Settings.
     ///
-    open func displayGhostContent(options: GhostOptions, style: GhostStyle = .default) {
+    public func displayGhostContent(options: GhostOptions, style: GhostStyle = .default) {
         guard isDisplayingGhostContent == false else {
             return
         }
@@ -22,7 +22,7 @@ extension UITableView {
 
     /// Nukes the Ghost Style.
     ///
-    open func removeGhostContent() {
+    public func removeGhostContent() {
         guard isDisplayingGhostContent else {
             return
         }
@@ -36,7 +36,7 @@ extension UITableView {
 
     /// Indicates if the receiver is wired up to display Ghost Content.
     ///
-    open var isDisplayingGhostContent: Bool {
+    public var isDisplayingGhostContent: Bool {
         return ghostHandler != nil
     }
 }
