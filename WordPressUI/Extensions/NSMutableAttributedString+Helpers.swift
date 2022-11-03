@@ -1,5 +1,5 @@
 import Foundation
-
+import UIKit
 
 // MARK: - NSMutableAttributedString Helpers
 //

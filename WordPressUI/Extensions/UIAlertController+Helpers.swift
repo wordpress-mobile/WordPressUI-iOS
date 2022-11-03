@@ -1,5 +1,5 @@
 import Foundation
-
+import UIKit
 
 extension UIAlertController {
     @objc @discardableResult public func addCancelActionWithTitle(_ title: String?, handler: ((UIAlertAction) -> Void)? = nil) -> UIAlertAction {

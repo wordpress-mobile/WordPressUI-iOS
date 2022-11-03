@@ -1,3 +1,5 @@
+import UIKit
+
 extension UIViewController {
     /// Add a view controller as child view controller
     ///

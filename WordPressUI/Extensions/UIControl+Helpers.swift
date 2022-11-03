@@ -1,3 +1,5 @@
+import UIKit
+
 // MARK: - Internationalization helper
 
 extension UIControl {

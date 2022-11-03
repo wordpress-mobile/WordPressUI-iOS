@@ -1,3 +1,5 @@
+import UIKit
+
 // MARK: - UIImage + Crop Method
 //
 extension UIImage {

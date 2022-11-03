@@ -1,5 +1,5 @@
 import Foundation
-
+import UIKit
 
 extension UIViewController {
     /// Determines if the current ViewController's View is visible and onscreen

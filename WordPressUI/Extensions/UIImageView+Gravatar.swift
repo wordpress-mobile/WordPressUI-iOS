@@ -1,4 +1,6 @@
 import Foundation
+import UIKit
+
 
 /// Wrapper class used to ensure removeObserver is called
 private class GravatarNotificationWrapper {

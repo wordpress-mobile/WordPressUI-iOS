@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 extension UIImage {
     public func imageWithTintColor(_ color: UIColor) -> UIImage? {
