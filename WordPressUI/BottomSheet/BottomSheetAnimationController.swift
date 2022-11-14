@@ -1,3 +1,6 @@
+import Foundation
+import UIKit
+
 public class BottomSheetAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
     public enum TransitionType {
         case presenting

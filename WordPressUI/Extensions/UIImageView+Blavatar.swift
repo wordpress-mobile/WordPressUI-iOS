@@ -1,5 +1,5 @@
 import Foundation
-
+import UIKit
 
 public extension UIImageView {
 

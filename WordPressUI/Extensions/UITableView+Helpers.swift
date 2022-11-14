@@ -1,5 +1,5 @@
 import Foundation
-
+import UIKit
 
 extension UITableView {
     /// Reloads the currently selected row, if any.

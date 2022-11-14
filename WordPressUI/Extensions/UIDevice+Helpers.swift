@@ -1,5 +1,5 @@
 import Foundation
-
+import UIKit
 
 extension UIDevice {
     @objc public class func isPad() -> Bool {

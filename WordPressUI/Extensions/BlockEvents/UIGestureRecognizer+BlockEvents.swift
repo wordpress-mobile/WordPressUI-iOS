@@ -1,3 +1,5 @@
+import UIKit
+
 /// Allows UIBarButtonItem to handle events programatically without using selectors or @objc
 
 private final class UITapGestureRecognizerEventHandler<Sender: UITapGestureRecognizer>: NSObject {

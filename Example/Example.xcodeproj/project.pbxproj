@@ -3,43 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		46B30DCD2583F63100A25E66 /* KeyboardAnimationsExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B30DCC2583F63100A25E66 /* KeyboardAnimationsExampleViewController.swift */; };
+		4AABCD6D2913A5F80014F4BB /* WordPressUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4AABCD6C2913A5F80014F4BB /* WordPressUI */; };
 		F1C4EBE5218A37D700B8A9F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C4EBE4218A37D700B8A9F7 /* AppDelegate.swift */; };
 		F1C4EBE7218A37D700B8A9F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C4EBE6218A37D700B8A9F7 /* ViewController.swift */; };
 		F1C4EBEA218A37D700B8A9F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1C4EBE8218A37D700B8A9F7 /* Main.storyboard */; };
 		F1C4EBEC218A37D800B8A9F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1C4EBEB218A37D800B8A9F7 /* Assets.xcassets */; };
 		F1C4EBEF218A37D800B8A9F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1C4EBED218A37D800B8A9F7 /* LaunchScreen.storyboard */; };
-		F1C4EC20218A386100B8A9F7 /* WordPressUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1C4EC1A218A385100B8A9F7 /* WordPressUI.framework */; };
-		F1C61C80218B3E5300F30530 /* WordPressUI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F1C4EC1A218A385100B8A9F7 /* WordPressUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		F1C4EC19218A385100B8A9F7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F1C4EC14218A385100B8A9F7 /* WordPressUI.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B59DCB5C202B146D00BEBD8A;
-			remoteInfo = WordPressUI;
-		};
-		F1C4EC1B218A385100B8A9F7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F1C4EC14218A385100B8A9F7 /* WordPressUI.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B59DCB65202B146D00BEBD8A;
-			remoteInfo = WordPressUITests;
-		};
-		F1C4EC1D218A385A00B8A9F7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F1C4EC14218A385100B8A9F7 /* WordPressUI.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = B59DCB5B202B146D00BEBD8A;
-			remoteInfo = WordPressUI;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		F1C61C7E218B3E4600F30530 /* CopyFiles */ = {
@@ -48,7 +23,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F1C61C80218B3E5300F30530 /* WordPressUI.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		46B30DCC2583F63100A25E66 /* KeyboardAnimationsExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAnimationsExampleViewController.swift; sourceTree = "<group>"; };
+		4AABCD6B2913A5C90014F4BB /* WordPressUI-iOS */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "WordPressUI-iOS"; path = ..; sourceTree = "<group>"; };
 		F1C4EBE1218A37D700B8A9F7 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1C4EBE4218A37D700B8A9F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1C4EBE6218A37D700B8A9F7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,7 +38,6 @@
 		F1C4EBEB218A37D800B8A9F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1C4EBEE218A37D800B8A9F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F1C4EBF0218A37D800B8A9F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F1C4EC14218A385100B8A9F7 /* WordPressUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = WordPressUI.xcodeproj; path = ../WordPressUI.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,18 +45,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1C4EC20218A386100B8A9F7 /* WordPressUI.framework in Frameworks */,
+				4AABCD6D2913A5F80014F4BB /* WordPressUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4AABCD6A2913A5C90014F4BB /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				4AABCD6B2913A5C90014F4BB /* WordPressUI-iOS */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		F1C4EBD8218A37D700B8A9F7 = {
 			isa = PBXGroup;
 			children = (
+				4AABCD6A2913A5C90014F4BB /* Packages */,
 				F1C4EBE3218A37D700B8A9F7 /* Example */,
-				F1C4EC13218A384300B8A9F7 /* Dependencies */,
 				F1C4EBE2218A37D700B8A9F7 /* Products */,
 				F1C4EC1F218A386100B8A9F7 /* Frameworks */,
 			);
@@ -110,23 +92,6 @@
 			path = Example;
 			sourceTree = "<group>";
 		};
-		F1C4EC13218A384300B8A9F7 /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				F1C4EC14218A385100B8A9F7 /* WordPressUI.xcodeproj */,
-			);
-			name = Dependencies;
-			sourceTree = "<group>";
-		};
-		F1C4EC15218A385100B8A9F7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F1C4EC1A218A385100B8A9F7 /* WordPressUI.framework */,
-				F1C4EC1C218A385100B8A9F7 /* WordPressUITests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		F1C4EC1F218A386100B8A9F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,9 +114,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				F1C4EC1E218A385A00B8A9F7 /* PBXTargetDependency */,
 			);
 			name = Example;
+			packageProductDependencies = (
+				4AABCD6C2913A5F80014F4BB /* WordPressUI */,
+			);
 			productName = Example;
 			productReference = F1C4EBE1218A37D700B8A9F7 /* Example.app */;
 			productType = "com.apple.product-type.application";
@@ -182,35 +149,12 @@
 			mainGroup = F1C4EBD8218A37D700B8A9F7;
 			productRefGroup = F1C4EBE2218A37D700B8A9F7 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = F1C4EC15218A385100B8A9F7 /* Products */;
-					ProjectRef = F1C4EC14218A385100B8A9F7 /* WordPressUI.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				F1C4EBE0218A37D700B8A9F7 /* Example */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		F1C4EC1A218A385100B8A9F7 /* WordPressUI.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = WordPressUI.framework;
-			remoteRef = F1C4EC19218A385100B8A9F7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		F1C4EC1C218A385100B8A9F7 /* WordPressUITests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = WordPressUITests.xctest;
-			remoteRef = F1C4EC1B218A385100B8A9F7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		F1C4EBDF218A37D700B8A9F7 /* Resources */ = {
@@ -237,14 +181,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		F1C4EC1E218A385A00B8A9F7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = WordPressUI;
-			targetProxy = F1C4EC1D218A385A00B8A9F7 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F1C4EBE8218A37D700B8A9F7 /* Main.storyboard */ = {
@@ -440,6 +376,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4AABCD6C2913A5F80014F4BB /* WordPressUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WordPressUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F1C4EBD9218A37D700B8A9F7 /* Project object */;
 }

@@ -1,3 +1,6 @@
+import Foundation
+import UIKit
+
 // A UIView with a centered "grip" view (like in Apple Maps)
 public class GripButton: UIButton {
 

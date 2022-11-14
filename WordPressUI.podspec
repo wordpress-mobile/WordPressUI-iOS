@@ -25,4 +25,8 @@ Pod::Spec.new do |s|
     ]
   }
   s.header_dir = 'WordPressUI'
+
+  s.test_spec do |test|
+    test.source_files = ['WordPressUITests/**/*.{swift,h,m}']
+  end
 end

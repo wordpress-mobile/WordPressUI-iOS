@@ -1,5 +1,9 @@
 import Foundation
+import UIKit
 
+#if SWIFT_PACKAGE
+import WordPressUIObjCCategories
+#endif
 
 public extension UIImageView {
     enum ImageDownloadError: Error {
