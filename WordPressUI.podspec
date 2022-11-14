@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.source_files  = 'Sources/WordPressUI/**/*.{h,m,swift}', 'Sources/WordPressUIObjC/**/*.{h,m,swift}'
   s.resource_bundles = {
     WordPressUIResources: [
-      'Sources/WordPressUI/Resources/*.{xcassets,storyboard}',
+      'Sources/WordPressUI/Resources/*.{xcassets,storyboard}'
     ]
   }
   s.public_header_files = 'Sources/WordPressUIObjC/include'
