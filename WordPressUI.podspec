@@ -17,16 +17,15 @@ Pod::Spec.new do |s|
   s.swift_version = '5.0'
 
   s.source        = { git: 'https://github.com/wordpress-mobile/WordPressUI-iOS.git', tag: s.version.to_s }
-  s.source_files  = 'WordPressUI/**/*.{h,m,swift}'
+  s.source_files  = 'Sources/WordPressUI/**/*.{h,m,swift}', 'Sources/WordPressUIObjC/**/*.{h,m,swift}'
   s.resource_bundles = {
     WordPressUIResources: [
-      'WordPressUI/Resources/*.{xcassets}',
-      'WordPressUI/**/*.{storyboard}'
+      'Sources/WordPressUI/Resources/*.{xcassets,storyboard}',
     ]
   }
-  s.header_dir = 'WordPressUI'
+  s.public_header_files = 'Sources/WordPressUIObjC/include'
 
   s.test_spec do |test|
-    test.source_files = ['WordPressUITests/**/*.{swift,h,m}']
+    test.source_files = ['Tests/WordPressUITests/**/*.{swift,h,m}']
   end
 end
