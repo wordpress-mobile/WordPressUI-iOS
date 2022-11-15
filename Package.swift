@@ -9,54 +9,23 @@ let package = Package(
         .library(
             name: "WordPressUI",
             targets: [
-                "WordPressUIGravatar",
-                "WordPressUIGravatarObjC",
-                "WordPressUIObjCCategories",
+                "WordPressUIObjC",
                 "WordPressUI",
             ]
         )
     ],
     dependencies: [],
     targets: [
-        .target(
-            name: "WordPressUIGravatar",
-            path: "WordPressUI/Extensions/Gravatar",
-            sources: ["Gravatar.swift"]
-        ),
-        .target(
-            name: "WordPressUIGravatarObjC",
-            path: "WordPressUI/Extensions/Gravatar",
-            exclude: ["Gravatar.swift"],
-            publicHeadersPath: "."
-        ),
-        .target(
-            name: "WordPressUIObjCCategories",
-            path: "WordPressUI/Categories",
-            publicHeadersPath: "."
-        ),
+        .target(name: "WordPressUIObjC"),
         .target(
             name: "WordPressUI",
             dependencies: [
-                .target(name: "WordPressUIGravatar"),
-                .target(name: "WordPressUIGravatarObjC"),
-                .target(name: "WordPressUIObjCCategories"),
-            ],
-            path: "WordPressUI",
-            exclude: [
-                "WordPressUI.h",
-                "Extensions/Gravatar",
-                "Categories"
-            ],
-            resources: [
-                .process("Resources"),
-                .process("FancyAlert/FancyAlerts.storyboard")
+                .target(name: "WordPressUIObjC"),
             ]
         ),
         .testTarget(
             name: "WordPressUITests",
-            dependencies: [.target(name: "WordPressUI")],
-            path: "WordPressUITests",
-            exclude: ["Info.plist"]
+            dependencies: [.target(name: "WordPressUI")]
         ),
     ]
 )
