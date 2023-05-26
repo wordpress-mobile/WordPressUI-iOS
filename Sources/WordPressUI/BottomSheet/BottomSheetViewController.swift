@@ -241,6 +241,14 @@ extension BottomSheetViewController: DrawerPresentable {
         return childViewController?.allowsUserTransition ?? true
     }
 
+    public var allowsTapToDismiss: Bool {
+        childViewController?.allowsTapToDismiss ?? true
+    }
+
+    public var allowsDragToDismiss: Bool {
+        childViewController?.allowsDragToDismiss ?? true
+    }
+
     public var compactWidth: DrawerWidth {
         childViewController?.compactWidth ?? .percentage(0.66)
     }
