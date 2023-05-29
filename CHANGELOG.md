@@ -38,11 +38,22 @@ _None._
 
 ### New Features
 
-- Add Swift Package Manager support [#120]
+_None._
 
 ### Bug Fixes
 
 _None._
+
+### Internal Changes
+
+_None._
+
+## 1.13.0
+
+### New Features
+
+- `BottomSheetViewController` can now work modally, too [#126]
+- Add Swift Package Manager support [#120]
 
 ### Internal Changes
 
