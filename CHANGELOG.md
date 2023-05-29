@@ -7,7 +7,7 @@ The format of this document is inspired by [Keep a Changelog](https://keepachang
 When releasing a new version:
 
 1. Remove any empty section (those with `_None._`)
-2. Update the `## Unreleased` header to `## [<version_number>](https://github.com/wordpress-mobile/WordPressUI-iOS/releases/tag/<version_number>)`
+2. Update the `## Unreleased` header to `## <version_number>`
 3. Add a new "Unreleased" section for the next iteration, by copy/pasting the following template:
 
 ## Unreleased
@@ -38,11 +38,22 @@ _None._
 
 ### New Features
 
-- Add Swift Package Manager support [#120]
+_None._
 
 ### Bug Fixes
 
 _None._
+
+### Internal Changes
+
+_None._
+
+## 1.13.0
+
+### New Features
+
+- `BottomSheetViewController` can now work modally, too [#126]
+- Add Swift Package Manager support [#120]
 
 ### Internal Changes
 
