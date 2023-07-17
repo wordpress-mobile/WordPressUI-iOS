@@ -79,7 +79,7 @@ public extension UIImageView {
             return
         }
 
-        if let cachedImage = Downloader.cache.getImage(forKey: url.absoluteString) {
+        if let cachedImage = ImageCache.shared.getImage(forKey: url.absoluteString) {
             handleSuccess(cachedImage, url)
             return
         }
@@ -98,7 +98,7 @@ public extension UIImageView {
 
             DispatchQueue.main.async {
                 if response?.url == url {
-                    Downloader.cache.setImage(image, forKey: url.absoluteString)
+                    ImageCache.shared.setImage(image, forKey: url.absoluteString)
                     handleSuccess(image, url)
                 } else {
                     failure?(ImageDownloadError.urlMismatch)
@@ -117,7 +117,7 @@ public extension UIImageView {
     /// and we need to prevent returning the (old) cached entry.
     ///
     @objc func overrideImageCache(for url: URL, with image: UIImage) {
-        Downloader.cache.setImage(image, forKey: url.absoluteString)
+        ImageCache.shared.setImage(image, forKey: url.absoluteString)
 
         // Remove all cached responses - removing an individual response does not work since iOS 7.
         // This feels hacky to do but what else can we do...
@@ -159,11 +159,6 @@ public extension UIImageView {
     /// Private helper structure
     ///
     private struct Downloader {
-
-        /// Stores all of the previously downloaded images.
-        ///
-        static var cache: ImageCaching = ImageCache()
-
         /// Key used to associate the current URL.
         ///
         static var urlKey = "urlKey"
@@ -172,11 +167,6 @@ public extension UIImageView {
         ///
         static var taskKey = "downloadTaskKey"
     }
-
-    /// Changes the default cache used by the image dowloader.
-    public static func setSharedCache(_ cache: ImageCaching) {
-        Downloader.cache = cache
-    }
 }
 
 public protocol ImageCaching {
@@ -184,14 +174,17 @@ public protocol ImageCaching {
     func getImage(forKey key: String) -> UIImage?
 }
 
-private final class ImageCache: ImageCaching {
+public class ImageCache: ImageCaching {
     private let cache = NSCache<NSString, UIImage>()
 
-    func setImage(_ image: UIImage, forKey key: String) {
+    /// Changes the default cache used by the image dowloader.
+    public static var shared: ImageCaching = ImageCache()
+
+    public func setImage(_ image: UIImage, forKey key: String) {
         cache.setObject(image, forKey: key as NSString)
     }
 
-    func getImage(forKey key: String) -> UIImage? {
+    public func getImage(forKey key: String) -> UIImage? {
         cache.object(forKey: key as NSString)
     }
 }
