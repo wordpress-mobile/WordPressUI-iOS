@@ -91,11 +91,11 @@ public class BottomSheetViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private var gripButton: UIButton = {
+    private lazy var gripButton: UIButton = {
         let button = GripButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(
-            BottomSheetViewController.self,
+            self,
             action: #selector(buttonPressed),
             for: .touchUpInside
         )
