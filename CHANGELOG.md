@@ -48,6 +48,12 @@ _None._
 
 _None._
 
+## 1.13.1
+
+### New Features
+
+- Addresses a crash in the `BottomSheetViewController` that was occurring due to an incorrect usage of a selector. The crash was caused by trying to call the `buttonPressed` instance method as a class method on `BottomSheetViewController.self`.
+
 ## 1.13.0
 
 ### New Features
