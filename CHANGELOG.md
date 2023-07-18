@@ -38,7 +38,7 @@ _None._
 
 ### New Features
 
-_None._
+- Add an `ImageCaching` protocol and an `ImageCache` class with a `shared` property to make it possible to override the default cache [#129]
 
 ### Bug Fixes
 
