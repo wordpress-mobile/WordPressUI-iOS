@@ -30,23 +30,11 @@ _None._
 
 -->
 
-## Unreleased
-
-### Breaking Changes
-
-_None._
+## 1.14.0
 
 ### New Features
 
-- Add an `ImageCaching` protocol and an `ImageCache` class with a `shared` property to make it possible to override the default cache [#129]
-
-### Bug Fixes
-
-_None._
-
-### Internal Changes
-
-_None._
+- Add a new `ImageCaching` protocol and an `ImageCache` class with a `shared` property to allow overriding the default image cache [#129]
 
 ## 1.13.1
 
