@@ -92,7 +92,10 @@ public extension UIImageView {
 
         let task = URLSession.shared.dataTask(with: request, completionHandler: { [weak self] data, response, error in
             guard let data = data, let image = UIImage(data: data, scale: UIScreen.main.scale) else {
-                failure?(error)
+                DispatchQueue.main.async {
+                    failure?(error)
+                    self?.downloadTask = nil
+                }
                 return
             }
 
