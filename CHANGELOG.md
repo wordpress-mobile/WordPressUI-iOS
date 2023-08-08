@@ -30,6 +30,12 @@ _None._
 
 -->
 
+## 1.14.1
+
+### Bug Fixes
+
+- Fix an issue with `downloadImage` failure callback being called on the background thread [#130]
+
 ## 1.14.0
 
 ### New Features
