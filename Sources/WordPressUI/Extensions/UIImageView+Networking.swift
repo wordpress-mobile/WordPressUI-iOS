@@ -63,9 +63,10 @@ public extension UIImageView {
     ///     -   failure: Closure to be executed upon failure.
     ///
     @objc func downloadImage(usingRequest request: URLRequest, placeholderImage: UIImage? = nil, success: ((UIImage) -> ())? = nil, failure: ((Error?) -> ())? = nil) {
-        cancelImageDownload()
+        let context = self.context
+        context.cancel()
 
-        let handleSuccess = { [weak self] (image: UIImage, url: URL) in
+        let handleSuccess = { [weak self] (image: UIImage) in
             self?.image = image
             success?(image)
         }
@@ -80,7 +81,7 @@ public extension UIImageView {
         }
 
         if let cachedImage = ImageCache.shared.getImage(forKey: url.absoluteString) {
-            handleSuccess(cachedImage, url)
+            handleSuccess(cachedImage)
             return
         }
 
@@ -90,35 +91,26 @@ public extension UIImageView {
             self.image = placeholderImage
         }
 
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { [weak self] data, response, error in
-            guard let data = data, let image = UIImage(data: data, scale: UIScreen.main.scale) else {
-                DispatchQueue.main.async {
-                    failure?(error)
-                    self?.downloadTask = nil
-                }
-                return
-            }
-
+        let taskId = context.getNextTaskId()
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            let image = data.flatMap(makeImage)
             DispatchQueue.main.async {
-                if response?.url == url {
+                guard context.taskId == taskId else { return }
+                if let image {
                     ImageCache.shared.setImage(image, forKey: url.absoluteString)
-                    handleSuccess(image, url)
+                    handleSuccess(image)
                 } else {
-                    failure?(ImageDownloadError.urlMismatch)
+                    failure?(error)
                 }
-
-                self?.downloadTask = nil
+                context.task = nil
             }
-        })
-
-        downloadTask = task
+        }
+        context.task = task
         task.resume()
     }
 
-
     /// Overrides the cached UIImage, for a given URL. This is useful for whenever we've just updated a remote resource,
     /// and we need to prevent returning the (old) cached entry.
-    ///
     @objc func overrideImageCache(for url: URL, with image: UIImage) {
         ImageCache.shared.setImage(image, forKey: url.absoluteString)
 
@@ -131,46 +123,62 @@ public extension UIImageView {
     }
 
     /// Cancels the current download task and clear the downloadURL
-    ///
     @objc func cancelImageDownload() {
-        downloadTask?.cancel()
-        downloadTask = nil
+        context.cancel()
     }
 
     /// Returns a URLRequest for an image, hosted at the specified URL.
-    ///
     private func request(for url: URL) -> URLRequest {
         var request = URLRequest(url: url)
         request.httpShouldHandleCookies = false
         request.addValue("image/*", forHTTPHeaderField: "Accept")
-
         return request
     }
 
-
-    /// Stores the current DataTask, in charge of downloading the remote Image.
-    ///
-    private var downloadTask: URLSessionDataTask? {
-        get {
-            return objc_getAssociatedObject(self, &Downloader.taskKey) as? URLSessionDataTask
+    /// Stores image download context.
+    private var context: ImageDownloadContext {
+        if let context = objc_getAssociatedObject(self, &ImageDownloadContext.contextKey) as? ImageDownloadContext {
+            return context
         }
-        set {
-            objc_setAssociatedObject(self, &Downloader.taskKey, newValue as AnyObject, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
-
-    /// Private helper structure
-    ///
-    private struct Downloader {
-        /// Key used to associate the current URL.
-        ///
-        static var urlKey = "urlKey"
-
-        /// Key used to associate a Download task to the current instance.
-        ///
-        static var taskKey = "downloadTaskKey"
+        let context = ImageDownloadContext()
+        objc_setAssociatedObject(self, &ImageDownloadContext.contextKey, context as AnyObject, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        return context
     }
 }
+
+// MARK: - Helpers
+
+private final class ImageDownloadContext {
+    var taskId = 0
+    var task: URLSessionDataTask?
+
+    static var contextKey: UInt8 = 0
+
+    func getNextTaskId() -> Int {
+        taskId += 1
+        return taskId
+    }
+
+    func cancel() {
+        taskId += 1
+        task?.cancel()
+        task = nil
+    }
+}
+
+private func makeImage(with data: Data) -> UIImage? {
+    guard !data.isEmpty, let image = UIImage(data: data) else {
+        return nil
+    }
+    if #available(iOS 15.0, *) {
+        // Decompress the image in the background
+        return image.preparingForDisplay() ?? image
+    } else {
+        return image
+    }
+}
+
+// MARK: - UIImageView+Networking (ImageCache)
 
 public protocol ImageCaching {
     func setImage(_ image: UIImage, forKey key: String)
