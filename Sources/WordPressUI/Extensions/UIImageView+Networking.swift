@@ -8,7 +8,6 @@ import WordPressUIObjC
 public extension UIImageView {
     enum ImageDownloadError: Error {
         case noURLSpecifiedInRequest
-        case urlMismatch
     }
 
     /// Downloads an image and updates the current UIImageView Instance.
@@ -56,13 +55,23 @@ public extension UIImageView {
 
     /// Downloads an image and updates the current UIImageView Instance.
     ///
-    /// - Parameters:
-    ///     -   request: The request for the target image
-    ///     -   placeholderImage: Image to be displayed while the actual asset gets downloaded.
-    ///     -   success: Closure to be executed on success.
-    ///     -   failure: Closure to be executed upon failure.
+    /// - parameters:
+    ///    - request: The request for the target image
+    ///    - placeholderImage: Image to be displayed while the actual asset gets downloaded.
+    ///    - success: Closure to be executed on success.
+    ///    - failure: Closure to be executed upon failure.
     ///
-    @objc func downloadImage(usingRequest request: URLRequest, placeholderImage: UIImage? = nil, success: ((UIImage) -> ())? = nil, failure: ((Error?) -> ())? = nil) {
+    ///  - note: The callbacks are executed on the main queue. If you cancel the
+    ///  request, the previous callbacks are guaranteed not to be called: make
+    ///  sure to perform any cleanup before calling this method.
+    @objc func downloadImage(
+        usingRequest request: URLRequest,
+        placeholderImage: UIImage? = nil,
+        success: ((UIImage) -> ())? = nil,
+        failure: ((Error?) -> ())? = nil
+    ) {
+        assert(Thread.isMainThread, "The downloadImage method has to be called from the main thread")
+
         let context = self.context
         context.cancel()
 
@@ -72,22 +81,22 @@ public extension UIImageView {
         }
 
         guard let url = request.url else {
-            if let placeholderImage = placeholderImage {
-                image = placeholderImage
+            if let placeholderImage {
+                self.image = placeholderImage
             }
-
             failure?(ImageDownloadError.noURLSpecifiedInRequest)
             return
         }
 
-        if let cachedImage = ImageCache.shared.getImage(forKey: url.absoluteString) {
+        let cacheKey = url.absoluteString
+        if let cachedImage = ImageCache.shared.getImage(forKey: cacheKey) {
             handleSuccess(cachedImage)
             return
         }
 
         // Using the placeholder only makes sense if we know we're going to download an image
         // that's not immediately available to us.
-        if let placeholderImage = placeholderImage {
+        if let placeholderImage {
             self.image = placeholderImage
         }
 
@@ -95,9 +104,11 @@ public extension UIImageView {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             let image = data.flatMap(makeImage)
             DispatchQueue.main.async {
-                guard context.taskId == taskId else { return }
+                guard context.taskId == taskId else {
+                    return // The download was cancelled
+                }
                 if let image {
-                    ImageCache.shared.setImage(image, forKey: url.absoluteString)
+                    ImageCache.shared.setImage(image, forKey: cacheKey)
                     handleSuccess(image)
                 } else {
                     failure?(error)
