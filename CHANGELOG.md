@@ -35,6 +35,7 @@ _None._
 ### Bug Fixes
 
 - Fix an issue with `downloadImage` failure callback being called on the background thread [#130]
+- Fix an issue with `UIImageView-Networking.swift` sometimes displaying incorrect image on view reuse [#131]
 
 ## 1.14.0
 
