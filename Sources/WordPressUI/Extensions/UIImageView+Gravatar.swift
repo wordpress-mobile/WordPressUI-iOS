@@ -185,6 +185,6 @@ extension UIImageView {
     }
 }
 
-extension NSNotification.Name {
+public extension NSNotification.Name {
     static let GravatarImageUpdateNotification = NSNotification.Name(rawValue: "GravatarImageUpdateNotification")
 }

@@ -27,6 +27,15 @@ public enum GravatarRatings: Int {
     }
 }
 
+/// Helper Enum that specifies some of the options for default images
+/// To see all available options, visit : https://en.gravatar.com/site/implement/images/
+///
+public enum GravatarDefaultImage: String {
+    case fileNotFound = "404"
+    case mp
+    case identicon
+}
+
 public struct Gravatar {
     fileprivate struct Defaults {
         static let scheme = "https"
@@ -38,9 +47,9 @@ public struct Gravatar {
 
     public let canonicalURL: URL
 
-    public func urlWithSize(_ size: Int) -> URL {
+    public func urlWithSize(_ size: Int, defaultImage: GravatarDefaultImage? = nil) -> URL {
         var components = URLComponents(url: canonicalURL, resolvingAgainstBaseURL: false)!
-        components.query = "s=\(size)&d=404"
+        components.query = "s=\(size)&d=\(defaultImage?.rawValue ?? GravatarDefaultImage.fileNotFound.rawValue)"
         return components.url!
     }
 
@@ -69,9 +78,17 @@ public struct Gravatar {
     ///
     /// - Returns: Gravatar's URL
     ///
-    public static func gravatarUrl(for email: String, size: Int? = nil, rating: GravatarRatings = .default) -> URL? {
+    public static func gravatarUrl(for email: String,
+                                   defaultImage: GravatarDefaultImage? = nil,
+                                   size: Int? = nil,
+                                   rating: GravatarRatings = .default) -> URL? {
         let hash = gravatarHash(of: email)
-        let targetURL = String(format: "%@/%@?d=404&s=%d&r=%@", Defaults.baseURL, hash, size ?? Defaults.imageSize, rating.stringValue())
+        let targetURL = String(format: "%@/%@?d=%@&s=%d&r=%@",
+                               Defaults.baseURL,
+                               hash,
+                               defaultImage?.rawValue ?? GravatarDefaultImage.fileNotFound.rawValue,
+                               size ?? Defaults.imageSize,
+                               rating.stringValue())
         return URL(string: targetURL)
     }
 
