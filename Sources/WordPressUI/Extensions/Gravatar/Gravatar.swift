@@ -103,7 +103,7 @@ public struct Gravatar {
         return email
             .lowercased()
             .trimmingCharacters(in: .whitespaces)
-            .md5Hash()
+            .sha256Hash()
     }
 }
 
