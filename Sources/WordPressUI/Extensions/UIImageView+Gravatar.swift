@@ -22,33 +22,6 @@ private class GravatarNotificationWrapper {
 ///
 extension UIImageView {
 
-    /// Helper Enum that specifies all of the available Gravatar Image Ratings
-    /// TODO: Convert into a pure Swift String Enum. It's done this way to maintain ObjC Compatibility
-    ///
-    @objc
-    public enum GravatarRatings: Int {
-        case g
-        case pg
-        case r
-        case x
-        case `default`
-
-        func stringValue() -> String {
-            switch self {
-            case .default:
-                fallthrough
-            case .g:
-                return "g"
-            case .pg:
-                return "pg"
-            case .r:
-                return "r"
-            case .x:
-                return "x"
-            }
-        }
-    }
-
     /// Downloads and sets the User's Gravatar, given his email.
     /// TODO: This is a convenience method. Please, remove once all of the code has been migrated over to Swift.
     ///
@@ -70,7 +43,7 @@ extension UIImageView {
     ///
     @objc
     public func downloadGravatarWithEmail(_ email: String, rating: GravatarRatings = .default, placeholderImage: UIImage = .gravatarPlaceholderImage) {
-        let gravatarURL = gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating)
+        let gravatarURL = Gravatar.gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating)
 
         listenForGravatarChanges(forEmail: email)
         downloadImage(from: gravatarURL, placeholderImage: placeholderImage)
@@ -167,7 +140,7 @@ extension UIImageView {
     /// Hope buddah, and the code reviewer, can forgive me for this hack.
     ///
     @objc public func overrideGravatarImageCache(_ image: UIImage, rating: GravatarRatings, email: String) {
-        guard let gravatarURL = gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating) else {
+        guard let gravatarURL = Gravatar.gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating) else {
             return
         }
 
@@ -191,35 +164,6 @@ extension UIImageView {
 
     // MARK: - Private Helpers
 
-    /// Returns the Gravatar URL, for a given email, with the specified size + rating.
-    ///
-    /// - Parameters:
-    ///     - email: the user's email
-    ///     - size: required download size
-    ///     - rating: image rating filtering
-    ///
-    /// - Returns: Gravatar's URL
-    ///
-    private func gravatarUrl(for email: String, size: Int, rating: GravatarRatings) -> URL? {
-        let hash = gravatarHash(of: email)
-        let targetURL = String(format: "%@/%@?d=404&s=%d&r=%@", Defaults.baseURL, hash, size, rating.stringValue())
-        return URL(string: targetURL)
-    }
-
-    /// Returns the gravatar hash of an email
-    ///
-    /// - Parameter email: the email associated with the gravatar
-    /// - Returns: hashed email
-    ///
-    /// This really ought to be in a different place, like Gravatar.swift, but there's
-    /// lots of duplication around gravatars -nh
-    private func gravatarHash(of email: String) -> String {
-        return email
-            .lowercased()
-            .trimmingCharacters(in: .whitespaces)
-            .md5Hash()
-    }
-
     /// Returns the required gravatar size. If the current view's size is zero, falls back to the default size.
     ///
     private func gravatarDefaultSize() -> Int {
@@ -235,13 +179,12 @@ extension UIImageView {
     ///
     private struct Defaults {
         static let imageSize = 80
-        static let baseURL = "https://gravatar.com/avatar"
         static var gravatarWrapperKey = "gravatarWrapperKey"
         static let emailKey = "email"
         static let imageKey = "image"
     }
 }
 
-extension NSNotification.Name {
+public extension NSNotification.Name {
     static let GravatarImageUpdateNotification = NSNotification.Name(rawValue: "GravatarImageUpdateNotification")
 }

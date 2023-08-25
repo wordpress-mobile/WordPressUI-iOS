@@ -1,17 +1,55 @@
 import Foundation
 
+/// Helper Enum that specifies all of the available Gravatar Image Ratings
+/// TODO: Convert into a pure Swift String Enum. It's done this way to maintain ObjC Compatibility
+///
+@objc
+public enum GravatarRatings: Int {
+    case g
+    case pg
+    case r
+    case x
+    case `default`
+
+    func stringValue() -> String {
+        switch self {
+        case .default:
+            fallthrough
+        case .g:
+            return "g"
+        case .pg:
+            return "pg"
+        case .r:
+            return "r"
+        case .x:
+            return "x"
+        }
+    }
+}
+
+/// Helper Enum that specifies some of the options for default images
+/// To see all available options, visit : https://en.gravatar.com/site/implement/images/
+///
+public enum GravatarDefaultImage: String {
+    case fileNotFound = "404"
+    case mp
+    case identicon
+}
+
 public struct Gravatar {
     fileprivate struct Defaults {
         static let scheme = "https"
         static let host = "secure.gravatar.com"
         static let unknownHash = "ad516503a11cd5ca435acc9bb6523536"
+        static let baseURL = "https://gravatar.com/avatar"
+        static let imageSize = 80
     }
 
     public let canonicalURL: URL
 
-    public func urlWithSize(_ size: Int) -> URL {
+    public func urlWithSize(_ size: Int, defaultImage: GravatarDefaultImage? = nil) -> URL {
         var components = URLComponents(url: canonicalURL, resolvingAgainstBaseURL: false)!
-        components.query = "s=\(size)&d=404"
+        components.query = "s=\(size)&d=\(defaultImage?.rawValue ?? GravatarDefaultImage.fileNotFound.rawValue)"
         return components.url!
     }
 
@@ -29,6 +67,43 @@ public struct Gravatar {
         }
 
         return true
+    }
+
+    /// Returns the Gravatar URL, for a given email, with the specified size + rating.
+    ///
+    /// - Parameters:
+    ///     - email: the user's email
+    ///     - size: required download size
+    ///     - rating: image rating filtering
+    ///
+    /// - Returns: Gravatar's URL
+    ///
+    public static func gravatarUrl(for email: String,
+                                   defaultImage: GravatarDefaultImage? = nil,
+                                   size: Int? = nil,
+                                   rating: GravatarRatings = .default) -> URL? {
+        let hash = gravatarHash(of: email)
+        let targetURL = String(format: "%@/%@?d=%@&s=%d&r=%@",
+                               Defaults.baseURL,
+                               hash,
+                               defaultImage?.rawValue ?? GravatarDefaultImage.fileNotFound.rawValue,
+                               size ?? Defaults.imageSize,
+                               rating.stringValue())
+        return URL(string: targetURL)
+    }
+
+    /// Returns the gravatar hash of an email
+    ///
+    /// - Parameter email: the email associated with the gravatar
+    /// - Returns: hashed email
+    ///
+    /// This really ought to be in a different place, like Gravatar.swift, but there's
+    /// lots of duplication around gravatars -nh
+    private static func gravatarHash(of email: String) -> String {
+        return email
+            .lowercased()
+            .trimmingCharacters(in: .whitespaces)
+            .sha256Hash()
     }
 }
 

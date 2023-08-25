@@ -2,6 +2,6 @@
 
 @interface NSString (Gravatar)
 
-- (NSString *)md5Hash;
+- (NSString *)sha256Hash;
 
 @end
