@@ -48,6 +48,13 @@ _None._
 
 _None._
 
+## 1.15.0
+
+### New Features
+
+- New `GravatarDefaultImage` and `GravatarRatings` enums available and helper method to get Gravatar URL [#133]
+- Gravatar updated to use SHA256 over MD5 [#133]
+
 ## 1.14.1
 
 ### Bug Fixes
