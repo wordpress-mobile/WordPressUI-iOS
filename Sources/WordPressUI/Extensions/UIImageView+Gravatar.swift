@@ -24,7 +24,7 @@ private class GravatarNotificationWrapper {
 extension UIImageView {
     
     @objc
-    public func retrieveGravatarWithEmail(_ email: String, rating: Rating, preferredSize: CGSize) {
+    public func retrieveGravatarWithEmail(_ email: String, rating: GravatarRating, preferredSize: CGSize) {
         gravatar.setImage(email: email,
                           placeholder: .gravatarPlaceholderImage,
                           options: [.gravatarRating(rating),
