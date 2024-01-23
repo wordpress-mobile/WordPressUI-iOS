@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import Gravatar
 
 #if SWIFT_PACKAGE
 import WordPressUIObjC
@@ -21,7 +22,17 @@ private class GravatarNotificationWrapper {
 /// UIImageView Helper Methods that allow us to download a Gravatar, given the User's Email
 ///
 extension UIImageView {
-
+    
+    @objc
+    public func retrieveGravatarWithEmail(_ email: String, rating: Rating, preferredSize: CGSize) {
+        gravatar.setImage(email: email,
+                          placeholder: .gravatarPlaceholderImage,
+                          options: [.gravatarRating(rating),
+                                    .processor(DownsamplingProcessor(size: preferredSize))]) { result in
+            print("Gravatar: \(result)")
+        }
+    }
+    
     /// Downloads and sets the User's Gravatar, given his email.
     /// TODO: This is a convenience method. Please, remove once all of the code has been migrated over to Swift.
     ///
