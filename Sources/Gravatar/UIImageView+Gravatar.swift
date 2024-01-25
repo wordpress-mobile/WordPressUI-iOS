@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 #if SWIFT_PACKAGE
-import WordPressUIObjC
+//import WordPressUIObjC
 #endif
 
 /// Wrapper class used to ensure removeObserver is called

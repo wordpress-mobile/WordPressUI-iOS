@@ -31,7 +31,10 @@ let package = Package(
             name: "WordPressUITests",
             dependencies: [.target(name: "WordPressUI")]
         ),
-        .target(name: "Gravatar"),
+        .target(
+            name: "Gravatar",
+            dependencies: [.target(name: "WordPressUI")]
+        ),
         .testTarget(
             name: "GravatarTests",
             dependencies: [.target(name: "Gravatar")]

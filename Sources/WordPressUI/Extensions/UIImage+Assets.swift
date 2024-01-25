@@ -12,14 +12,6 @@ extension UIImage {
         return UIImage(named: "blavatar", in: bundle, compatibleWith: nil)!
     }
 
-
-    /// Returns the Default Gravatar Placeholder Image.
-    ///
-    @objc
-    public static var gravatarPlaceholderImage: UIImage {
-        return UIImage(named: "gravatar", in: bundle, compatibleWith: nil)!
-    }
-
     /// Returns the Link Image.
     ///
     @objc
