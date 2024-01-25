@@ -22,7 +22,7 @@ private class GravatarNotificationWrapper {
 ///
 extension UIImageView {
 
-    /// Downloads and sets the User's Gravatar, given his email.
+    /// Downloads and sets the User's GravatarURL, given his email.
     /// TODO: This is a convenience method. Please, remove once all of the code has been migrated over to Swift.
     ///
     /// - Parameters:
@@ -34,7 +34,7 @@ extension UIImageView {
         downloadGravatarWithEmail(email, rating: rating, placeholderImage: .gravatarPlaceholderImage)
     }
 
-    /// Downloads and sets the User's Gravatar, given his email.
+    /// Downloads and sets the User's GravatarURL, given his email.
     ///
     /// - Parameters:
     ///     - email: the user's email
@@ -43,7 +43,7 @@ extension UIImageView {
     ///
     @objc
     public func downloadGravatarWithEmail(_ email: String, rating: GravatarRatings = .default, placeholderImage: UIImage = .gravatarPlaceholderImage) {
-        let gravatarURL = Gravatar.gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating)
+        let gravatarURL = GravatarURL.gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating)
 
         listenForGravatarChanges(forEmail: email)
         downloadImage(from: gravatarURL, placeholderImage: placeholderImage)
@@ -80,15 +80,15 @@ extension UIImageView {
         }
     }
 
-    /// Downloads the provided Gravatar.
+    /// Downloads the provided GravatarURL.
     ///
     /// - Parameters:
-    ///     - gravatar: the user's Gravatar
+    ///     - gravatar: the user's GravatarURL
     ///     - placeholder: Image to be used as Placeholder
     ///     - animate: enable/disable fade in animation
     ///     - failure: Callback block to be invoked when an error occurs while fetching the Gravatar image
     ///
-    public func downloadGravatar(_ gravatar: Gravatar?, placeholder: UIImage, animate: Bool, failure: ((Error?) -> ())? = nil) {
+    public func downloadGravatar(_ gravatar: GravatarURL?, placeholder: UIImage, animate: Bool, failure: ((Error?) -> ())? = nil) {
         guard let gravatar = gravatar else {
             self.image = placeholder
             return
@@ -140,7 +140,7 @@ extension UIImageView {
     /// Hope buddah, and the code reviewer, can forgive me for this hack.
     ///
     @objc public func overrideGravatarImageCache(_ image: UIImage, rating: GravatarRatings, email: String) {
-        guard let gravatarURL = Gravatar.gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating) else {
+        guard let gravatarURL = GravatarURL.gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating) else {
             return
         }
 
@@ -175,7 +175,7 @@ extension UIImageView {
         return Int(targetSize)
     }
 
-    /// Private helper structure: contains the default Gravatar parameters
+    /// Private helper structure: contains the default GravatarURL parameters
     ///
     private struct Defaults {
         static let imageSize = 80
