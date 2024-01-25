@@ -12,7 +12,11 @@ let package = Package(
                 "WordPressUIObjC",
                 "WordPressUI",
             ]
-        )
+        ),
+        .library(
+            name: "Gravatar",
+            targets: ["Gravatar"]
+        ),
     ],
     dependencies: [],
     targets: [
@@ -26,6 +30,11 @@ let package = Package(
         .testTarget(
             name: "WordPressUITests",
             dependencies: [.target(name: "WordPressUI")]
+        ),
+        .target(name: "Gravatar"),
+        .testTarget(
+            name: "GravatarTests",
+            dependencies: [.target(name: "Gravatar")]
         ),
     ]
 )
