@@ -82,7 +82,10 @@ public struct Gravatar {
                                    defaultImage: GravatarDefaultImage? = nil,
                                    size: Int? = nil,
                                    rating: GravatarRatings = .default) -> URL? {
-        let hash = gravatarHash(of: email)
+        guard let hash = gravatarHash(of: email) else {
+            return nil
+        }
+        
         let targetURL = String(format: "%@/%@?d=%@&s=%d&r=%@",
                                Defaults.baseURL,
                                hash,
@@ -99,11 +102,11 @@ public struct Gravatar {
     ///
     /// This really ought to be in a different place, like Gravatar.swift, but there's
     /// lots of duplication around gravatars -nh
-    private static func gravatarHash(of email: String) -> String {
+    private static func gravatarHash(of email: String) -> String? {
         return email
             .lowercased()
             .trimmingCharacters(in: .whitespaces)
-            .sha256Hash()
+            .sha256()
     }
 }
 
