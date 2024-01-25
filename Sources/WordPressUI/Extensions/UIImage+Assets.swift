@@ -5,13 +5,6 @@ import UIKit
 //
 extension UIImage {
 
-    /// Returns the Default Site Icon Placeholder Image.
-    ///
-    @objc
-    public static var siteIconPlaceholderImage: UIImage {
-        return UIImage(named: "blavatar", in: bundle, compatibleWith: nil)!
-    }
-
     /// Returns the Link Image.
     ///
     @objc

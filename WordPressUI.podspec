@@ -33,6 +33,11 @@ Pod::Spec.new do |s|
 
   s.subspec 'Gravatar' do |gravatar|
     gravatar.source_files = 'Sources/Gravatar/*.swift'
+    gravatar.resource_bundles = {
+      GravatarResources: [
+        'Sources/Gravatar/Resources/*.xcassets'
+      ]
+    }
 
     gravatar.test_spec do |test|
       test.source_files = ['Tests/GravatarTests/**/*.swift']

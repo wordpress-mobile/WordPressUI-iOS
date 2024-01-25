@@ -33,7 +33,8 @@ let package = Package(
         ),
         .target(
             name: "Gravatar",
-            dependencies: [.target(name: "WordPressUI")]
+            dependencies: ["WordPressUI"],
+            resources: [.process("Resources")]
         ),
         .testTarget(
             name: "GravatarTests",
