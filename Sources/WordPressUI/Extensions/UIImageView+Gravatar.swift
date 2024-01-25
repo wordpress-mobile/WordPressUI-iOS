@@ -22,7 +22,7 @@ private class GravatarNotificationWrapper {
 ///
 extension UIImageView {
 
-    /// Downloads and sets the User's GravatarURL, given his email.
+    /// Downloads and sets the User's Gravatar, given his email.
     /// TODO: This is a convenience method. Please, remove once all of the code has been migrated over to Swift.
     ///
     /// - Parameters:
@@ -34,7 +34,7 @@ extension UIImageView {
         downloadGravatarWithEmail(email, rating: rating, placeholderImage: .gravatarPlaceholderImage)
     }
 
-    /// Downloads and sets the User's GravatarURL, given his email.
+    /// Downloads and sets the User's Gravatar, given his email.
     ///
     /// - Parameters:
     ///     - email: the user's email
@@ -80,10 +80,10 @@ extension UIImageView {
         }
     }
 
-    /// Downloads the provided GravatarURL.
+    /// Downloads the provided Gravatar.
     ///
     /// - Parameters:
-    ///     - gravatar: the user's GravatarURL
+    ///     - gravatar: the user's Gravatar
     ///     - placeholder: Image to be used as Placeholder
     ///     - animate: enable/disable fade in animation
     ///     - failure: Callback block to be invoked when an error occurs while fetching the Gravatar image
@@ -175,7 +175,7 @@ extension UIImageView {
         return Int(targetSize)
     }
 
-    /// Private helper structure: contains the default GravatarURL parameters
+    /// Private helper structure: contains the default Gravatar parameters
     ///
     private struct Defaults {
         static let imageSize = 80
