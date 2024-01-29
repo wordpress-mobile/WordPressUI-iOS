@@ -25,8 +25,16 @@ extension UIBarButtonItem: ControlEventBindable { }
 // MARK: - Implementation
 extension ControlEventBindable where Self: UIBarButtonItem {
     private var controlEventHandlers: [BarButtonItemEventHandler<Self>] {
-        get { return (objc_getAssociatedObject(self, &BlockEventKeys.ControlEventHandlers) as? [BarButtonItemEventHandler<Self>]) ?? [] }
-        set { objc_setAssociatedObject(self, &BlockEventKeys.ControlEventHandlers, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+        get {
+            withUnsafePointer(to: &BlockEventKeys.ControlEventHandlers) {
+                (objc_getAssociatedObject(self, $0) as? [BarButtonItemEventHandler<Self>]) ?? []
+            }
+        }
+        set {
+            withUnsafePointer(to: &BlockEventKeys.ControlEventHandlers) {
+                objc_setAssociatedObject(self, $0, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            }
+        }
     }
 
     /// Set the event handler on this UIBarButtonItem without using selectors

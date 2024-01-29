@@ -90,10 +90,14 @@ private extension UICollectionView {
     ///
     var ghostHandler: GhostCollectionViewHandler? {
         get {
-            return objc_getAssociatedObject(self, &Keys.ghostHandler) as? GhostCollectionViewHandler
+            withUnsafePointer(to: &Keys.ghostHandler) {
+                objc_getAssociatedObject(self, $0) as? GhostCollectionViewHandler
+            }
         }
         set {
-            objc_setAssociatedObject(self, &Keys.ghostHandler, newValue, .OBJC_ASSOCIATION_RETAIN)
+            withUnsafePointer(to: &Keys.ghostHandler) {
+                objc_setAssociatedObject(self, $0, newValue, .OBJC_ASSOCIATION_RETAIN)
+            }
         }
     }
 
@@ -101,10 +105,14 @@ private extension UICollectionView {
     ///
     var initialDataSource: UICollectionViewDataSource? {
         get {
-            return objc_getAssociatedObject(self, &Keys.originalDataSource) as? UICollectionViewDataSource
+            withUnsafePointer(to: &Keys.originalDataSource) {
+                objc_getAssociatedObject(self, $0) as? UICollectionViewDataSource
+            }
         }
         set {
-            objc_setAssociatedObject(self, &Keys.originalDataSource, newValue, .OBJC_ASSOCIATION_RETAIN)
+            withUnsafePointer(to: &Keys.originalDataSource) {
+                objc_setAssociatedObject(self, $0, newValue, .OBJC_ASSOCIATION_RETAIN)
+            }
         }
     }
 
@@ -112,10 +120,14 @@ private extension UICollectionView {
     ///
     var initialDelegate: UICollectionViewDelegate? {
         get {
-            return objc_getAssociatedObject(self, &Keys.originalDelegate) as? UICollectionViewDelegate
+            withUnsafePointer(to: &Keys.originalDelegate) {
+                objc_getAssociatedObject(self, $0) as? UICollectionViewDelegate
+            }
         }
         set {
-            objc_setAssociatedObject(self, &Keys.originalDelegate, newValue, .OBJC_ASSOCIATION_RETAIN)
+            withUnsafePointer(to: &Keys.originalDelegate) {
+                objc_setAssociatedObject(self, $0, newValue, .OBJC_ASSOCIATION_RETAIN)
+            }
         }
     }
 
@@ -123,10 +135,14 @@ private extension UICollectionView {
     ///
     var initialAllowsSelection: Bool? {
         get {
-            return objc_getAssociatedObject(self, &Keys.originalAllowsSelection) as? Bool
+            withUnsafePointer(to: &Keys.originalAllowsSelection) {
+                objc_getAssociatedObject(self, $0) as? Bool
+            }
         }
         set {
-            objc_setAssociatedObject(self, &Keys.originalAllowsSelection, newValue, .OBJC_ASSOCIATION_RETAIN)
+            withUnsafePointer(to: &Keys.originalAllowsSelection) {
+                objc_setAssociatedObject(self, $0, newValue, .OBJC_ASSOCIATION_RETAIN)
+            }
         }
     }
 }

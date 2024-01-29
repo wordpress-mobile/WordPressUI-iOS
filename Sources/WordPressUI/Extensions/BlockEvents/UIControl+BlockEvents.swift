@@ -36,8 +36,16 @@ struct BlockEventKeys {
 // MARK: - Implementation
 public extension ControlEventBindable where Self: UIControl {
     private var controlEventHandlers: [ControlEventHandler<Self>] {
-        get { return (objc_getAssociatedObject(self, &BlockEventKeys.ControlEventHandlers) as? [ControlEventHandler<Self>]) ?? [] }
-        set { objc_setAssociatedObject(self, &BlockEventKeys.ControlEventHandlers, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+        get {
+            withUnsafePointer(to: &BlockEventKeys.ControlEventHandlers) {
+                (objc_getAssociatedObject(self, $0) as? [ControlEventHandler<Self>]) ?? []
+            }
+        }
+        set {
+            withUnsafePointer(to: &BlockEventKeys.ControlEventHandlers) {
+                objc_setAssociatedObject(self, $0, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            }
+        }
     }
 
     /// Listen for `UIControlEvents` executing the provided closure when triggered

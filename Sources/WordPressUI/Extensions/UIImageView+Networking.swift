@@ -152,10 +152,14 @@ public extension UIImageView {
     ///
     private var downloadTask: URLSessionDataTask? {
         get {
-            return objc_getAssociatedObject(self, &Downloader.taskKey) as? URLSessionDataTask
+            withUnsafePointer(to: &Downloader.taskKey) {
+                objc_getAssociatedObject(self, $0) as? URLSessionDataTask
+            }
         }
         set {
-            objc_setAssociatedObject(self, &Downloader.taskKey, newValue as AnyObject, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            withUnsafePointer(to: &Downloader.taskKey) {
+                objc_setAssociatedObject(self, $0, newValue as AnyObject, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            }
         }
     }
 

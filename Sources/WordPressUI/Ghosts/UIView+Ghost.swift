@@ -10,10 +10,14 @@ extension UIView {
     ///
     public var isGhostableDisabled: Bool {
         get {
-            return objc_getAssociatedObject(self, &Keys.isGhostable) as? Bool ?? false
+            withUnsafePointer(to: &Keys.isGhostable) {
+                objc_getAssociatedObject(self, $0) as? Bool ?? false
+            }
         }
         set {
-            objc_setAssociatedObject(self, &Keys.isGhostable, newValue, .OBJC_ASSOCIATION_RETAIN)
+            withUnsafePointer(to: &Keys.isGhostable) {
+                objc_setAssociatedObject(self, $0, newValue, .OBJC_ASSOCIATION_RETAIN)
+            }
         }
     }
 
