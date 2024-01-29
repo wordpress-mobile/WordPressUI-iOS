@@ -12,7 +12,7 @@ extension UIView {
         layoutIfNeeded()
 
         enumerateGhostableLeafViews { leafView in
-            guard leafView.containsGhostLayer == false && leafView.isPrivateUIKitInstance == false else {
+            guard leafView.containsGhostLayer == false else {
                 return
             }
 
@@ -66,7 +66,7 @@ private extension UIView {
     /// Enumerates all of the receiver's Leaf Views.
     ///
     func enumerateGhostableLeafViews(callback: (UIView) -> ()) {
-        guard !isGhostableDisabled else {
+        guard !isGhostableDisabled && !isPrivateUIKitInstance else {
             return
         }
 
