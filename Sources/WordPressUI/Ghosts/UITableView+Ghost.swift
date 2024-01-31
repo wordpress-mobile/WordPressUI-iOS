@@ -137,9 +137,9 @@ private extension UITableView {
 private extension UITableView {
 
     enum Keys {
-        static var ghostHandler = "ghostHandler"
-        static var originalDataSource = "originalDataSource"
-        static var originalDelegate = "originalDelegate"
-        static var originalAllowsSelection = "originalAllowsSelection"
+        static var ghostHandler = 0x1000
+        static var originalDataSource = 0x1001
+        static var originalDelegate = 0x1002
+        static var originalAllowsSelection = 0x1003
     }
 }

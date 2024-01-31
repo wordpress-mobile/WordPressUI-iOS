@@ -179,7 +179,7 @@ extension UIImageView {
     ///
     private struct Defaults {
         static let imageSize = 80
-        static var gravatarWrapperKey = "gravatarWrapperKey"
+        static var gravatarWrapperKey = 0x1000
         static let emailKey = "email"
         static let imageKey = "image"
     }
