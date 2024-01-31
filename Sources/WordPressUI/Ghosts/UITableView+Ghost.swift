@@ -90,14 +90,10 @@ private extension UITableView {
     ///
     var ghostHandler: GhostTableViewHandler? {
         get {
-            withUnsafePointer(to: &Keys.ghostHandler) {
-                objc_getAssociatedObject(self, $0) as? GhostTableViewHandler
-            }
+            return objc_getAssociatedObject(self, &Keys.ghostHandler) as? GhostTableViewHandler
         }
         set {
-            withUnsafePointer(to: &Keys.ghostHandler) {
-                objc_setAssociatedObject(self, $0, newValue, .OBJC_ASSOCIATION_RETAIN)
-            }
+            objc_setAssociatedObject(self, &Keys.ghostHandler, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
     }
 
@@ -105,14 +101,10 @@ private extension UITableView {
     ///
     var initialDataSource: UITableViewDataSource? {
         get {
-            withUnsafePointer(to: &Keys.originalDataSource) {
-                objc_getAssociatedObject(self, $0) as? UITableViewDataSource
-            }
+            return objc_getAssociatedObject(self, &Keys.originalDataSource) as? UITableViewDataSource
         }
         set {
-            withUnsafePointer(to: &Keys.originalDataSource) {
-                objc_setAssociatedObject(self, $0, newValue, .OBJC_ASSOCIATION_RETAIN)
-            }
+            objc_setAssociatedObject(self, &Keys.originalDataSource, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
     }
 
@@ -120,14 +112,10 @@ private extension UITableView {
     ///
     var initialDelegate: UITableViewDelegate? {
         get {
-            withUnsafePointer(to: &Keys.originalDelegate) {
-                objc_getAssociatedObject(self, $0) as? UITableViewDelegate
-            }
+            return objc_getAssociatedObject(self, &Keys.originalDelegate) as? UITableViewDelegate
         }
         set {
-            withUnsafePointer(to: &Keys.originalDelegate) {
-                objc_setAssociatedObject(self, $0, newValue, .OBJC_ASSOCIATION_RETAIN)
-            }
+            objc_setAssociatedObject(self, &Keys.originalDelegate, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
     }
 
@@ -135,14 +123,10 @@ private extension UITableView {
     ///
     var initialAllowsSelection: Bool? {
         get {
-            withUnsafePointer(to: &Keys.originalAllowsSelection) {
-                objc_getAssociatedObject(self, $0) as? Bool
-            }
+            return objc_getAssociatedObject(self, &Keys.originalAllowsSelection) as? Bool
         }
         set {
-            withUnsafePointer(to: &Keys.originalAllowsSelection) {
-                objc_setAssociatedObject(self, $0, newValue, .OBJC_ASSOCIATION_RETAIN)
-            }
+            objc_setAssociatedObject(self, &Keys.originalAllowsSelection, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
     }
 }
@@ -153,9 +137,9 @@ private extension UITableView {
 private extension UITableView {
 
     enum Keys {
-        static var ghostHandler = "ghostHandler"
-        static var originalDataSource = "originalDataSource"
-        static var originalDelegate = "originalDelegate"
-        static var originalAllowsSelection = "originalAllowsSelection"
+        static var ghostHandler = 0x1000
+        static var originalDataSource = 0x1001
+        static var originalDelegate = 0x1002
+        static var originalAllowsSelection = 0x1003
     }
 }

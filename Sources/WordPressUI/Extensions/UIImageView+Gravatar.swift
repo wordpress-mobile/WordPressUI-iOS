@@ -73,14 +73,10 @@ extension UIImageView {
     ///
     fileprivate var gravatarWrapper: GravatarNotificationWrapper? {
         get {
-            withUnsafePointer(to: &Defaults.gravatarWrapperKey) {
-                objc_getAssociatedObject(self, $0) as? GravatarNotificationWrapper
-            }
+            return objc_getAssociatedObject(self, &Defaults.gravatarWrapperKey) as? GravatarNotificationWrapper
         }
         set {
-            withUnsafePointer(to: &Defaults.gravatarWrapperKey) {
-                objc_setAssociatedObject(self, $0, newValue as AnyObject, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            }
+            objc_setAssociatedObject(self, &Defaults.gravatarWrapperKey, newValue as AnyObject, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 
@@ -183,7 +179,7 @@ extension UIImageView {
     ///
     private struct Defaults {
         static let imageSize = 80
-        static var gravatarWrapperKey = "gravatarWrapperKey"
+        static var gravatarWrapperKey = 0x1000
         static let emailKey = "email"
         static let imageKey = "image"
     }

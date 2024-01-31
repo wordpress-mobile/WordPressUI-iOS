@@ -152,14 +152,10 @@ public extension UIImageView {
     ///
     private var downloadTask: URLSessionDataTask? {
         get {
-            withUnsafePointer(to: &Downloader.taskKey) {
-                objc_getAssociatedObject(self, $0) as? URLSessionDataTask
-            }
+            return objc_getAssociatedObject(self, &Downloader.taskKey) as? URLSessionDataTask
         }
         set {
-            withUnsafePointer(to: &Downloader.taskKey) {
-                objc_setAssociatedObject(self, $0, newValue as AnyObject, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            }
+            objc_setAssociatedObject(self, &Downloader.taskKey, newValue as AnyObject, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 
@@ -168,11 +164,11 @@ public extension UIImageView {
     private struct Downloader {
         /// Key used to associate the current URL.
         ///
-        static var urlKey = "urlKey"
+        static var urlKey = 0x1000
 
         /// Key used to associate a Download task to the current instance.
         ///
-        static var taskKey = "downloadTaskKey"
+        static var taskKey = 0x1001
     }
 }
 

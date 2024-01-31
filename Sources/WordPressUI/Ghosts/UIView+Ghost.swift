@@ -10,14 +10,10 @@ extension UIView {
     ///
     public var isGhostableDisabled: Bool {
         get {
-            withUnsafePointer(to: &Keys.isGhostable) {
-                objc_getAssociatedObject(self, $0) as? Bool ?? false
-            }
+            return objc_getAssociatedObject(self, &Keys.isGhostable) as? Bool ?? false
         }
         set {
-            withUnsafePointer(to: &Keys.isGhostable) {
-                objc_setAssociatedObject(self, $0, newValue, .OBJC_ASSOCIATION_RETAIN)
-            }
+            objc_setAssociatedObject(self, &Keys.isGhostable, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
     }
 
@@ -52,6 +48,6 @@ extension UIView {
 private extension UIView {
 
     enum Keys {
-        static var isGhostable = "isGhostable"
+        static var isGhostable = 0x1000
     }
 }

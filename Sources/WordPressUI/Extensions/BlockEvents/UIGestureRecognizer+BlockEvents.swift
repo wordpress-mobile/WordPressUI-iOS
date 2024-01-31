@@ -23,16 +23,8 @@ extension UITapGestureRecognizer: ControlEventBindable {}
 
 extension ControlEventBindable where Self: UITapGestureRecognizer {
     private var controlEventHandlers: [UITapGestureRecognizerEventHandler<Self>] {
-        get {
-            withUnsafePointer(to: &BlockEventKeys.ControlEventHandlers) {
-                (objc_getAssociatedObject(self, $0) as? [UITapGestureRecognizerEventHandler<Self>]) ?? []
-            }
-        }
-        set {
-            withUnsafePointer(to: &BlockEventKeys.ControlEventHandlers) {
-                objc_setAssociatedObject(self, $0, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            }
-        }
+        get { return (objc_getAssociatedObject(self, &BlockEventKeys.ControlEventHandlers) as? [UITapGestureRecognizerEventHandler<Self>]) ?? [] }
+        set { objc_setAssociatedObject(self, &BlockEventKeys.ControlEventHandlers, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
     /// Set the event handler on this UITapGestureRecognizer without using selectors
