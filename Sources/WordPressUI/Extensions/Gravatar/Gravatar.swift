@@ -36,13 +36,16 @@ public enum GravatarDefaultImage: String {
     case identicon
 }
 
+internal enum GravatarDefaults {
+    static let imageSize = 80
+}
+
 public struct Gravatar {
     fileprivate struct Defaults {
         static let scheme = "https"
         static let host = "secure.gravatar.com"
         static let unknownHash = "ad516503a11cd5ca435acc9bb6523536"
         static let baseURL = "https://gravatar.com/avatar"
-        static let imageSize = 80
     }
 
     public let canonicalURL: URL
@@ -78,6 +81,7 @@ public struct Gravatar {
     ///
     /// - Returns: Gravatar's URL
     ///
+    @available(*, deprecated, message: "Use GravatarURL from Gravatar module instead.")
     public static func gravatarUrl(for email: String,
                                    defaultImage: GravatarDefaultImage? = nil,
                                    size: Int? = nil,
@@ -87,7 +91,7 @@ public struct Gravatar {
                                Defaults.baseURL,
                                hash,
                                defaultImage?.rawValue ?? GravatarDefaultImage.fileNotFound.rawValue,
-                               size ?? Defaults.imageSize,
+                               size ?? GravatarDefaults.imageSize,
                                rating.stringValue())
         return URL(string: targetURL)
     }
