@@ -164,11 +164,11 @@ public extension UIImageView {
     private struct Downloader {
         /// Key used to associate the current URL.
         ///
-        static var urlKey = "urlKey"
+        static var urlKey = 0x1000
 
         /// Key used to associate a Download task to the current instance.
         ///
-        static var taskKey = "downloadTaskKey"
+        static var taskKey = 0x1001
     }
 }
 

@@ -48,6 +48,6 @@ extension UIView {
 private extension UIView {
 
     enum Keys {
-        static var isGhostable = "isGhostable"
+        static var isGhostable = 0x1000
     }
 }

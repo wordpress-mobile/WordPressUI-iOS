@@ -48,6 +48,12 @@ _None._
 
 _None._
 
+## 1.15.1
+
+### Bug Fixes
+
+- For `UITableViewCell` whose background color is set by `backgroundConfiguration`, the cell now shows the ghost layers only for the content instead of the whole cell. [#138]
+
 ## 1.15.0
 
 ### New Features

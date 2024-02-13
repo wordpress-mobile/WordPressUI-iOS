@@ -30,7 +30,7 @@ public protocol ControlEventBindable: AnyObject { }
 extension UIControl: ControlEventBindable { }
 
 struct BlockEventKeys {
-    static var ControlEventHandlers = "_ControlEventHandlers"
+    static var ControlEventHandlers = 0x100
 }
 
 // MARK: - Implementation
