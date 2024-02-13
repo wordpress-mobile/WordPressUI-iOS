@@ -15,7 +15,8 @@ extension GravatarURL {
                            gravatarRating: GravatarRating? = nil,
                            defaultImageOption: DefaultImageOption? = nil) -> URL? {
         return GravatarURL.gravatarUrl(with: email,
-                                       // Passing GravatarDefaults.imageSize to keep the previous default.
+                                       // TODO: Passing GravatarDefaults.imageSize to keep the previous default.
+                                       // But ideally this should be passed explicitly.
                                        options: .init(preferredSize: preferredSize ?? .pixels(GravatarDefaults.imageSize),
                                                       gravatarRating: gravatarRating,
                                                       defaultImage: defaultImageOption))
