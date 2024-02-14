@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import Gravatar
 
 #if SWIFT_PACKAGE
 import WordPressUIObjC
@@ -79,6 +80,47 @@ extension UIImageView {
             objc_setAssociatedObject(self, &Defaults.gravatarWrapperKey, newValue as AnyObject, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
+    
+    /// Downloads the provided Gravatar.
+    ///
+    /// - Parameters:
+    ///     - gravatar: the user's Gravatar
+    ///     - placeholder: Image to be used as Placeholder
+    ///     - animate: enable/disable fade in animation
+    ///     - failure: Callback block to be invoked when an error occurs while fetching the Gravatar image
+    ///
+    public func downloadGravatar(_ gravatar: GravatarURL?, placeholder: UIImage, animate: Bool, failure: ((Error?) -> ())? = nil) {
+        guard let gravatar = gravatar else {
+            self.image = placeholder
+            return
+        }
+        
+        //TODO: Ideally use the Gravatar API to download the image.
+
+        // Starting with iOS 10, it seems `initWithCoder` uses a default size
+        // of 1000x1000, which was messing with our size calculations for gravatars
+        // on newly created table cells.
+        // Calling `layoutIfNeeded()` forces UIKit to calculate the actual size.
+        layoutIfNeeded()
+
+        let size = Int(ceil(frame.width * UIScreen.main.scale))
+        let url = gravatar.url(with: .init(preferredSize: .pixels(size)))
+
+        self.downloadImage(from: url,
+                           placeholderImage: placeholder,
+                           success: { image in
+                            guard image != self.image else {
+                                return
+                            }
+
+                            self.image = image
+                            if animate {
+                                self.fadeInAnimation()
+                            }
+        }, failure: { error in
+            failure?(error)
+        })
+    }
 
     /// Downloads the provided Gravatar.
     ///
@@ -88,6 +130,7 @@ extension UIImageView {
     ///     - animate: enable/disable fade in animation
     ///     - failure: Callback block to be invoked when an error occurs while fetching the Gravatar image
     ///
+    @available(*, deprecated, message: "Use downloadGravatar(_ gravatar: GravatarURL?, placeholder: UIImage, animate: Bool, failure: ((Error?) -> ())? = nil).")
     public func downloadGravatar(_ gravatar: Gravatar?, placeholder: UIImage, animate: Bool, failure: ((Error?) -> ())? = nil) {
         guard let gravatar = gravatar else {
             self.image = placeholder

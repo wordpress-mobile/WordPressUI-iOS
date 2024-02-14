@@ -3,6 +3,7 @@ import Foundation
 /// Helper Enum that specifies all of the available Gravatar Image Ratings
 /// TODO: Convert into a pure Swift String Enum. It's done this way to maintain ObjC Compatibility
 ///
+@available(*, deprecated, message: "Use `GravatarRating` from the Gravatar module.")
 @objc
 public enum GravatarRatings: Int {
     case g
@@ -30,29 +31,36 @@ public enum GravatarRatings: Int {
 /// Helper Enum that specifies some of the options for default images
 /// To see all available options, visit : https://en.gravatar.com/site/implement/images/
 ///
+@available(*, deprecated, message: "Use `DefaultImageOption` from the Gravatar module.")
 public enum GravatarDefaultImage: String {
     case fileNotFound = "404"
     case mp
     case identicon
 }
 
+internal enum GravatarDefaults {
+    static let imageSize = 80
+}
+
+@available(*, deprecated, message: "Use `GravatarURL` from the Gravatar module.")
 public struct Gravatar {
     fileprivate struct Defaults {
         static let scheme = "https"
         static let host = "secure.gravatar.com"
         static let unknownHash = "ad516503a11cd5ca435acc9bb6523536"
         static let baseURL = "https://gravatar.com/avatar"
-        static let imageSize = 80
     }
 
     public let canonicalURL: URL
 
+    @available(*, deprecated, message: "Use `GravatarURL.url(with:)` from the Gravatar module.")
     public func urlWithSize(_ size: Int, defaultImage: GravatarDefaultImage? = nil) -> URL {
         var components = URLComponents(url: canonicalURL, resolvingAgainstBaseURL: false)!
         components.query = "s=\(size)&d=\(defaultImage?.rawValue ?? GravatarDefaultImage.fileNotFound.rawValue)"
         return components.url!
     }
 
+    @available(*, deprecated, message: "Use `GravatarURL.isGravatarURL()` from the Gravatar module.")
     public static func isGravatarURL(_ url: URL) -> Bool {
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
             return false
@@ -78,6 +86,7 @@ public struct Gravatar {
     ///
     /// - Returns: Gravatar's URL
     ///
+    @available(*, deprecated, message: "Use `GravatarURL.url(for:preferredSize:gravatarRating:,defaultImageOption:)`.")
     public static func gravatarUrl(for email: String,
                                    defaultImage: GravatarDefaultImage? = nil,
                                    size: Int? = nil,
@@ -87,7 +96,7 @@ public struct Gravatar {
                                Defaults.baseURL,
                                hash,
                                defaultImage?.rawValue ?? GravatarDefaultImage.fileNotFound.rawValue,
-                               size ?? Defaults.imageSize,
+                               size ?? GravatarDefaults.imageSize,
                                rating.stringValue())
         return URL(string: targetURL)
     }
@@ -114,6 +123,7 @@ public func ==(lhs: Gravatar, rhs: Gravatar) -> Bool {
 }
 
 public extension Gravatar {
+    @available(*, deprecated, message: "Use `GravatarURL()` from the Gravatar module.")
     init?(_ url: URL) {
         guard Gravatar.isGravatarURL(url) else {
             return nil
