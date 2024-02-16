@@ -95,8 +95,6 @@ extension UIImageView {
             return
         }
         
-        //TODO: Ideally use the Gravatar API to download the image.
-
         // Starting with iOS 10, it seems `initWithCoder` uses a default size
         // of 1000x1000, which was messing with our size calculations for gravatars
         // on newly created table cells.
@@ -105,21 +103,20 @@ extension UIImageView {
 
         let size = Int(ceil(frame.width * UIScreen.main.scale))
         let url = gravatar.url(with: .init(preferredSize: .pixels(size)))
-
-        self.downloadImage(from: url,
-                           placeholderImage: placeholder,
-                           success: { image in
-                            guard image != self.image else {
-                                return
-                            }
-
-                            self.image = image
-                            if animate {
-                                self.fadeInAnimation()
-                            }
-        }, failure: { error in
-            failure?(error)
-        })
+        
+        let options: [GravatarImageSettingOption] = [.imageCache(ImageCache.shared)]
+        self.gravatar.setImage(with: url,
+                               placeholder: placeholder,
+                               options: options) { result in
+            switch result {
+            case .success:
+                if animate {
+                    self.fadeInAnimation()
+                }
+            case .failure(let error):
+                failure?(error)
+            }
+        }
     }
 
     /// Downloads the provided Gravatar.
