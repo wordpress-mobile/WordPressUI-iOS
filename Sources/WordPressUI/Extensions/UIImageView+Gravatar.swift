@@ -107,11 +107,11 @@ extension UIImageView {
         let options: [GravatarImageSettingOption] = [.imageCache(ImageCache.shared)]
         self.gravatar.setImage(with: url,
                                placeholder: placeholder,
-                               options: options) { result in
+                               options: options) { [weak self] result in
             switch result {
             case .success:
                 if animate {
-                    self.fadeInAnimation()
+                    self?.fadeInAnimation()
                 }
             case .failure(let error):
                 failure?(error)
