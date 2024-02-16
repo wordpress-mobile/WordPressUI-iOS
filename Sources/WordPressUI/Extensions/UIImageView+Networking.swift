@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import protocol Gravatar.GravatarImageCaching
 
 #if SWIFT_PACKAGE
 import WordPressUIObjC
@@ -172,7 +173,7 @@ public extension UIImageView {
     }
 }
 
-public protocol ImageCaching {
+public protocol ImageCaching: GravatarImageCaching {
     func setImage(_ image: UIImage, forKey key: String)
     func getImage(forKey key: String) -> UIImage?
 }
