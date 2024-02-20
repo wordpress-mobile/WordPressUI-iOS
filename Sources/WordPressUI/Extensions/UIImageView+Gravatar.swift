@@ -27,9 +27,8 @@ extension UIImageView {
     /// TODO: This is a convenience method. Please, remove once all of the code has been migrated over to Swift.
     ///
     /// - Parameters:
-    ///     - email: the user's email
-    ///     - gravatarRating: expected image rating
-    ///
+    ///   - email: The user's email
+    ///   - gravatarRating: Expected image rating
     @objc
     public func downloadGravatar(for email: String, gravatarRating: GravatarRating) {
         downloadGravatar(for: email, gravatarRating: gravatarRating, placeholderImage: .gravatarPlaceholderImage)
