@@ -28,8 +28,33 @@ extension UIImageView {
     ///
     /// - Parameters:
     ///     - email: the user's email
+    ///     - gravatarRating: expected image rating
+    ///
+    @objc
+    public func downloadGravatar(for email: String, gravatarRating: GravatarRating) {
+        downloadGravatar(for: email, gravatarRating: gravatarRating, placeholderImage: .gravatarPlaceholderImage)
+    }
+    
+    
+    /// Downloads and sets the User's Gravatar, given his email.
+    /// - Parameters:
+    ///   - email: The user's email
+    ///   - gravatarRating: Expected image rating
+    ///   - placeholderImage: Image to be used as Placeholder
+    public func downloadGravatar(for email: String, gravatarRating: GravatarRating = .g, placeholderImage: UIImage = .gravatarPlaceholderImage) {
+        let gravatarURL = GravatarURL.url(for: email, preferredSize: .pixels(gravatarDefaultSize()), gravatarRating: gravatarRating)
+        listenForGravatarChanges(forEmail: email)
+        downloadGravatar(fullURL: gravatarURL, placeholder: placeholderImage, animate: false, failure: nil)
+    }
+    
+    /// Downloads and sets the User's Gravatar, given his email.
+    /// TODO: This is a convenience method. Please, remove once all of the code has been migrated over to Swift.
+    ///
+    /// - Parameters:
+    ///     - email: the user's email
     ///     - rating: expected image rating
     ///
+    @available(*, deprecated, message: "Use downloadGravatar(for email: String, gravatarRating: GravatarRating)")
     @objc
     public func downloadGravatarWithEmail(_ email: String, rating: GravatarRatings) {
         downloadGravatarWithEmail(email, rating: rating, placeholderImage: .gravatarPlaceholderImage)
@@ -42,6 +67,7 @@ extension UIImageView {
     ///     - rating: expected image rating
     ///     - placeholderImage: Image to be used as Placeholder
     ///
+    @available(*, deprecated, message: "Use downloadGravatar(for email: String, gravatarRating: GravatarRating = .g, placeholderImage: UIImage = .gravatarPlaceholderImage)")
     @objc
     public func downloadGravatarWithEmail(_ email: String, rating: GravatarRatings = .default, placeholderImage: UIImage = .gravatarPlaceholderImage) {
         let gravatarURL = Gravatar.gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating)
@@ -103,9 +129,13 @@ extension UIImageView {
 
         let size = Int(ceil(frame.width * UIScreen.main.scale))
         let url = gravatar.url(with: .init(preferredSize: .pixels(size)))
-        
+        downloadGravatar(fullURL: url, placeholder: placeholder, animate: animate, failure: failure)
+    }
+
+    private func downloadGravatar(fullURL: URL?, placeholder: UIImage, animate: Bool, failure: ((Error?) -> ())? = nil) {
+        self.gravatar.cancelImageDownload()
         let options: [GravatarImageSettingOption] = [.imageCache(ImageCache.shared)]
-        self.gravatar.setImage(with: url,
+        self.gravatar.setImage(with: fullURL,
                                placeholder: placeholder,
                                options: options) { [weak self] result in
             switch result {
