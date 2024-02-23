@@ -30,4 +30,3 @@ only_rules:
   - vertical_whitespace
   - void_return
   - weak_delegate
-  
