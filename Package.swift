@@ -10,22 +10,30 @@ let package = Package(
             name: "WordPressUI",
             targets: [
                 "WordPressUIObjC",
-                "WordPressUI",
+                "WordPressUI"
             ]
         )
     ],
-    dependencies: [],
+    dependencies: [
+        .package(url: "https://github.com/realm/SwiftLint", from: "0.54.0")
+    ],
     targets: [
         .target(name: "WordPressUIObjC"),
         .target(
             name: "WordPressUI",
             dependencies: [
-                .target(name: "WordPressUIObjC"),
+                .target(name: "WordPressUIObjC")
+            ],
+            plugins: [
+                 .plugin(name: "SwiftLintPlugin", package: "SwiftLint")
             ]
         ),
         .testTarget(
             name: "WordPressUITests",
-            dependencies: [.target(name: "WordPressUI")]
-        ),
+            dependencies: [.target(name: "WordPressUI")],
+            plugins: [
+                 .plugin(name: "SwiftLintPlugin", package: "SwiftLint")
+            ]
+        )
     ]
 )
