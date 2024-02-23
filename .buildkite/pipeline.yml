@@ -29,6 +29,15 @@ steps:
   #################
   # Lint
   #################
+  - label: ":swift: SwiftLint"
+    command: run_swiftlint --strict
+    plugins: *common_plugins
+    notify:
+      - github_commit_status:
+          context: "SwiftLint"
+    agents:
+      queue: "default"
+
   - label: "🧹 Lint"
     key: "lint"
     command: |
