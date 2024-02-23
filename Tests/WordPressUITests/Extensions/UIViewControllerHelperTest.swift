@@ -1,11 +1,9 @@
 import XCTest
 @testable import WordPressUI
 
-
 class UIViewControllerHelperTest: XCTestCase {
     let vca = UIViewController()
     let vcb = UIViewController()
-
 
     func testAddChildViewController() {
         vca.add(vcb)

@@ -36,7 +36,7 @@ class KeyboardAnimationsExampleViewController: UIViewController {
         }
 
         let willHideObserver = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { (notification) in
-            UIView.animate(withKeyboard: notification) { (beginFrame, endFrame) in
+            UIView.animate(withKeyboard: notification) { (_, _) in
                 self.bottomConstraintForAnimation.constant = 20
                 self.view.setNeedsLayout()
                 self.view.layoutIfNeeded()

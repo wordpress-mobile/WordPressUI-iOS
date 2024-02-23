@@ -230,7 +230,6 @@ public class DrawerPresentationController: FancyAlertPresentationController {
         configureScrollViewInsets()
     }
 
-
     // MARK: - Internal Positions
     // Helpers to calculate the Y positions for the drawer positions
 
@@ -306,10 +305,10 @@ public class DrawerPresentationController: FancyAlertPresentationController {
         addGestures()
         observe(scrollView: presentableViewController?.scrollableView)
     }
-    
+
     /// Represents whether the view is animating to a new position
     private var isPresentedViewAnimating = false
-    
+
     /// Whether or not the presented view is anchored to the top of the screen
     private var isPresentedViewAnchored: Bool {
         if !isPresentedViewAnimating
@@ -321,14 +320,14 @@ public class DrawerPresentationController: FancyAlertPresentationController {
     }
 
     private var dragStartPoint: CGPoint?
-    
+
     /// Stores the current `contentOffset.y` for `presentableViewController.scrollableView`
     /// See `haltScrolling` and `trackScrolling` for more information.
     private var scrollViewYOffset: CGFloat = 0.0
-        
+
     /// An observer of the content offset for `presentableViewController.scrollableView`
     private var scrollObserver: NSKeyValueObservation?
-    
+
     deinit {
         scrollObserver?.invalidate()
     }
@@ -336,7 +335,7 @@ public class DrawerPresentationController: FancyAlertPresentationController {
 
 // MARK: - Dragging
 private extension DrawerPresentationController {
-    
+
     private func addGestures() {
         guard
             let presentedView = self.presentedView,
@@ -362,11 +361,11 @@ private extension DrawerPresentationController {
 
     @objc func pan(_ gesture: UIPanGestureRecognizer) {
         guard let presentedView = self.presentedView else { return }
-        
+
         let isScrolling = presentableViewController?.scrollableView?.isScrolling == true
-        
+
         guard (presentableViewController?.scrollableView?.contentOffset.y ?? 0) <= 0 || isScrolling == false else { return }
-        
+
         /// Ignore the animation once panning begins so we can immediately interact
         isPresentedViewAnimating = false
 
@@ -381,7 +380,7 @@ private extension DrawerPresentationController {
         case .changed:
             let startY = dragStartPoint?.y ?? 0
             var yTranslation = translation.y
-            
+
             /// Slows the deceleration rate
             if isScrolling && presentedView.frame.origin.y < expandedYPosition {
                 yTranslation /= 2.0
@@ -405,17 +404,17 @@ private extension DrawerPresentationController {
                 /// During scrolling, ensure yPosition doesn't extend past the expanded position
                 yPosition = max(yPosition, expandedYPosition)
             }
-            
+
             let newMargin = max(yPosition, maxY)
             setTopMargin(newMargin, animated: false)
 
         case .ended:
             /// Helper closure to prevent user transition/dismiss
-            let transition: (DrawerPosition) -> () = { pos in
+            let transition: (DrawerPosition) -> Void = { pos in
                 if allowsUserTransition || pos == .closed && allowDragToDismiss {
                     self.transition(to: pos)
                 } else {
-                    //Reset to the original position
+                    // Reset to the original position
                     self.transition(to: self.currentPosition)
                 }
             }
@@ -428,11 +427,10 @@ private extension DrawerPresentationController {
 
             // Determine how to handle flicking of the view
             if (abs(velocity) - Constants.flickVelocity) > 0 {
-                //Flick up
+                // Flick up
                 if velocity < 0 {
                     transition(.expanded)
-                }
-                else {
+                } else {
                     if position == .expanded {
                         transition(.collapsed)
                     } else {
@@ -455,7 +453,7 @@ private extension DrawerPresentationController {
 
 // MARK: - Scrolling
 private extension DrawerPresentationController {
-    
+
     /// Adds an observer for the scroll view's content offset.
     /// Track scrolling without overriding the `scrollView` delegate
     /// - Parameter scrollView: The scroll view whose content offset will be tracked.
@@ -470,13 +468,13 @@ private extension DrawerPresentationController {
             self?.didPan(on: scrollView, change: change)
         }
     }
-    
+
     /// Handles scroll view content offset changes
     /// - Parameters:
     ///   - scrollView: The scroll view whose content offset is changing.
     ///   - change: The change representing the old and new content offsets.
     func didPan(on scrollView: UIScrollView, change: NSKeyValueObservedChange<CGPoint>) {
-        
+
         guard
             !presentedViewController.isBeingDismissed,
             !presentedViewController.isBeingPresented
@@ -502,7 +500,7 @@ private extension DrawerPresentationController {
             trackScrolling(scrollView)
         }
     }
-    
+
     /// Stops scrolling behavior on `scrollView` and anchors to `scrollViewYOffset`.
     /// - Parameter scrollView: The scroll view to stop and anchor anchor
     private func haltScrolling(_ scrollView: UIScrollView) {
@@ -514,7 +512,7 @@ private extension DrawerPresentationController {
         scrollView.setContentOffset(CGPoint(x: 0, y: scrollViewYOffset), animated: false)
         scrollView.showsVerticalScrollIndicator = false
     }
-    
+
     /// Tracks and saves the y offset of `scrollView` in `scrollViewYOffset`.
     /// Used later by `haltScrolling` to adjust the scroll view to `scrollViewYOffset` to give the appearance of the sticking position.
     /// - Parameter scrollView: The scroll view to track.
@@ -533,9 +531,9 @@ private extension UIScrollView {
 
 extension DrawerPresentationController: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        
+
         guard tapGestureRecognizer == gestureRecognizer else { return true }
-        
+
         /// Shouldn't happen; should always have container & presented view when tapped
         guard
             let containerView = containerView,
@@ -551,11 +549,11 @@ extension DrawerPresentationController: UIGestureRecognizerDelegate {
         /// Do not accept the touch if inside of the presented view
         return (gestureRecognizer == tapGestureRecognizer) && isInPresentedView == false
     }
-    
+
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
     }
-    
+
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return otherGestureRecognizer.view == presentableViewController?.scrollableView
     }
@@ -570,7 +568,6 @@ private extension DrawerPresentationController {
             let presentedView = self.presentedView,
             let presentingView = presentingViewController.view
             else { return }
-
 
         let bottom = presentingView.safeAreaInsets.bottom
         let margin = presentedView.frame.origin.y + bottom
@@ -645,7 +642,7 @@ private extension DrawerPresentationController {
                        usingSpringWithDamping: 0.8,
                        initialSpringVelocity: 0,
                        options: [.curveEaseInOut, .allowUserInteraction],
-                       animations: animations) { [weak self] completed in
+                       animations: animations) { [weak self] _ in
             self?.isPresentedViewAnimating = false
         }
     }

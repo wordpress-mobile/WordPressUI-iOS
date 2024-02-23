@@ -1,7 +1,6 @@
 import Foundation
 import UIKit
 
-
 // MARK: - FancyAlertView
 //
 open class FancyAlertView: UIView {
@@ -43,13 +42,12 @@ open class FancyAlertView: UIView {
     @IBOutlet weak var buttonStackView: UIStackView!
     @IBOutlet weak var buttonWrapperView: UIView!
     @IBOutlet weak var buttonWrapperViewTopConstraint: NSLayoutConstraint?
-    
+
     /// Switch
     ///
     @IBOutlet weak var bottomSwitch: UISwitch!
     @IBOutlet weak var bottomSwitchLabel: UILabel!
     @IBOutlet weak var bottomSwitchStackView: UIStackView!
-    
 
     /// Wraps the entire view to give it a background and rounded corners
     ///
@@ -150,7 +148,7 @@ open class FancyAlertView: UIView {
             cancelButton.titleLabel?.font = newValue
         }
     }
-    
+
     /// MoreInfo: Font
     ///
     @objc public dynamic var infoFont: UIFont? {
@@ -195,7 +193,6 @@ open class FancyAlertView: UIView {
             buttonWrapperView.backgroundColor = newValue
         }
     }
-
 
     /// Switches the button ButtonStackView's layout, if needed.
     ///

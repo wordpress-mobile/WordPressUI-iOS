@@ -38,4 +38,3 @@ extension ControlEventBindable where Self: UIBarButtonItem {
         self.controlEventHandlers.append(handler)
     }
 }
-

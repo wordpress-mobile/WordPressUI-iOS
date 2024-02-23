@@ -2,7 +2,6 @@ import Foundation
 import QuartzCore
 import UIKit
 
-
 /// GhostLayer: Can be inserted into a UIView instance, and reacts to its resize events.
 ///
 class GhostLayer: CALayer {
@@ -10,7 +9,6 @@ class GhostLayer: CALayer {
     /// KVO Reference Token
     ///
     private var observerToken: NSKeyValueObservation?
-
 
     /// Required Initializer
     ///
@@ -31,7 +29,6 @@ class GhostLayer: CALayer {
         anchorPoint = .zero
     }
 
-
     /// Inserts the receiver into the target view's Layer Hierarchy.
     ///
     func insert(into view: UIView) {
@@ -47,7 +44,6 @@ class GhostLayer: CALayer {
     }
 }
 
-
 /// Private Methods
 ///
 private extension GhostLayer {
@@ -60,7 +56,6 @@ private extension GhostLayer {
         }
     }
 }
-
 
 /// Animations API
 ///

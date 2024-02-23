@@ -1,6 +1,5 @@
 import Foundation
 
-
 // MARK: - CGAffineTransform Helpers
 //
 extension CGAffineTransform {

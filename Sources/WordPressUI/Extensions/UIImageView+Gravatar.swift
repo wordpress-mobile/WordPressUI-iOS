@@ -88,7 +88,7 @@ extension UIImageView {
     ///     - animate: enable/disable fade in animation
     ///     - failure: Callback block to be invoked when an error occurs while fetching the Gravatar image
     ///
-    public func downloadGravatar(_ gravatar: Gravatar?, placeholder: UIImage, animate: Bool, failure: ((Error?) -> ())? = nil) {
+    public func downloadGravatar(_ gravatar: Gravatar?, placeholder: UIImage, animate: Bool, failure: ((Error?) -> Void)? = nil) {
         guard let gravatar = gravatar else {
             self.image = placeholder
             return
@@ -118,7 +118,6 @@ extension UIImageView {
             failure?(error)
         })
     }
-
 
     /// Sets an Image Override in both, AFNetworking's Private Cache + NSURLCache
     ///
@@ -160,7 +159,6 @@ extension UIImageView {
         }
         NotificationCenter.default.post(name: .GravatarImageUpdateNotification, object: self, userInfo: [Defaults.emailKey: email, Defaults.imageKey: image])
     }
-
 
     // MARK: - Private Helpers
 

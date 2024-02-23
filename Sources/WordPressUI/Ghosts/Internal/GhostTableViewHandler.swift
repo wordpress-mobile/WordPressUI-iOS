@@ -1,7 +1,6 @@
 import Foundation
 import UIKit
 
-
 /// GhostTableViewHandler: Encapsulates all of the methods required to setup a "Ghost UICollectionView".
 ///
 class GhostTableViewHandler: NSObject {
@@ -14,7 +13,6 @@ class GhostTableViewHandler: NSObject {
     ///
     let style: GhostStyle
 
-
     /// Designated Initializer
     ///
     init(options: GhostOptions, style: GhostStyle) {
@@ -22,7 +20,6 @@ class GhostTableViewHandler: NSObject {
         self.style = style
     }
 }
-
 
 /// GhostTableViewHandler: DataSource Methods
 ///
@@ -47,7 +44,6 @@ extension GhostTableViewHandler: UITableViewDataSource {
         return cell
     }
 }
-
 
 /// GhostTableViewHandler: Delegate Methods
 ///

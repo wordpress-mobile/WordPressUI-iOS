@@ -1,7 +1,6 @@
 import Foundation
 import UIKit
 
-
 // MARK: - Ghost Animations API
 //
 extension UIView {

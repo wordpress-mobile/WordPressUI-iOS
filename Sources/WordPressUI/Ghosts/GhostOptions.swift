@@ -1,7 +1,6 @@
 import Foundation
 import UIKit
 
-
 // MARK: - GhostOptions: Content Options.
 //
 public struct GhostOptions {
@@ -17,7 +16,6 @@ public struct GhostOptions {
     /// Indicates if an Emtpy SectionHeader should be rendered (for placeholder purposes).
     ///
     let displaysSectionHeader: Bool
-
 
     /// Designated Initializer
     ///

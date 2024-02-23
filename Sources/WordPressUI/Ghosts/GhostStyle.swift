@@ -1,7 +1,6 @@
 import Foundation
 import UIKit
 
-
 // MARK: - GhostStyle: Ghost Animation Preferences.
 //
 public struct GhostStyle {
@@ -26,14 +25,12 @@ public struct GhostStyle {
     ///
     public init(beatDuration: TimeInterval = Defaults.beatDuration,
                 beatStartColor: UIColor = Defaults.beatStartColor,
-                beatEndColor: UIColor = Defaults.beatEndColor)
-    {
+                beatEndColor: UIColor = Defaults.beatEndColor) {
         self.beatDuration = beatDuration
         self.beatStartColor = beatStartColor
         self.beatEndColor = beatEndColor
     }
 }
-
 
 // MARK: - Nested Types
 //
