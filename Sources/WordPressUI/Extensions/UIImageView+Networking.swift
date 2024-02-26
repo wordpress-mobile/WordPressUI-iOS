@@ -1,6 +1,6 @@
 import Foundation
 import UIKit
-import protocol Gravatar.ImageCaching
+@_exported import protocol Gravatar.ImageCaching
 
 #if SWIFT_PACKAGE
 import WordPressUIObjC
