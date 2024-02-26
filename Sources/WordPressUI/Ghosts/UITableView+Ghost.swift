@@ -1,7 +1,6 @@
 import Foundation
 import UIKit
 
-
 // MARK: - Skeleton UITableView Methods
 //
 extension UITableView {
@@ -41,7 +40,6 @@ extension UITableView {
     }
 }
 
-
 // MARK: - Private Methods
 //
 private extension UITableView {
@@ -80,7 +78,6 @@ private extension UITableView {
         initialAllowsSelection = nil
     }
 }
-
 
 // MARK: - Private "Associated" Properties
 //
@@ -130,7 +127,6 @@ private extension UITableView {
         }
     }
 }
-
 
 // MARK: - Nested Types
 //

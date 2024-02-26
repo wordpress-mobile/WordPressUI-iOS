@@ -37,7 +37,7 @@ public extension UIImageView {
     ///     -   success: Closure to be executed on success.
     ///     -   failure: Closure to be executed upon failure.
     ///
-    @objc func downloadImage(from url: URL?, placeholderImage: UIImage? = nil, success: ((UIImage) -> ())? = nil, failure: ((Error?) -> ())? = nil) {
+    @objc func downloadImage(from url: URL?, placeholderImage: UIImage? = nil, success: ((UIImage) -> Void)? = nil, failure: ((Error?) -> Void)? = nil) {
         // Ideally speaking, this method should *not* receive an Optional URL. But we're doing so, for convenience.
         // If the actual URL was nil, at least we set the Placeholder Image. Capicci?
         guard let url = url else {
@@ -62,10 +62,10 @@ public extension UIImageView {
     ///     -   success: Closure to be executed on success.
     ///     -   failure: Closure to be executed upon failure.
     ///
-    @objc func downloadImage(usingRequest request: URLRequest, placeholderImage: UIImage? = nil, success: ((UIImage) -> ())? = nil, failure: ((Error?) -> ())? = nil) {
+    @objc func downloadImage(usingRequest request: URLRequest, placeholderImage: UIImage? = nil, success: ((UIImage) -> Void)? = nil, failure: ((Error?) -> Void)? = nil) {
         cancelImageDownload()
 
-        let handleSuccess = { [weak self] (image: UIImage, url: URL) in
+        let handleSuccess = { [weak self] (image: UIImage, _: URL) in
             self?.image = image
             success?(image)
         }
@@ -115,7 +115,6 @@ public extension UIImageView {
         task.resume()
     }
 
-
     /// Overrides the cached UIImage, for a given URL. This is useful for whenever we've just updated a remote resource,
     /// and we need to prevent returning the (old) cached entry.
     ///
@@ -146,7 +145,6 @@ public extension UIImageView {
 
         return request
     }
-
 
     /// Stores the current DataTask, in charge of downloading the remote Image.
     ///

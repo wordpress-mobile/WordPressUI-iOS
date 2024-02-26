@@ -38,7 +38,7 @@ public class BottomSheetAnimationController: NSObject, UIViewControllerAnimatedT
             }
         }
 
-        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: animationBlock, completion: { finished in
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: animationBlock, completion: { _ in
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         })
     }

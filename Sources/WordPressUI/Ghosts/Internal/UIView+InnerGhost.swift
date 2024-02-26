@@ -1,7 +1,6 @@
 import Foundation
 import UIKit
 
-
 /// UIView: Skeletonizer Public API
 ///
 extension UIView {
@@ -44,7 +43,6 @@ extension UIView {
     }
 }
 
-
 /// Private Methods
 ///
 private extension UIView {
@@ -65,7 +63,7 @@ private extension UIView {
 
     /// Enumerates all of the receiver's Leaf Views.
     ///
-    func enumerateGhostableLeafViews(callback: (UIView) -> ()) {
+    func enumerateGhostableLeafViews(callback: (UIView) -> Void) {
         guard !isGhostableDisabled && !isPrivateUIKitInstance else {
             return
         }

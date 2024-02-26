@@ -168,7 +168,7 @@ extension UIView {
             animations(beginFrame, endFrame)
         }, completion: nil)
     }
-       
+
     /// Private Constants
     ///
     private struct Animations {

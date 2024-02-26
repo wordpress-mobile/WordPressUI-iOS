@@ -34,7 +34,7 @@ open class FlingableViewHandler: NSObject {
     fileprivate var panGestureRecognizer: UIPanGestureRecognizer!
 
     // Used to restore the target view to its original position if the gesture is cancelled
-    fileprivate var initialCenter: CGPoint? = nil
+    fileprivate var initialCenter: CGPoint?
 
     /// - parameter targetView: The view that can be flung.
     @objc public init(targetView: UIView) {
@@ -66,12 +66,10 @@ open class FlingableViewHandler: NSObject {
 
             attachmentBehavior = makeAttachmentBehaviorForRecognizer(recognizer, inView: view)
             animator.addBehavior(attachmentBehavior)
-            break
-        case .changed:
+            case .changed:
             let anchor = recognizer.location(ofTouch: 0, in: referenceView)
             attachmentBehavior.anchorPoint = anchor
-            break
-        case .ended, .cancelled:
+            case .ended, .cancelled:
             animator.removeAllBehaviors()
 
             let magnitude = recognizer.magnitudeInView(referenceView)
@@ -85,7 +83,6 @@ open class FlingableViewHandler: NSObject {
 
             let pushBehavior = makePushBehaviorForRecognizer(recognizer, inView: view)
             animator.addBehavior(pushBehavior)
-            break
         default:
             break
         }

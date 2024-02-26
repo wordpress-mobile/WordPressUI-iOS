@@ -1,7 +1,6 @@
 import Foundation
 import UIKit
 
-
 // MARK: - FancyButton
 //
 open class FancyButton: UIButton {
@@ -13,7 +12,7 @@ open class FancyButton: UIButton {
             configureBackgrounds()
         }
     }
-    @objc public dynamic var primaryNormalBorderColor: UIColor? = nil {
+    @objc public dynamic var primaryNormalBorderColor: UIColor? {
         didSet {
             configureBackgrounds()
         }
@@ -26,7 +25,7 @@ open class FancyButton: UIButton {
             configureBackgrounds()
         }
     }
-    @objc public dynamic var primaryHighlightBorderColor: UIColor? = nil {
+    @objc public dynamic var primaryHighlightBorderColor: UIColor? {
         didSet {
             configureBackgrounds()
         }
@@ -108,7 +107,6 @@ open class FancyButton: UIButton {
         }
     }
 
-
     // MARK: - LifeCycle Methods
 
     open override func didMoveToWindow() {
@@ -120,7 +118,7 @@ open class FancyButton: UIButton {
         super.awakeFromNib()
         configureAppearance()
     }
-    
+
     open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         configureBackgrounds()
@@ -204,7 +202,6 @@ open class FancyButton: UIButton {
         titleLabel?.textAlignment = .center
     }
 }
-
 
 // MARK: - Nested Types
 //

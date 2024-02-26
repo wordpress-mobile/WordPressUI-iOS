@@ -9,7 +9,7 @@ class UITableViewGhostTests: XCTestCase {
         tableView.displayGhostContent(options: GhostOptions(reuseIdentifier: "ghost", rowsPerSection: [1]), style: .default)
 
         tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0))
-        
+
         XCTAssertTrue(GhostMockCell.willStartGhostAnimationCalled)
     }
 

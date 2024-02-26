@@ -1,0 +1,32 @@
+swiftlint_version: 0.54.0
+
+excluded:
+  - DerivedData
+  - fastlane
+  - vendor
+
+# Rules – Opt-in only, so we can progressively introduce new ones
+#
+only_rules:
+  - colon
+  - comma
+  - comment_spacing
+  - control_statement
+  - discarded_notification_center_observer
+  - duplicate_imports
+  - empty_enum_arguments
+  - empty_parameters
+  - mark
+  - opening_brace
+  - overridden_super_call
+  - redundant_optional_initialization
+  - statement_position
+  - trailing_comma
+  - trailing_newline
+  - trailing_semicolon
+  - trailing_whitespace
+  - unneeded_break_in_switch
+  - unused_closure_parameter
+  - vertical_whitespace
+  - void_return
+  - weak_delegate

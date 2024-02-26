@@ -31,7 +31,7 @@ extension UIView {
             leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: -insets.left),
             trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: insets.right),
             topAnchor.constraint(equalTo: subview.topAnchor, constant: -insets.top),
-            bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: insets.bottom),
+            bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: insets.bottom)
             ])
     }
 
@@ -40,7 +40,7 @@ extension UIView {
             layoutMarginsGuide.leadingAnchor.constraint(equalTo: subview.leadingAnchor),
             layoutMarginsGuide.trailingAnchor.constraint(equalTo: subview.trailingAnchor),
             layoutMarginsGuide.topAnchor.constraint(equalTo: subview.topAnchor),
-            layoutMarginsGuide.bottomAnchor.constraint(equalTo: subview.bottomAnchor),
+            layoutMarginsGuide.bottomAnchor.constraint(equalTo: subview.bottomAnchor)
             ])
     }
 
@@ -63,7 +63,7 @@ extension UIView {
                 safeAreaLayoutGuide.leadingAnchor.constraint(equalTo: subview.leadingAnchor, constant: -insets.left),
                 safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: insets.right),
                 safeAreaLayoutGuide.topAnchor.constraint(equalTo: subview.topAnchor, constant: -insets.top),
-                safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: insets.bottom),
+                safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: subview.bottomAnchor, constant: insets.bottom)
                 ])
         }
     }

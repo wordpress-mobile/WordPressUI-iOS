@@ -20,13 +20,11 @@ public extension UIImageView {
         downloadResizedImage(from: updatedURL, pointSize: size)
     }
 
-
     /// Returns the desired Blavatar Side-Size, in pixels
     ///
     private var blavatarSize: Int {
         return blavatarSizeInPoints * Int(mainScreenScale)
     }
-
 
     /// Returns the desired Blavatar Side-Size, in points
     ///
@@ -40,13 +38,11 @@ public extension UIImageView {
         return Int(size)
     }
 
-
     /// Returns the Main Screen Scale
     ///
     private var mainScreenScale: CGFloat {
         return UIScreen.main.scale
     }
-
 
     /// Private helper structure
     ///

@@ -2,7 +2,6 @@ import Foundation
 import QuartzCore
 import UIKit
 
-
 /// GhostAnimation: Animates a CALayer with a "Beating" animation, that interpolates from Color A to Color B.
 ///
 class GhostAnimation: CABasicAnimation {
@@ -10,7 +9,6 @@ class GhostAnimation: CABasicAnimation {
     /// Default Animation Key
     ///
     static let defaultKey = "SkeletonAnimationKey"
-
 
     /// Designated Initializer
     ///

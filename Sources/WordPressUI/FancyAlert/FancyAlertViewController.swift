@@ -31,30 +31,30 @@ open class FancyAlertViewController: UIViewController {
         public typealias ButtonConfig = (title: String, handler: FancyAlertButtonHandler?)
 
         public struct SwitchConfig {
-            
+
             /// Closure representing the action of pressing the switch.
             ///
             /// - Parameters:
             ///     - controller: the fancy alert VC.
             ///     - theSwitch: the switch that received the tap.
             ///
-            public typealias Action = (_ controller: FancyAlertViewController, _ theSwitch: UISwitch) -> ()
+            public typealias Action = (_ controller: FancyAlertViewController, _ theSwitch: UISwitch) -> Void
             public typealias OptionalAction = Action?
-            
+
             /// The initial value for the switch
             let initialValue: Bool
-            
+
             /// The text shown next to the switch.
             let text: String
-            
+
             /// Action closure executed each time the switch is activated
             let action: Action?
-            
+
             /// Default initializer
             public init(initialValue: Bool,
                         text: String,
                         action: Action? = nil) {
-                
+
                 self.initialValue = initialValue
                 self.text = text
                 self.action = action
@@ -90,7 +90,7 @@ open class FancyAlertViewController: UIViewController {
 
         /// Title handler for a small 'tag' style button displayed next to the title
         let titleAccessoryButton: ButtonConfig?
-        
+
         /// Configuration for the switch at the bottom of the alert.
         let switchConfig: SwitchConfig?
 
@@ -131,7 +131,6 @@ open class FancyAlertViewController: UIViewController {
             self.dismissAction = dismissAction
         }
     }
-
 
     // MARK: - Constants
 
@@ -174,8 +173,6 @@ open class FancyAlertViewController: UIViewController {
     /// FancyAlertView Reference
     ///
     @IBOutlet private weak var alertView: FancyAlertView!
-
-
 
     /// The configuration determines the content and visibility of all UI
     /// components in the dialog. Changing this value after presenting the
@@ -245,7 +242,7 @@ open class FancyAlertViewController: UIViewController {
         alertView.updateButtonLayout()
     }
 
-    /// MARK: - View configuration
+    // MARK: - View configuration
 
     private func updateViewConfiguration() {
         guard isViewLoaded else { return }
@@ -362,15 +359,15 @@ open class FancyAlertViewController: UIViewController {
         button.setTitle(buttonConfig.title, for: .normal)
         buttonHandlers[button] = buttonConfig.handler
     }
-    
+
     private func updateBottomSwitch(with config: Config.SwitchConfig?) {
         guard let config = config else {
             alertView.bottomSwitchStackView.isHiddenInStackView = true
             return
         }
-        
+
         alertView.bottomSwitchStackView.isHiddenInStackView = false
-        
+
         alertView.bottomSwitch.setOn(config.initialValue, animated: false)
         alertView.bottomSwitch.on(.touchUpInside) { [unowned self] theSwitch in
             config.action?(self, theSwitch)
@@ -401,9 +398,9 @@ open class FancyAlertViewController: UIViewController {
     private var isImageCompact: Bool {
         return configuration?.dividerPosition == .top || isButtonless
     }
-    
+
     // MARK: - Bottom Switch
-    
+
     public func isBottomSwitchOn() -> Bool {
         return alertView.bottomSwitch.isOn
     }

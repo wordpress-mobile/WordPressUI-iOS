@@ -16,13 +16,13 @@ extension UIViewController {
     public func remove(_ child: UIViewController) {
         child.remove()
     }
-    
+
     /// Remove the child view controller
     public func remove() {
         guard parent != nil else {
             return
         }
-        
+
         willMove(toParent: nil)
         removeFromParent()
         view.removeFromSuperview()

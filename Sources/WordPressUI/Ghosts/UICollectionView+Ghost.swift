@@ -1,7 +1,6 @@
 import Foundation
 import UIKit
 
-
 // MARK: - Skeleton UICollectionView Methods
 //
 extension UICollectionView {
@@ -41,7 +40,6 @@ extension UICollectionView {
     }
 }
 
-
 // MARK: - Private Methods
 //
 private extension UICollectionView {
@@ -80,7 +78,6 @@ private extension UICollectionView {
         initialAllowsSelection = nil
     }
 }
-
 
 // MARK: - Private "Associated" Properties
 //
@@ -130,7 +127,6 @@ private extension UICollectionView {
         }
     }
 }
-
 
 // MARK: - Nested Types
 //

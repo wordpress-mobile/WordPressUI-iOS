@@ -1,6 +1,5 @@
 import Foundation
 
-
 // MARK: UIKit Constants
 //
 public class UIKitConstants {

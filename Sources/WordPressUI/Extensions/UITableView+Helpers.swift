@@ -74,7 +74,6 @@ extension UITableView {
 
     public static let defaultFlashLength: TimeInterval = 0.7
 
-
     /// Returns true if the table view does not have any rows
     ///
     @objc public var isEmpty: Bool {
