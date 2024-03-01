@@ -12,13 +12,13 @@ extension GravatarURL {
     /// - Returns: Gravatar URL.
     public static func url(for email: String,
                            preferredSize: ImageSize? = nil,
-                           gravatarRating: GravatarRating? = nil,
+                           gravatarRating: ImageRating? = nil,
                            defaultImageOption: DefaultImageOption? = .fileNotFound) -> URL? {
         return GravatarURL.gravatarUrl(with: email,
                                        // TODO: Passing GravatarDefaults.imageSize to keep the previous default.
                                        // But ideally this should be passed explicitly.
                                        options: .init(preferredSize: preferredSize ?? .pixels(GravatarDefaults.imageSize),
-                                                      gravatarRating: gravatarRating,
+                                                      rating: gravatarRating,
                                                       defaultImage: defaultImageOption))
     }
 }

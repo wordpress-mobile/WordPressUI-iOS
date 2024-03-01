@@ -3,7 +3,7 @@ import Foundation
 /// Helper Enum that specifies all of the available Gravatar Image Ratings
 /// TODO: Convert into a pure Swift String Enum. It's done this way to maintain ObjC Compatibility
 ///
-@available(*, deprecated, message: "Use `GravatarRating` from the Gravatar module.")
+@available(*, deprecated, message: "Use `ImageRating`")
 @objc
 public enum GravatarRatings: Int {
     case g
