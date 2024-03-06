@@ -19,6 +19,6 @@ extension GravatarURL {
                                        // But ideally this should be passed explicitly.
                                        options: .init(preferredSize: preferredSize ?? .pixels(GravatarDefaults.imageSize),
                                                       rating: gravatarRating,
-                                                      defaultImage: defaultImageOption))
+                                                      defaultImageOption: defaultImageOption))
     }
 }
