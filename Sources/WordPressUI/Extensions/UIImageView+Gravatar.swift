@@ -148,7 +148,7 @@ extension UIImageView {
 
     private func downloadGravatar(fullURL: URL?, placeholder: UIImage, animate: Bool, failure: ((Error?) -> ())? = nil) {
         self.gravatar.cancelImageDownload()
-        let options: [GravatarImageSettingOption] = [.imageCache(ImageCache.shared)]
+        let options: [ImageSettingOption] = [.imageCache(ImageCache.shared)]
         self.gravatar.setImage(with: fullURL,
                                placeholder: placeholder,
                                options: options) { [weak self] result in
