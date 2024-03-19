@@ -1,7 +1,9 @@
 import Foundation
 import UIKit
 import Gravatar
-@_exported import enum Gravatar.ImageRating
+import enum Gravatar.Rating
+
+public typealias ImageRating = Rating
 
 #if SWIFT_PACKAGE
 import WordPressUIObjC
@@ -29,11 +31,11 @@ public enum ObjcGravatarRating: Int {
     case r
     case x
 
-    fileprivate func map() -> ImageRating {
+    fileprivate func map() -> Rating {
         switch self {
-        case .g: .g
-        case .pg: .pg
-        case .r: .r
+        case .g: .general
+        case .pg: .parentalGuidance
+        case .r: .restricted
         case .x: .x
         }
     }
@@ -55,7 +57,7 @@ extension UIImageView {
     ///   - email: The user's email
     ///   - gravatarRating: Expected image rating
     ///   - placeholderImage: Image to be used as Placeholder
-    public func downloadGravatar(for email: String, gravatarRating: ImageRating = .g, placeholderImage: UIImage = .gravatarPlaceholderImage) {
+    public func downloadGravatar(for email: String, gravatarRating: ImageRating = .general, placeholderImage: UIImage = .gravatarPlaceholderImage) {
         let gravatarURL = GravatarURL.url(for: email, preferredSize: .pixels(gravatarDefaultSize()), gravatarRating: gravatarRating)
         listenForGravatarChanges(forEmail: email)
         downloadGravatar(fullURL: gravatarURL, placeholder: placeholderImage, animate: false, failure: nil)
