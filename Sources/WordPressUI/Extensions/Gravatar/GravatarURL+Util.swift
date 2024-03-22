@@ -1,8 +1,7 @@
 import Foundation
 import Gravatar
 
-extension GravatarURL {
-    
+extension AvatarURL {
     /// Creates a Gravatar URL. This is the new version of the deprecated method: `Gravatar.gravatarUrl(for:defaultImage:size:rating:)`
     /// - Parameters:
     ///   - email: The user's email
@@ -14,11 +13,15 @@ extension GravatarURL {
                            preferredSize: ImageSize? = nil,
                            gravatarRating: Rating? = nil,
                            defaultImageOption: DefaultImageOption? = .fileNotFound) -> URL? {
-        return GravatarURL.gravatarUrl(with: email,
-                                       // TODO: Passing GravatarDefaults.imageSize to keep the previous default.
-                                       // But ideally this should be passed explicitly.
-                                       options: .init(preferredSize: preferredSize ?? .pixels(GravatarDefaults.imageSize),
-                                                      rating: gravatarRating,
-                                                      defaultImageOption: defaultImageOption))
+        AvatarURL(
+            email: email,
+            // TODO: Passing GravatarDefaults.imageSize to keep the previous default.
+            // But ideally this should be passed explicitly.
+            options: .init(
+                preferredSize: preferredSize ?? .pixels(GravatarDefaults.imageSize),
+                rating: gravatarRating,
+                defaultImageOption: defaultImageOption
+            )
+        )?.url
     }
 }
