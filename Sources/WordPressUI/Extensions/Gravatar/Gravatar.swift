@@ -31,7 +31,7 @@ public enum GravatarRatings: Int {
 /// Helper Enum that specifies some of the options for default images
 /// To see all available options, visit : https://en.gravatar.com/site/implement/images/
 ///
-@available(*, deprecated, message: "Use `DefaultImageOption` from the Gravatar module.")
+@available(*, deprecated, message: "Use `DefaultAvatarOption` from the Gravatar module.")
 public enum GravatarDefaultImage: String {
     case fileNotFound = "404"
     case mp
@@ -86,7 +86,7 @@ public struct Gravatar {
     ///
     /// - Returns: Gravatar's URL
     ///
-    @available(*, deprecated, message: "Use `GravatarURL.url(for:preferredSize:gravatarRating:,defaultImageOption:)`.")
+    @available(*, deprecated, message: "Use `GravatarURL.url(for:preferredSize:gravatarRating:defaultAvatarOption:)`.")
     public static func gravatarUrl(for email: String,
                                    defaultImage: GravatarDefaultImage? = nil,
                                    size: Int? = nil,
