@@ -2,8 +2,22 @@ import Foundation
 import UIKit
 import Gravatar
 import enum Gravatar.Rating
+@_exported import struct Gravatar.AvatarURL
 
 public typealias ImageRating = Rating
+
+@available(*, deprecated, renamed: "AvatarURL")
+public typealias GravatarURL = AvatarURL
+
+extension GravatarURL {
+    public init?(_ url: URL) {
+        self.init(url: url)
+    }
+
+    public var canonicalURL: URL {
+        self.canonicalUrl
+    }
+}
 
 #if SWIFT_PACKAGE
 import WordPressUIObjC
@@ -144,7 +158,7 @@ extension UIImageView {
         layoutIfNeeded()
 
         let size = Int(ceil(frame.width * UIScreen.main.scale))
-        let url = gravatar.url(with: .init(preferredSize: .pixels(size)))
+        let url = gravatar.replacing(options: .init(preferredSize: .pixels(size)))?.url
         downloadGravatar(fullURL: url, placeholder: placeholder, animate: animate, failure: failure)
     }
 
