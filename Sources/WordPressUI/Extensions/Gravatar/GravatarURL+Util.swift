@@ -12,7 +12,7 @@ extension AvatarURL {
     public static func url(for email: String,
                            preferredSize: ImageSize? = nil,
                            gravatarRating: Rating? = nil,
-                           defaultImageOption: DefaultImageOption? = .fileNotFound) -> URL? {
+                           defaultAvatarOption: DefaultAvatarOption? = .status404) -> URL? {
         AvatarURL(
             email: email,
             // TODO: Passing GravatarDefaults.imageSize to keep the previous default.
@@ -23,4 +23,5 @@ extension AvatarURL {
                 defaultAvatarOption: defaultAvatarOption
             )
         )?.url
+    }
 }
