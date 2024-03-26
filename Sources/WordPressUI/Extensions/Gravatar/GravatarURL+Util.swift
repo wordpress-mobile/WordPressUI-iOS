@@ -7,7 +7,7 @@ extension AvatarURL {
     ///   - email: The user's email
     ///   - preferredSize: Preferred size for the Gravatar image. See: `Gravatar.ImageSize`
     ///   - gravatarRating: Specifies a Gravatar image rating. See: Gravatar.GravatarRating
-    ///   - defaultImageOption: Option to return a default image if the image requested does not exist. See.Gravatar.DefaultImageOption
+    ///   - defaultAvatarOption: Option to return a default image if the image requested does not exist. See: Gravatar.DefaultAvatarOption
     /// - Returns: Gravatar URL.
     public static func url(for email: String,
                            preferredSize: ImageSize? = nil,
@@ -20,8 +20,7 @@ extension AvatarURL {
             options: .init(
                 preferredSize: preferredSize ?? .pixels(GravatarDefaults.imageSize),
                 rating: gravatarRating,
-                defaultImageOption: defaultImageOption
+                defaultAvatarOption: defaultAvatarOption
             )
         )?.url
-    }
 }
