@@ -50,7 +50,7 @@ extension UIImageView {
     }
 
     /// Configures the UIImageView to listen for changes to the gravatar it is displaying
-    private func listenForGravatarChanges(forEmail trackedEmail: String) {
+    public func listenForGravatarChanges(forEmail trackedEmail: String) {
         if let currentObersver = gravatarWrapper?.observer {
             NotificationCenter.default.removeObserver(currentObersver)
             gravatarWrapper = nil
