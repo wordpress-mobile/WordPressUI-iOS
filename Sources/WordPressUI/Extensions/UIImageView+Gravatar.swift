@@ -29,6 +29,7 @@ extension UIImageView {
     ///     - email: the user's email
     ///     - rating: expected image rating
     ///
+    ///   This method uses deprecated types. Check out the UIImageView extension from the Gravatar iOS SDK as an alternative to download images. See: https://github.com/Automattic/Gravatar-SDK-iOS.
     @objc
     public func downloadGravatarWithEmail(_ email: String, rating: GravatarRatings) {
         downloadGravatarWithEmail(email, rating: rating, placeholderImage: .gravatarPlaceholderImage)
@@ -41,6 +42,7 @@ extension UIImageView {
     ///     - rating: expected image rating
     ///     - placeholderImage: Image to be used as Placeholder
     ///
+    ///   This method uses deprecated types. Check out the UIImageView extension from the Gravatar iOS SDK as an alternative to download images. See: https://github.com/Automattic/Gravatar-SDK-iOS.
     @objc
     public func downloadGravatarWithEmail(_ email: String, rating: GravatarRatings = .default, placeholderImage: UIImage = .gravatarPlaceholderImage) {
         let gravatarURL = Gravatar.gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating)
@@ -88,6 +90,7 @@ extension UIImageView {
     ///     - animate: enable/disable fade in animation
     ///     - failure: Callback block to be invoked when an error occurs while fetching the Gravatar image
     ///
+    ///     This method uses deprecated types. Check out the UIImageView extension from the Gravatar iOS SDK as an alternative to download images. See: https://github.com/Automattic/Gravatar-SDK-iOS.
     public func downloadGravatar(_ gravatar: Gravatar?, placeholder: UIImage, animate: Bool, failure: ((Error?) -> Void)? = nil) {
         guard let gravatar = gravatar else {
             self.image = placeholder
