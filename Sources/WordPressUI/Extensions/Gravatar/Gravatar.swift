@@ -3,6 +3,7 @@ import Foundation
 /// Helper Enum that specifies all of the available Gravatar Image Ratings
 /// TODO: Convert into a pure Swift String Enum. It's done this way to maintain ObjC Compatibility
 ///
+@available(*, deprecated, message: "Use `Rating` from the Gravatar iOS SDK. See: https://github.com/Automattic/Gravatar-SDK-iOS.")
 @objc
 public enum GravatarRatings: Int {
     case g
@@ -30,12 +31,14 @@ public enum GravatarRatings: Int {
 /// Helper Enum that specifies some of the options for default images
 /// To see all available options, visit : https://en.gravatar.com/site/implement/images/
 ///
+@available(*, deprecated, message: "Use `DefaultAvatarOption` from the Gravatar iOS SDK. See: https://github.com/Automattic/Gravatar-SDK-iOS.")
 public enum GravatarDefaultImage: String {
     case fileNotFound = "404"
     case mp
     case identicon
 }
 
+@available(*, deprecated, message: "Use `AvatarURL` from the Gravatar iOS SDK. See: https://github.com/Automattic/Gravatar-SDK-iOS")
 public struct Gravatar {
     fileprivate struct Defaults {
         static let scheme = "https"
@@ -107,13 +110,17 @@ public struct Gravatar {
     }
 }
 
+@available(*, deprecated, message: "Usage of the deprecated type: Gravatar.")
 extension Gravatar: Equatable {}
 
+@available(*, deprecated, message: "Usage of the deprecated type: Gravatar.")
 public func ==(lhs: Gravatar, rhs: Gravatar) -> Bool {
     return lhs.canonicalURL == rhs.canonicalURL
 }
 
+@available(*, deprecated, message: "Usage of the deprecated type: Gravatar.")
 public extension Gravatar {
+    @available(*, deprecated, message: "Usage of the deprecated type: Gravatar.")
     init?(_ url: URL) {
         guard Gravatar.isGravatarURL(url) else {
             return nil

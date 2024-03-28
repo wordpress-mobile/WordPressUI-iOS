@@ -29,6 +29,8 @@ extension UIImageView {
     ///     - email: the user's email
     ///     - rating: expected image rating
     ///
+    ///   This method uses deprecated types. Please check the deprecation warning in `GravatarRatings`. Also check out the UIImageView extension from the Gravatar iOS SDK as an alternative to download images. See: https://github.com/Automattic/Gravatar-SDK-iOS.
+    @available(*, deprecated, message: "Usage of the deprecated type: GravatarRatings.")
     @objc
     public func downloadGravatarWithEmail(_ email: String, rating: GravatarRatings) {
         downloadGravatarWithEmail(email, rating: rating, placeholderImage: .gravatarPlaceholderImage)
@@ -40,7 +42,8 @@ extension UIImageView {
     ///     - email: the user's email
     ///     - rating: expected image rating
     ///     - placeholderImage: Image to be used as Placeholder
-    ///
+    ///   This method uses deprecated types. Please check the deprecation warning in `GravatarRatings`. Also check out the UIImageView extension from the Gravatar iOS SDK as an alternative to download images. See: https://github.com/Automattic/Gravatar-SDK-iOS.
+    @available(*, deprecated, message: "Usage of the deprecated type: GravatarRatings.")
     @objc
     public func downloadGravatarWithEmail(_ email: String, rating: GravatarRatings = .default, placeholderImage: UIImage = .gravatarPlaceholderImage) {
         let gravatarURL = Gravatar.gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating)
@@ -50,7 +53,7 @@ extension UIImageView {
     }
 
     /// Configures the UIImageView to listen for changes to the gravatar it is displaying
-    private func listenForGravatarChanges(forEmail trackedEmail: String) {
+    public func listenForGravatarChanges(forEmail trackedEmail: String) {
         if let currentObersver = gravatarWrapper?.observer {
             NotificationCenter.default.removeObserver(currentObersver)
             gravatarWrapper = nil
@@ -88,6 +91,8 @@ extension UIImageView {
     ///     - animate: enable/disable fade in animation
     ///     - failure: Callback block to be invoked when an error occurs while fetching the Gravatar image
     ///
+    ///   This method uses deprecated types. Please check the deprecation warning in `GravatarRatings`. Also check out the UIImageView extension from the Gravatar iOS SDK as an alternative to download images. See: https://github.com/Automattic/Gravatar-SDK-iOS.
+    @available(*, deprecated, message: "Usage of the deprecated type: Gravatar.")
     public func downloadGravatar(_ gravatar: Gravatar?, placeholder: UIImage, animate: Bool, failure: ((Error?) -> Void)? = nil) {
         guard let gravatar = gravatar else {
             self.image = placeholder
@@ -138,6 +143,7 @@ extension UIImageView {
     /// P.s.:
     /// Hope buddah, and the code reviewer, can forgive me for this hack.
     ///
+    @available(*, deprecated, message: "Usage of the deprecated type: GravatarRatings.")
     @objc public func overrideGravatarImageCache(_ image: UIImage, rating: GravatarRatings, email: String) {
         guard let gravatarURL = Gravatar.gravatarUrl(for: email, size: gravatarDefaultSize(), rating: rating) else {
             return
