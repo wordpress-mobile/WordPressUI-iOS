@@ -14,7 +14,7 @@ extension AvatarURL {
                            gravatarRating: Rating? = nil,
                            defaultAvatarOption: DefaultAvatarOption? = .status404) -> URL? {
         AvatarURL(
-            email: email,
+            with: .email(email),
             // TODO: Passing GravatarDefaults.imageSize to keep the previous default.
             // But ideally this should be passed explicitly.
             options: .init(
