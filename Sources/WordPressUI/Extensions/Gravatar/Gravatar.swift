@@ -110,13 +110,17 @@ public struct Gravatar {
     }
 }
 
+@available(*, deprecated, message: "Usage of the deprecated type: Gravatar.")
 extension Gravatar: Equatable {}
 
+@available(*, deprecated, message: "Usage of the deprecated type: Gravatar.")
 public func ==(lhs: Gravatar, rhs: Gravatar) -> Bool {
     return lhs.canonicalURL == rhs.canonicalURL
 }
 
+@available(*, deprecated, message: "Usage of the deprecated type: Gravatar.")
 public extension Gravatar {
+    @available(*, deprecated, message: "Usage of the deprecated type: Gravatar.")
     init?(_ url: URL) {
         guard Gravatar.isGravatarURL(url) else {
             return nil
