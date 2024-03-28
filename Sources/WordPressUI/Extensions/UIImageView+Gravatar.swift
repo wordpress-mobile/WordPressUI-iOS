@@ -13,10 +13,6 @@ extension GravatarURL {
     public init?(_ url: URL) {
         self.init(url: url)
     }
-
-    public var canonicalURL: URL {
-        self.canonicalUrl
-    }
 }
 
 #if SWIFT_PACKAGE
